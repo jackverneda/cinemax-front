@@ -48,6 +48,38 @@ $cinemax-front-theme: mat.define-dark-theme(
   html {
     @apply bg-black text-white;
     font-family: 'Montserrat', sans-serif;
+    h1 {
+      font-size: 32px;
+    }
+  }
+  .container {
+    margin-right: auto;
+    margin-left: auto;
+    position: relative;
+  }
+
+  @media (min-width: 576px) {
+    .container {
+      max-width: 540px;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .container {
+      max-width: 720px;
+    }
+  }
+
+  @media (min-width: 992px) {
+    .container {
+      max-width: 960px;
+    }
+  }
+
+  @media (min-width: 1200px) {
+    .container {
+      max-width: 1140px;
+    }
   }
 }
 
@@ -58,12 +90,4 @@ body {
 body {
   margin: 0;
   // font-family: Roboto, 'Helvetica Neue', sans-serif;
-}
-
-// ===========================================================================================
-// MATERIAL BUTTONS
-// ===========================================================================================
-
-.button-rounded {
-  border-radius: 25% / 50%;
 }

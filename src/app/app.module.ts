@@ -8,11 +8,15 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
+import { MatFormFieldModule } from '@angular/material/form-field';
+
 import { BannerComponent } from './frontend/components/banner/banner.component';
+import { FooterComponent } from './shared/footer/footer.component';
+import { MovieModule } from './frontend/movie/movie.module';
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, AppRoutingModule, RouterModule, MatButtonModule, MatDividerModule, MatIconModule, BannerComponent],
+  imports: [BrowserModule, MovieModule, FooterComponent, AppRoutingModule, RouterModule, MatButtonModule, MatDividerModule, MatIconModule, BannerComponent],
   bootstrap: [AppComponent],
   providers: [provideAnimationsAsync('noop')],
 })
