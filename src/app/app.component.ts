@@ -20,7 +20,7 @@ export class AppComponent {
     },
     {
       name: 'Cartelera',
-      link: '/products',
+      link: '/movie',
     },
     {
       name: 'Eventos',
