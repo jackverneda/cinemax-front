@@ -76,7 +76,7 @@
     }
 
     .black-shadow {
-      background-color: rgba(0, 0, 0, 0.7);
+      background: linear-gradient(to bottom, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0.5));
       box-shadow: 0 1rem 20rem rgba(0, 0, 0, 0.5);
       transition: 0.5s;
     }
