@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
 @Component({
@@ -8,4 +9,22 @@ import { RouterOutlet } from '@angular/router';
 })
 export class AppComponent {
   title = 'cinemax-front';
+  pages = [
+    {
+      name: 'Inicio',
+      link: '/home',
+    },
+    {
+      name: '¿Quiénes Somos?',
+      link: '/about-us',
+    },
+    {
+      name: 'Cartelera',
+      link: '/products',
+    },
+    {
+      name: 'Eventos',
+      link: '/news',
+    },
+  ];
 }

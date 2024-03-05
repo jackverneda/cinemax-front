@@ -1,1 +1,17 @@
 @import '../../../assets/css/material.scss';
+
+.container-left {
+  img {
+    @apply w-full h-full;
+    object-fit: cover;
+    object-position: center;
+  }
+}
+.container-right {
+  img {
+    @apply max-h-24;
+    border-radius: 50px;
+    object-fit: cover;
+    object-position: center;
+  }
+}

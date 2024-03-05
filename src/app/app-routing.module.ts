@@ -6,6 +6,7 @@ export const routes: Routes = [
   //   path: 'home',
   //   loadChildren: () => import('./frontend/home/home.module').then((m) => m.HomeModule),
   // },
+  // { path: '**', redirectTo: '/home' }
 ];
 
 @NgModule({

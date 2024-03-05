@@ -13,10 +13,24 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { BannerComponent } from './frontend/components/banner/banner.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { MovieModule } from './frontend/movie/movie.module';
+import { NavbarComponent } from './shared/navbar/navbar.component';
+import { MatSidenav, MatSidenavModule } from '@angular/material/sidenav';
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, MovieModule, FooterComponent, AppRoutingModule, RouterModule, MatButtonModule, MatDividerModule, MatIconModule, BannerComponent],
+  imports: [
+    BrowserModule,
+    MovieModule,
+    FooterComponent,
+    AppRoutingModule,
+    RouterModule,
+    MatButtonModule,
+    MatDividerModule,
+    MatIconModule,
+    BannerComponent,
+    NavbarComponent,
+    MatSidenavModule,
+  ],
   bootstrap: [AppComponent],
   providers: [provideAnimationsAsync('noop')],
 })
