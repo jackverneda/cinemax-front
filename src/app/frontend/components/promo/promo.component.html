@@ -1,0 +1,12 @@
+<div class="container w-4/5">
+  <div class="grid grid-cols-3 gap-3">
+    @for (item of data; track $index) {
+      <div class="flex flex-row h-10">
+        <mat-icon>{{ item?.logo }}</mat-icon>
+        <p>{{ item?.desc }}</p>
+      </div>
+    }
+  </div>
+  <div class="flex flex-row justify-between my-12"></div>
+  <button class="w-1/2 rounded-xl" mat-raised-button color="accent">¡Reserva ahora!</button>
+</div>

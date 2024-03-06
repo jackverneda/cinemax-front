@@ -1,0 +1,21 @@
+
+<div class="container w-4/5">
+  <div class="w-full mb-4">
+    <span class="text-base">Filmes de epoca que no dejan de sorprendernos.</span>
+    <h1 class="uppercase font-bold">Clasicos</h1>
+  </div>
+
+  <swiper-container class="swiper-wrapper" [config]="config" slides-per-view="5" space-between="5">
+    @for (image of dataImages; track $index) {
+      <swiper-slide class="w-1/5 h-40">
+        <img class="swiper-lazy" [src]="image?.file" />
+      </swiper-slide>
+    }
+
+    <div class="swiper-pagination"></div>
+
+    <!-- If we need navigation buttons -->
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-button-next"></div>
+  </swiper-container>
+</div>
