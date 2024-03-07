@@ -42,8 +42,8 @@
   </div>
   <hr />
   <div class="flex flex-row nav-bar my-16 w-4/5 justify-around mx-auto">
-    <a href="">Inicio</a>
-    <a href="">Cartelera</a>
+    <a [routerLink]="['/home']" routerLinkActive="router-link-active">Inicio</a>
+    <a [routerLink]="['/movie']">Cartelera</a>
     <a href="">Eventos</a>
     <a href="">Noticias</a>
     <a href="">Términos y Condiciones</a>
