@@ -7,11 +7,20 @@
   </div>
   <div class="flex flex-row justify-between my-16">
     <div class="w-1/2 container-left">
-      <img class="rounded-xl" src="../../../assets/images/movies/avatarexp.jpeg" alt="" />
+      <img class="rounded-xl" [src]="movie.image" alt="" />
     </div>
     <div class="w-5/12 container-right">
       <div class="flex flex-row w-full">
-        <img src="../../../assets/images/movies/avatarlogo.png" alt="" />
+        <img [src]="movie.logo" alt="" />
+      </div>
+      <div class="flex flex-row m-4">
+        <mat-chip-set dkDropListOrientation="horizontal">
+          @for (tag of movie.tags; track tag) {
+            <mat-chip>{{ tag }}</mat-chip>
+          }
+          <mat-chip>{{ movie.year }}</mat-chip>
+          <mat-chip>{{ movie.time }}</mat-chip>
+        </mat-chip-set>
       </div>
       <div>
         <p [innerHTML]="movie.desc" class="text-justify"></p>
