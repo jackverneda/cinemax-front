@@ -1,12 +1,18 @@
-<div class="container w-4/5">
-  <div class="grid grid-cols-3 gap-3">
+<div class="container w-4/5 h-60">
+  <div class="grid grid-cols-3 gap-3 place-items-center h-3/4">
     @for (item of data; track $index) {
-      <div class="flex flex-row h-10">
-        <mat-icon>{{ item?.logo }}</mat-icon>
-        <p>{{ item?.desc }}</p>
+      <div class="flex flex-row h-4/5 bg-[rgba(255,255,255,0.1)] rounded-lg p-4">
+        <div class="flex flex-col justify-center items-center w-1/5">
+          <mat-icon>{{item?.logo}}</mat-icon>
+        </div>
+        <div class="flex flex-col justify-center items-center w-4/5">
+          <p>{{ item?.desc }}</p>
+        </div>
       </div>
     }
   </div>
-  <div class="flex flex-row justify-between my-12"></div>
-  <button class="w-1/2 rounded-xl" mat-raised-button color="accent">¡Reserva ahora!</button>
+  <div class="flex flex-col justify-center items-center h-1/4 m-8">
+    <p class="text-center">Forma parte de nuestra familia cinefila</p>
+    <button class="w-1/10 rounded-xl h-1/2 mt-2" mat-raised-button color="accent">¡Registrate ahora!</button>
+  </div>
 </div>

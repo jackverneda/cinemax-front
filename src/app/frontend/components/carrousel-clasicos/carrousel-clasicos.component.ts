@@ -2,6 +2,7 @@ import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { register } from 'swiper/element/bundle';
 import { SwiperOptions } from 'swiper/types/swiper-options';
 import { MatButtonModule } from '@angular/material/button';
+import Swiper from 'swiper';
 
 @Component({
   selector: 'app-carrusel-clasicos',
@@ -26,16 +27,16 @@ export class CarrouselClasicos {
       pagination: { bulletActiveClass: 'swiper-pagination-bullet-active', clickable: true },
     };
     this.dataImages = [
+      { file: '../../../../assets/images/movies/avatarexp.jpeg' },
+      { file: '../../../../assets/images/movies/mascara.jfif' },
       { file: '../../../../assets/images/movies/wonka.jpeg' },
+      { file: '../../../../assets/images/movies/barbie.jpeg' },
       { file: '../../../../assets/images/movies/thecolorpurplEXP.jpeg' },
-      { file: '../../../../assets/images/movies/wonka.jpeg' },
+      { file: '../../../../assets/images/movies/oppenheimer.jpeg' },
+      { file: '../../../../assets/images/movies/forrestgump.jfif' },
+      { file: '../../../../assets/images/movies/rustin.jpeg' },
       { file: '../../../../assets/images/movies/thecolorpurplEXP.jpeg' },
-      { file: '../../../../assets/images/movies/thecolorpurplEXP.jpeg' },
-      { file: '../../../../assets/images/movies/wonka.jpeg' },
-      { file: '../../../../assets/images/movies/thecolorpurplEXP.jpeg' },
-      { file: '../../../../assets/images/movies/wonka.jpeg' },
-      { file: '../../../../assets/images/movies/thecolorpurplEXP.jpeg' },
-      { file: '../../../../assets/images/movies/thecolorpurplEXP.jpeg' }
+      { file: '../../../../assets/images/movies/mascara.jfif' },
     ];
   }
 }
