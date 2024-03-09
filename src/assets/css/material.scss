@@ -6,6 +6,8 @@
   border-radius: 25% / 50%;
 }
 .btn-stroked {
+  border-radius: 0.75rem;
   border: 3px solid white !important;
+  padding: 1rem 1.5rem;
   @apply font-bold;
 }

@@ -7,10 +7,12 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
 import { SearchComponent } from './search.component';
 import { SearchRoutingModule } from './search.routing';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatChipsModule } from '@angular/material/chips';
 
 @NgModule({
   declarations: [SearchComponent],
-  imports: [CommonModule, SearchRoutingModule, RouterModule, MatButtonModule, MatDividerModule, MatIconModule],
+  imports: [CommonModule, MatPaginatorModule, MatChipsModule, SearchRoutingModule, RouterModule, MatButtonModule, MatDividerModule, MatIconModule],
   exports: [SearchComponent],
 })
 export class SearchModule {}
