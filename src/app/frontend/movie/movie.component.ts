@@ -10,6 +10,12 @@ import { MatInputModule } from '@angular/material/input';
 })
 export class MovieComponent {
   movie = {
+    title: 'Avatar: The Way of Water',
+    image: '../../../assets/images/movies/avatarexp.jpeg',
+    logo: '../../../assets/images/movies/avatarlogo.png',
+    tags: ['Aventura', 'Ciencia Ficción', 'Epíco'],
+    year: 2022,
+    time: '2h 42m',
     desc: `Avatar: The Way of Water es una película estadounidense perteneciente al género de cine épico, ciencia
      ficción y aventura dirigida, producida y coescrita por James Cameron. Es la
     primera de las cuatro secuelas planificadas de su película Avatar. <br /><br />

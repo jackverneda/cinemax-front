@@ -10,6 +10,10 @@ export const routes: Routes = [
     path: 'movie',
     loadChildren: () => import('./frontend/movie/movie.module').then((m) => m.MovieModule),
   },
+  {
+    path: 'search',
+    loadChildren: () => import('./frontend/search/search.module').then((m) => m.SearchModule),
+  },
   { path: '**', redirectTo: '/home' },
 ];
 

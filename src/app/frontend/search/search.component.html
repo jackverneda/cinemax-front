@@ -1,0 +1,62 @@
+<div class="container w-4/5 flex flex-col">
+  <div class="flex flex-row mt-32">
+    <button mat-stroked-button class="btn-stroked self-start">
+      <mat-icon>chevron_left</mat-icon>
+      <span>Home</span>
+    </button>
+  </div>
+
+  <div class="flex flex-row justify-center">
+    <h1 class="uppercase font-bold">Resutados de Búsqueda</h1>
+  </div>
+  <div class="flex flex-row justify-around">
+    <div class="flex flex-col w-9/12 my-6 justify-stretch">
+      @for (item of searchResults; track $index) {
+        <div class="flex flex-row justify-between">
+          <div class="container-image">
+            <img class="h-full" [src]="item.image" alt="" />
+          </div>
+          <div class="container-text">
+            <div class="flex flex-row items-center justify-between">
+              <h2>
+                {{ item.title }}
+                <span class="text-gray-500">{{ item.year }}</span>
+              </h2>
+              <div>
+                @for (_ of rates; track $index) {
+                  @if ($index < item.rate) {
+                    <mat-icon> grade_outlined </mat-icon>
+                  }
+                }
+              </div>
+            </div>
+            <div class="flex fle-row">
+              <mat-chip-set dkDropListOrientation="horizontal">
+                @for (tag of item.tags; track tag) {
+                  <mat-chip>{{ tag }}</mat-chip>
+                }
+                <mat-chip>{{ item.time }}</mat-chip>
+              </mat-chip-set>
+            </div>
+            <p>{{ item.desc }}</p>
+          </div>
+          <div class="m-4 border-white border-l"></div>
+          <div class="container-date">
+            <p>17/Feb/2024</p>
+          </div>
+        </div>
+        <hr class="my-6" />
+      }
+    </div>
+    <div class="flex flex-col w-1/5 my-6 justify-stretch">
+      <div class="rounded-xl bg-white h-32 flex flex-row justify-center">
+        <div class="w-11/12 flex flex-col justify-around">
+          <input class="border-2 border-gray-500 p-2 rounded-xl text-black" type="text" placeholder="Búsqueda" />
+          <button class="font-bold" mat-raised-button>Buscar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <mat-paginator color="accent"></mat-paginator>
+  <hr />
+</div>
