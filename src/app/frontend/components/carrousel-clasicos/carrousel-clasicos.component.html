@@ -5,14 +5,14 @@
   </div>
 </div>
 <div class="w-full">
-  <swiper-container navegation="true" class="swiper-wrapper" autoplay loop="true" slides-per-view="auto" space-between="15">
+  <swiper-container navegation="true" autoplay speed="1000" loop="true" slides-per-view="auto" space-between="15" free-mode="true">
     @for (image of dataImagesU; track $index) {
       <swiper-slide class="w-auto h-80">
         <img class="swiper-lazy rounded-lg" [src]="image?.file" />
       </swiper-slide>
     }
   </swiper-container>
-  <swiper-container navegation="true" class="swiper-wrapper" scroll="true" autoplay loop="true" dir="rtl" slides-per-view="auto" space-between="15">
+  <swiper-container navegation="true" speed="1000" autoplay loop="true" dir="rtl" slides-per-view="auto" space-between="15" free-mode="true">
     @for (image of dataImagesD; track $index) {
       <swiper-slide class="w-auto h-80">
         <img class="swiper-lazy rounded-lg" [src]="image?.file" />

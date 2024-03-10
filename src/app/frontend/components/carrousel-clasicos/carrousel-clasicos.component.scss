@@ -4,3 +4,6 @@ swiper-slide {
     object-fit: cover;
   }
 }
+swiper-container {
+  transition-timing-function: linear !important;
+}

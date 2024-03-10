@@ -1,4 +1,14 @@
-<swiper-container navigation="true" pagination="true" id="banner-swiper" autoplay slides-per-view="1" loop="true" [effect]="'creative'" class="banner-swiper">
+<swiper-container
+  navigation="true"
+  pagination="true"
+  id="banner-swiper"
+  autoplay
+  slides-per-view="1"
+  speed="1000"
+  loop="true"
+  effect="fade"
+  class="banner-swiper"
+>
   <ng-container>
     @for (image of dataImages; track $index) {
       <swiper-slide autoplay="10000">

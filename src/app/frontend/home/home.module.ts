@@ -7,9 +7,19 @@ import { CarrouselComponent } from '../components/carrousel/carrousel.component'
 import { CarrouselRightComponent } from '../components/carrousel-right/carrousel-right.component';
 import { CarrouselClasicos } from '../components/carrousel-clasicos/carrousel-clasicos.component';
 import { PromoComponent } from '../components/promo/promo.component';
+import { MovieListComponent } from '../components/movie-list/movie-list.component';
 
 @NgModule({
   declarations: [HomeComponent],
-  imports: [CommonModule, HomeRoutingModule, CarrouselRightComponent, CarrouselClasicos, PromoComponent, BannerComponent, CarrouselComponent],
+  imports: [
+    CommonModule,
+    HomeRoutingModule,
+    CarrouselRightComponent,
+    CarrouselClasicos,
+    PromoComponent,
+    BannerComponent,
+    CarrouselComponent,
+    MovieListComponent,
+  ],
 })
 export class HomeModule {}
