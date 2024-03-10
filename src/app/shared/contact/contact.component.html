@@ -1,0 +1,43 @@
+<div class="flex container w-3/4 flex-col justify-intems-center mt-12">
+  <div class="flex justify-center">
+    <img width="300px" src="../../../assets/images/logo/cinemax-pale-logo.png" alt="" />
+  </div>
+  <div class="w-full mb-4">
+    <h1 class="uppercase font-bold">Contáctenos</h1>
+    <span class="text-base">Si desea programar una reunión, utilice la información a continuación o complete el formulario de contacto.</span>
+  </div>
+  <div class="flex flex-row justify-between">
+    <div class="w-1/2">
+      <img src="../../../assets/images/location.jpg" class="h-full" />
+    </div>
+    <div class="w-2/5 flex justify-items-end">
+      <form action="">
+        <input class="bg-transparent border-b-2 w-full border-b-white p-2 text-white" placeholder="Nombre *" type="text" />
+        <input class="bg-transparent border-b-2 w-full border-b-white p-2 text-white mb-4" placeholder="Correo electrónico *" type="text" />
+        <textarea
+          rows="5"
+          class="bg-transparent border-2 rounded-tl-xl rounded-br-xl w-full border-white p-2 text-white"
+          placeholder="Mensaje *"
+          type="text"
+        ></textarea>
+        <div class="w-full flex-row-reverse flex">
+          <button mat-stroked-button class="rounded-xl btn-stroked justify-self-end">Enviar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="flex flex-row justify-between my-12">
+    <div class="flex flex-row">
+      <mat-icon>phone</mat-icon>
+      <p>(53) 7 869 5850</p>
+    </div>
+    <div class="flex flex-row w-1/3">
+      <mat-icon>location_on</mat-icon>
+      <p class="w-11/12">Calle Oficios No. 52, 6to piso entre Obrapía y Lamparilla. La Habana Vieja. Cuba</p>
+    </div>
+    <div class="flex flex-row">
+      <mat-icon>mail</mat-icon>
+      <p>{{ 'cinemax.hav@grantheater.com' }}</p>
+    </div>
+  </div>
+</div>
