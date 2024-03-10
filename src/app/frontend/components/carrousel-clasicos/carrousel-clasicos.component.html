@@ -1,16 +1,22 @@
-<div class="container w-4/5">
+<div class="w-4/5 container flex flex-col">
   <div class="w-full mb-4">
     <span class="text-base">Filmes de epoca que no dejan de sorprendernos.</span>
     <h1 class="uppercase font-bold">Clasicos</h1>
   </div>
-
-  <swiper-container navegation="true" class="swiper-wrapper" [config]="config" slides-per-view="auto" space-between="15">
-    @for (image of dataImages; track $index) {
-      <swiper-slide class="w-auto h-40">
-        <img class="swiper-lazy rounded-lg h-4/5" [src]="image?.file" />
+</div>
+<div class="w-full">
+  <swiper-container navegation="true" class="swiper-wrapper" autoplay loop="true" slides-per-view="auto" space-between="15">
+    @for (image of dataImagesU; track $index) {
+      <swiper-slide class="w-auto h-80">
+        <img class="swiper-lazy rounded-lg" [src]="image?.file" />
       </swiper-slide>
     }
-    <div class="swiper-button-prev"></div>
-    <div class="swiper-button-next"></div>
+  </swiper-container>
+  <swiper-container navegation="true" class="swiper-wrapper" scroll="true" autoplay loop="true" dir="rtl" slides-per-view="auto" space-between="15">
+    @for (image of dataImagesD; track $index) {
+      <swiper-slide class="w-auto h-80">
+        <img class="swiper-lazy rounded-lg" [src]="image?.file" />
+      </swiper-slide>
+    }
   </swiper-container>
 </div>
