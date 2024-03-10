@@ -9,9 +9,10 @@ import { MovieComponent } from './movie.component';
 import { MovieRoutingModule } from './movie.routing';
 import { MatChipsModule } from '@angular/material/chips';
 
+import { MovieRoomsComponent } from '../components/movie-salas/movie-rooms.component';
+
 @NgModule({
   declarations: [MovieComponent],
-  imports: [CommonModule, MatChipsModule, MovieRoutingModule, RouterModule, MatButtonModule, MatDividerModule, MatIconModule],
-  exports: [MovieComponent],
+  imports: [CommonModule, MatChipsModule, MovieRoutingModule, RouterModule, MatButtonModule, MatDividerModule, MatIconModule, MovieRoomsComponent],
 })
 export class MovieModule {}
