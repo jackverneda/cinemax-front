@@ -6,10 +6,10 @@ import { HomeRoutingModule } from './home.routing';
 import { CarrouselComponent } from '../components/carrousel/carrousel.component';
 import { CarrouselRightComponent } from '../components/carrousel-right/carrousel-right.component';
 import { CarrouselClasicos } from '../components/carrousel-clasicos/carrousel-clasicos.component';
-import { Promo } from '../components/promo/promo.component';
+import { PromoComponent } from '../components/promo/promo.component';
 
 @NgModule({
   declarations: [HomeComponent],
-  imports: [CommonModule, HomeRoutingModule, CarrouselRightComponent, CarrouselClasicos, Promo, BannerComponent, CarrouselComponent],
+  imports: [CommonModule, HomeRoutingModule, CarrouselRightComponent, CarrouselClasicos, PromoComponent, BannerComponent, CarrouselComponent],
 })
 export class HomeModule {}

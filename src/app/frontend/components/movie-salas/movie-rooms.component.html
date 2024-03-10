@@ -4,7 +4,7 @@
     <span class="text-base">{{ rooms.length }} proyecciones</span>
   </div>
 
-  <ul class="h-4/5" direction="vertical" space-between="30">
+  <ul direction="vertical" space-between="30">
     @for (room of rooms; track $index) {
       <li class="flex flex-row h-1/5 items-center justify-between">
         <div class="flex flex-col w-1/5 border-r-2 border-r-white">
@@ -35,6 +35,6 @@
     }
   </ul>
   <div class="flex flex-row justify-center items-center">
-    <button class="rounded-xl border-e font-bold" mat-raised-button color="transparent">Ver mas</button>
+    <button class="btn-stroked p-2" mat-stroked-button>Ver mas</button>
   </div>
 </div>
