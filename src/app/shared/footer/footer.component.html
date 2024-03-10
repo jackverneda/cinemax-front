@@ -1,13 +1,24 @@
-<div class="flex container w-3/4 flex-col justify-intems-center bg-black">
-  <hr />
-  <div class="flex flex-row nav-bar my-16 w-4/5 justify-around mx-auto">
+<div class="flex container w-3/4 flex-col items-center justify-center bg-black">
+  <div class="w-full">
+    <hr />
+  </div>
+  <div class="flex flex-row nav-bar mt-12 gap-8">
     <a [routerLink]="['/home']" routerLinkActive="router-link-active">Inicio</a>
     <a [routerLink]="['/movie']">Cartelera</a>
     <a href="">Eventos</a>
     <a href="">Noticias</a>
     <a href="">Términos y Condiciones</a>
   </div>
-  <hr />
+  <div class="flex flex-row mb-12 mt-6 justify-around gap-6">
+    @for (item of socialMedia; track $index) {
+      <a>
+        <img class="h-8" [src]="socialMediaLogo + item.name + '.svg'" />
+      </a>
+    }
+  </div>
+  <div class="w-full">
+    <hr />
+  </div>
   <div class="flex flex-col justify-center items-center">
     <div class="flex flex-row mt-4">
       <p>Copyright© 2024. Todos los derechos reservados.</p>

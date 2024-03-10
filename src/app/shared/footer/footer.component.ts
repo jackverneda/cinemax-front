@@ -12,4 +12,7 @@ import { RouterModule } from '@angular/router';
   styleUrl: 'footer.component.scss',
   imports: [MatFormFieldModule, MatInputModule, MatButtonModule, MatIconModule, RouterModule],
 })
-export class FooterComponent {}
+export class FooterComponent {
+  socialMediaLogo = '../../../assets/images/logo/media/';
+  socialMedia = [{ name: 'facebook' }, { name: 'x' }, { name: 'instagram' }, { name: 'youtube' }];
+}
