@@ -8,6 +8,7 @@ import { CarrouselRightComponent } from '../components/carrousel-right/carrousel
 import { CarrouselClasicos } from '../components/carrousel-clasicos/carrousel-clasicos.component';
 import { PromoComponent } from '../components/promo/promo.component';
 import { MovieListComponent } from '../components/movie-list/movie-list.component';
+import { ContactComponent } from '../shared/contact/contact.component';
 
 @NgModule({
   declarations: [HomeComponent],
@@ -20,6 +21,7 @@ import { MovieListComponent } from '../components/movie-list/movie-list.componen
     BannerComponent,
     CarrouselComponent,
     MovieListComponent,
+    ContactComponent,
   ],
 })
 export class HomeModule {}

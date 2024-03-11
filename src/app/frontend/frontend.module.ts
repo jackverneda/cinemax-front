@@ -8,22 +8,11 @@ import { MatDividerModule } from '@angular/material/divider';
 import { FooterComponent } from './shared/footer/footer.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
 import { MatSidenav, MatSidenavModule } from '@angular/material/sidenav';
-import { ContactComponent } from './shared/contact/contact.component';
 import { FrontendRoutingModule } from './frontend.routing';
 import { LayoutComponent } from './layout/layout.component';
 
 @NgModule({
   declarations: [LayoutComponent],
-  imports: [
-    CommonModule,
-    FrontendRoutingModule,
-    RouterModule,
-    FooterComponent,
-    ContactComponent,
-    MatButtonModule,
-    MatDividerModule,
-    NavbarComponent,
-    MatSidenavModule,
-  ],
+  imports: [CommonModule, FrontendRoutingModule, RouterModule, FooterComponent, MatButtonModule, MatDividerModule, NavbarComponent, MatSidenavModule],
 })
 export class FrontendModule {}
