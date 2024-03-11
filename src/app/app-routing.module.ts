@@ -1,20 +1,13 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { AppComponent } from './app.component';
 
 export const routes: Routes = [
   {
-    path: 'home',
-    loadChildren: () => import('./frontend/home/home.module').then((m) => m.HomeModule),
+    path: 'frontend',
+    loadChildren: () => import('./frontend/frontend.module').then((m) => m.FrontendModule),
   },
-  {
-    path: 'movie',
-    loadChildren: () => import('./frontend/movie/movie.module').then((m) => m.MovieModule),
-  },
-  {
-    path: 'search',
-    loadChildren: () => import('./frontend/search/search.module').then((m) => m.SearchModule),
-  },
-  { path: '**', redirectTo: '/home' },
+  { path: '**', redirectTo: '/frontend' },
 ];
 
 @NgModule({

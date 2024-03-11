@@ -8,24 +8,11 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { MatButtonModule } from '@angular/material/button';
 import { MatDividerModule } from '@angular/material/divider';
 
-import { FooterComponent } from './shared/footer/footer.component';
-import { NavbarComponent } from './shared/navbar/navbar.component';
 import { MatSidenav, MatSidenavModule } from '@angular/material/sidenav';
-import { ContactComponent } from './shared/contact/contact.component';
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    RouterModule,
-    FooterComponent,
-    ContactComponent,
-    MatButtonModule,
-    MatDividerModule,
-    NavbarComponent,
-    MatSidenavModule,
-  ],
+  imports: [BrowserModule, AppRoutingModule, RouterModule, MatButtonModule, MatDividerModule, MatSidenavModule],
   bootstrap: [AppComponent],
   providers: [provideAnimationsAsync('noop')],
 })

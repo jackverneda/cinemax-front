@@ -33,7 +33,7 @@ export class NavbarComponent implements OnInit {
   }
 
   goToSearch() {
-    this.router.navigateByUrl('/search');
+    this.router.navigateByUrl('/frontend/search');
   }
 
   toggleDrawer() {
