@@ -51,6 +51,30 @@ const routes: Routes = [
         // },
         loadChildren: () => import('./admin-genre/admin-genre.module').then((m) => m.AdminGenreModule),
       },
+      {
+        path: 'roomTypes',
+        // canActivate: [BackendGuard],
+        // data: {
+        //   permissionName: [0],
+        // },
+        loadChildren: () => import('./admin-room-type/admin-room-type.module').then((m) => m.AdminRoomTypeModule),
+      },
+      {
+        path: 'rooms',
+        // canActivate: [BackendGuard],
+        // data: {
+        //   permissionName: [0],
+        // },
+        loadChildren: () => import('./admin-room/admin-room.module').then((m) => m.AdminRoomModule),
+      },
+      {
+        path: 'report',
+        // canActivate: [BackendGuard],
+        // data: {
+        //   permissionName: [0],
+        // },
+        loadChildren: () => import('./report/report.module').then((m) => m.ReportModule),
+      },
       // {
       //   path: 'logs',
       //   // canActivate: [BackendGuard],
