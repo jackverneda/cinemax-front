@@ -1,8 +1,8 @@
 <div class="dialog-content-wrapper">
   <mat-toolbar matDialogTitle color="primary" id="toolbarHeader">
     <mat-toolbar-row class="justify-between items-center">
-      <span *ngIf="!isEditing" class="mat-title mb-0">{{ 'Crear Actor' }}</span>
-      <span *ngIf="isEditing" class="mat-title mb-0">{{ 'Editar Actor' }}</span>
+      <span *ngIf="!isEditing" class="mat-title mb-0">{{ 'Crear Género' }}</span>
+      <span *ngIf="isEditing" class="mat-title mb-0">{{ 'Editar Género' }}</span>
       <button mat-icon-button (click)="dialogRef.close()" aria-label="Close dialog">
         <mat-icon>close</mat-icon>
       </button>
@@ -13,7 +13,7 @@
     <form [formGroup]="form">
       <div class="flex flex-col justify-start items-stretch" fxLayoutGap="gappx">
         <div class="flex flex-row justify-start items-start" class="mt-2" fxLayoutGap="gappx">
-          <span class="mat-body-2" style="text-transform: uppercase">{{ 'Información del Actor' }} </span>
+          <span class="mat-body-2" style="text-transform: uppercase">{{ 'Información del Género' }} </span>
         </div>
 
         <mat-divider></mat-divider>
@@ -21,16 +21,9 @@
         <div fxLayout="row wrap" class="mt-3 flex flex-wrap justify-between items-start" fxLayoutGap="gappx">
           <mat-form-field class="w-full" fxFlex.lt-md="100">
             <mat-label>
-              <span class="capitalize">{{ 'Nombre' }}</span>
+              <span class="capitalize">{{ 'Nombre del Género' }}</span>
             </mat-label>
-            <input required matInput formControlName="firstname" placeholder="{{ 'Nombre' }}" />
-          </mat-form-field>
-
-          <mat-form-field class="w-full" fxFlex.lt-md="100">
-            <mat-label>
-              <span class="capitalize">{{ 'Apellidos' }}</span>
-            </mat-label>
-            <input required matInput formControlName="lastName" placeholder="{{ 'Apellidos' }}" />
+            <input required matInput formControlName="name" placeholder="{{ 'Nombre del Género' }}" />
           </mat-form-field>
         </div>
       </div>

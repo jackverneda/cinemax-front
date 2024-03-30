@@ -1,8 +1,8 @@
 <div class="dialog-content-wrapper">
   <mat-toolbar matDialogTitle color="primary" id="toolbarHeader">
     <mat-toolbar-row class="justify-between items-center">
-      <span *ngIf="!isEditing" class="mat-title mb-0">{{ 'Crear Country' }}</span>
-      <span *ngIf="isEditing" class="mat-title mb-0">{{ 'Editar Country' }}</span>
+      <span *ngIf="!isEditing" class="mat-title mb-0">{{ 'Crear País' }}</span>
+      <span *ngIf="isEditing" class="mat-title mb-0">{{ 'Editar País' }}</span>
       <button mat-icon-button (click)="dialogRef.close()" aria-label="Close dialog">
         <mat-icon>close</mat-icon>
       </button>
@@ -30,8 +30,8 @@
     </form>
 
     <div class="mt-3 flex flex-row justify-start items-start" fxLayoutGap="gappx">
-      <button (click)="onClose()" [disabled]="this.form.invalid || isSaving" mat-raised-button color="primary">{{ 'SIGUIENTE' }}</button>
-      <button mat-raised-button class="ml-2" color="primary" (click)="onSave()">{{ 'GUARDAR' }}</button>
+      <button (click)="onClose()" mat-raised-button>{{ 'CERRAR' }}</button>
+      <button mat-raised-button [disabled]="this.form.invalid || isSaving" class="ml-2" color="primary" (click)="onSave()">{{ 'GUARDAR' }}</button>
     </div>
   </div>
 
