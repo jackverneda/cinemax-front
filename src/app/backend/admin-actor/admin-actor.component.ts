@@ -112,6 +112,7 @@ export class AdminActorComponent implements OnInit, OnDestroy {
 
   initTable(data: any[]) {
     this.allActors = data;
+    console.log(this.allActors);
     this.dataSource = new MatTableDataSource(data);
   }
 
@@ -210,7 +211,7 @@ export class AdminActorComponent implements OnInit, OnDestroy {
     dialogRef.afterClosed().subscribe(async (result) => {
       try {
         if (result) {
-          const data = await Promise.all(elements.map((item) => this.actorService.delete(item.id).subscribe()));
+          await Promise.all(elements.map((item) => this.actorService.delete(item.id).toPromise()));
           this.showToastr.showSucces('Elemento(s) correctamente eliminado(s)', 'Éxito', 7500);
           this.refreshData();
         }

@@ -11,7 +11,6 @@ import { ShowToastrService } from '../../../core/service/show-toastr.service';
 import * as Editor from '../../../../assets/js/build/ckeditor';
 import { ckEditorBasicConfig } from '../../../core/constants/ckeditor';
 import { AdminActorService } from '../../core/services/actor.service';
-// import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-dialog-add-edit-actor',
@@ -68,15 +67,15 @@ export class DialogAddEditActorComponent implements OnInit {
   // }
   onSave(): void {
     let data = this.form.value;
-    //   this.isSaving = true;
+    this.isSaving = true;
     if (!this.isEditing) {
       this.actorService.post(data).subscribe(
         (response: any) => {
           this.showToastr.showSucces('Elemento creado correctamente', 'Éxito');
           // this.spinner.hide();
-          this.selectedActor = response;
           this.isSaving = false;
           this.isEditing = true;
+          this.dialogRef.close();
         },
         (error) => {
           // this.spinner.hide();
@@ -101,8 +100,7 @@ export class DialogAddEditActorComponent implements OnInit {
           this.showToastr.showSucces('Elemento editado correctanmete');
           // this.spinner.hide();
           this.isSaving = false;
-          // this.changeBasicInfo = false;
-          this.selectedActor = response;
+          this.dialogRef.close();
         },
         (error) => {
           // this.spinner.hide();

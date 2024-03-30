@@ -210,7 +210,7 @@ export class AdminMoviesComponent implements OnInit, OnDestroy {
     dialogRef.afterClosed().subscribe(async (result) => {
       try {
         if (result) {
-          const data = await Promise.all(elements.map((item) => this.moviesService.delete(item.id).subscribe()));
+          const data = await Promise.all(elements.map((item) => this.moviesService.delete(item.id).toPromise()));
           this.showToastr.showSucces('Elemento(s) correctamente eliminado(s)', 'Éxito', 7500);
           this.refreshData();
         }
@@ -218,12 +218,5 @@ export class AdminMoviesComponent implements OnInit, OnDestroy {
         this.refreshData();
       }
     });
-  }
-
-  sortData(event: any) {
-    let value = event.active;
-    value = event.direction == 'desc' ? `-${value}` : `${value}`;
-    this.query.order = value;
-    this.refreshData();
   }
 }
