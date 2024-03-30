@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { MovieService } from '../../core/service/movie.service';
 
 @Component({
   selector: 'app-home',
@@ -6,6 +7,7 @@ import { Component } from '@angular/core';
   styleUrl: 'home.component.scss',
 })
 export class HomeComponent {
+  movies: any[] = [];
   searchResults = [
     {
       title: 'Barbie',
@@ -35,4 +37,19 @@ export class HomeComponent {
       desc: 'Bayard Rustin, asesor de Martin Luther King Jr., dedica su vida a la búsqueda de la igualdad racial, los derechos humanos y la democracia mundial. Sin embargo, como negro abiertamente homosexual, ha sido prácticamente borrado del movimiento.',
     },
   ];
+  constructor(private movieService: MovieService) {
+    // let movie = {
+    //   name: 'Lucy5',
+    //   description: 'Best peli',
+    //   Duration: '02:30:00',
+    //   Premiere: '2024-04-01T00:00:00',
+    //   IconURL: 'https://ejemplo.com/icon.png',
+    //   TrailerURL: 'https://ejemplo.com/trailer.mp4',
+    // };
+    // this.movieService.postMovie(movie).subscribe(() => {});
+    this.movieService.getAll().subscribe((res: any) => {
+      this.movies = res;
+      console.log(this.movies);
+    });
+  }
 }

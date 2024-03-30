@@ -1,0 +1,134 @@
+<!-- <div fxFlexFill fxLayout="column" fxLayoutAlign="center stretch" class="login-background">
+  <div fxLayout="row" fxLayoutAlign="center center">
+
+    <mat-card class="login-card mat-elevation-z8">
+
+      <div fxLayout="column" fxFlexAlign="center center" fxFlex="100">
+        <div fxLayout="column" fxLayoutAlign="start stretch" class="login-header">
+          <mat-toolbar color="primary" id="toolbarHeader">
+            <mat-progress-bar *ngIf="this.inLoading" id="progressBar" color="warn" [mode]="'indeterminate'"
+                              [value]="valueSpiner" [bufferValue]="bufferValue">
+            </mat-progress-bar>
+            <mat-toolbar-row>
+            </mat-toolbar-row>
+
+            <mat-toolbar-row fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="gappx">
+              <a [href]="portalUrl">
+                <div id="ImgLayout">
+                </div>
+              </a>
+            </mat-toolbar-row>
+
+            <mat-toolbar-row>
+
+            </mat-toolbar-row>
+          </mat-toolbar>
+        </div>
+        <form name="login" class="login-form">
+          <div fxLayout="row" style="margin-top: 16px; margin-bottom: 16px;" fxLayoutAlign="center center"
+               fxLayoutGap="gappx">
+            <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="gappx">
+              <h1 class="h3">Registrarse</h1>
+            </div>
+          </div>
+
+          <div fxLayout="column" style="margin-top: 16px;" fxLayoutAlign="center center">
+
+            <mat-form-field class="example-full-width" appearance="outline" fxFlex="60">
+              <mat-label>{{'Nombre'}}</mat-label>
+              <input matInput placeholder="{{'Nombre'}}" required [formControl]="form.controls['name']" #username>
+              <mat-error *ngIf="form.controls['name'].hasError('required')">
+                El nombre del usuario es <strong>requerido</strong>
+              </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width" appearance="outline" fxFlex="60">
+              <mat-label>{{'Apellidos'}}</mat-label>
+              <input matInput placeholder="{{'Apellidos'}}" required [formControl]="form.controls['lastName']">
+              <mat-error *ngIf="form.controls['lastName'].hasError('required')">
+                El apellido del usuario es <strong>requerido</strong>
+              </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width" appearance="outline" fxFlex="60">
+              <mat-label>Correo Electrónico</mat-label>
+              <input matInput placeholder="Correo Electrónico" type="email" required
+                     [formControl]="form.controls['email']">
+              <mat-error *ngIf="form.controls['email'].hasError('email')">
+                El email no es <strong>válido</strong>
+              </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width" appearance="outline" fxFlex="60">
+              <mat-label>Contraseña</mat-label>
+              <input matInput placeholder="Contraseña" [type]="this.passwordType" autocomplete="false"
+                     [formControl]="formPass.controls['password']">
+              <mat-icon style="cursor: pointer;" *ngIf="this.passwordType == 'password'" mat-icon-button matSuffix
+                        (click)="this.passwordType = 'text'">visibility
+              </mat-icon>
+
+              <mat-icon style="cursor: pointer;" *ngIf="this.passwordType == 'text'" mat-icon-button matSuffix
+                        (click)="this.passwordType = 'password'">
+                visibility_off
+              </mat-icon>
+              <mat-error *ngIf="formPass.controls['password'].hasError('required')">
+                La contraseña es <strong>requerida</strong>
+              </mat-error>
+              <mat-error *ngIf="formPass.controls['password'].hasError('minlength')">
+                La contraseña debe tener al menos <strong>8 caracteres</strong>
+              </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width" appearance="outline" fxFlex="60"
+                            [ngClass]="{'mat-form-field-invalid': formPass.hasError('mismatch'), 'ng-invalid': formPass.hasError('mismatch'), 'ng-valid': !formPass.hasError('mismatch')}">
+              <mat-label>Repetir Contraseña</mat-label>
+              <input matInput
+                     placeholder="Repetir Contraseña"
+                     [type]="this.passwordType"
+                     [ngClass]="{'ng-invalid': formPass.hasError('mismatch')}"
+                     [formControl]="formPass.controls['repeat']">
+              <mat-icon style="cursor: pointer;" *ngIf="this.passwordType == 'password'" mat-icon-button matSuffix
+                        (click)="this.passwordType = 'text'">visibility
+              </mat-icon>
+
+              <mat-icon style="cursor: pointer;" *ngIf="this.passwordType == 'text'" mat-icon-button matSuffix
+                        (click)="this.passwordType = 'password'">
+                visibility_off
+              </mat-icon>
+              <mat-error *ngIf="formPass.controls['repeat'].hasError('required')">
+                La contraseña es <strong>requerida</strong>
+              </mat-error>
+              <mat-error *ngIf="formPass.controls['repeat'].hasError('minlength')">
+                La contraseña debe tener al menos <strong>8 caracteres</strong>
+              </mat-error>
+            </mat-form-field>
+
+            <div fxLayout="row" fxLayoutAlign="center end">
+              <div [innerHTML]="this.captcha | safeHtml" runScripts></div>
+
+            <button matTooltip="Refrescar captcha" (click)="onRefreshCaptcha()" mat-icon-button><mat-icon>refresh</mat-icon></button>
+            </div>
+
+            <mat-form-field class="example-full-width" appearance="outline" fxFlex="60">
+              <mat-label>{{'Captcha'}}</mat-label>
+              <input matInput placeholder="{{'Captcha'}}" required [formControl]="form.controls['captcha']">
+            </mat-form-field>
+
+            <button mat-raised-button color="primary" [disabled]="form.invalid || this.inLoading" (click)="singUp()"
+                    class="cf-margin-top-20 example-full-width">REGISTRARSE
+            </button>
+
+            <button mat-button
+                    class="my-3 example-full-width"
+                    [routerLink]="['/authentication/login']">
+              ATRÁS
+            </button>
+
+          </div>
+
+        </form>
+      </div>
+    </mat-card>
+
+  </div>
+</div> -->

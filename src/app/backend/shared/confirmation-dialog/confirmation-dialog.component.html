@@ -1,0 +1,15 @@
+<h2 mat-dialog-title>{{ data.title }}</h2>
+
+<mat-dialog-content>
+  <span>{{ data.question }}</span>
+</mat-dialog-content>
+
+<mat-dialog-actions class="flex justify-between items-center">
+  <button class="flex" mat-button mat-dialog-close>{{ 'CANCELAR' }}</button>
+
+  <button class="flex" color="primary" mat-raised-button (click)="onSave()">
+    <!--<mat-icon *ngIf="!isSaving">save</mat-icon>-->
+
+    <span>{{ 'ACEPTAR' }}</span>
+  </button>
+</mat-dialog-actions>

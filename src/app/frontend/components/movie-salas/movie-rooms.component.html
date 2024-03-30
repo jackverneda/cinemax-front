@@ -6,8 +6,8 @@
 
   <ul direction="vertical" space-between="30">
     @for (room of rooms; track $index) {
-      <li class="flex flex-row h-1/5 items-center justify-between">
-        <div class="flex flex-col w-1/5 border-r-2 border-r-white">
+      <li class="flex flex-row h-1/5 items-center justify-between border-dashed border-b border-b-white py-2 mb-6">
+        <div class="flex flex-col w-1/5 border-solid border-r-2 border-r-white">
           <p class="flex flex-row h-1/2 font-bold">{{ room?.day }}/{{ room?.month }}/{{ room?.year }}</p>
           @if (room.hour > 12) {
             <p>{{ room?.hour - 12 }}:00 PM</p>

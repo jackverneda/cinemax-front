@@ -1,0 +1,116 @@
+// @import '../../../../assets/scss/theme/variables';
+$red-500: rgb(255, 0, 0);
+$theme-main-100: rgb(255, 0, 0, 0.1);
+$theme-main: $red-500;
+
+.my-badge {
+  background-color: $red-500 !important;
+  color: white !important;
+  margin-left: 50px;
+  padding: 3px 9px;
+  border-radius: 50%;
+}
+
+:host {
+  display: flex;
+  flex-direction: column;
+  outline: none;
+  width: 100%;
+  margin-bottom: 3px;
+
+  .my-badge {
+    background-color: $red-500 !important;
+    color: white !important;
+    margin-left: 50px;
+    padding: 3px 9px;
+    border-radius: 50%;
+  }
+
+  .mat-list-item:hover {
+    background-color: $theme-main-100;
+    color: $theme-main !important;
+    border-radius: 36px !important;
+
+    mat-icon {
+      color: $theme-main !important;
+    }
+
+    span {
+      font-weight: 500 !important;
+      color: $theme-main !important;
+    }
+
+    .my-badge {
+      background-color: $red-500 !important;
+      color: white !important;
+      margin-left: 50px;
+      padding: 3px 9px;
+      border-radius: 50%;
+    }
+  }
+
+  .mat-list-item.active {
+    background-color: #fff;
+    color: $theme-main;
+    border-radius: 24px;
+    transition: border-radius 0.2s ease;
+
+    .my-badge {
+      background-color: $red-500 !important;
+      color: white !important;
+      margin-left: 50px;
+      padding: 3px 9px;
+      border-radius: 50%;
+    }
+
+    span {
+      font-weight: 500 !important;
+      color: $theme-main !important;
+    }
+
+    mat-icon {
+      color: $theme-main !important;
+    }
+  }
+
+  span {
+    color: #fff;
+  }
+
+  #dividerNav {
+    border-top-color: #424242 !important;
+  }
+
+  &:hover,
+  &:focus {
+    > .mat-list-item:not(.expanded) {
+      border-radius: 16px;
+      transition: border-radius 0.2s ease;
+    }
+  }
+}
+
+menu-list-item {
+  @apply w-full;
+  max-width: 100%;
+}
+
+.mat-list-item {
+  padding: 2px 0;
+  display: flex;
+  width: auto;
+  color: #fff;
+
+  .routeIcon {
+    margin-right: 30px;
+  }
+}
+
+.menu-icons {
+  font-size: 18px !important;
+
+  mat-icon {
+    color: #fff;
+    margin: 0px !important;
+  }
+}

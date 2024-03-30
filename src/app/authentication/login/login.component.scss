@@ -1,0 +1,83 @@
+// @import '../../../assets/scss/theme/variables';
+@import '../../../assets/css/material.scss';
+
+// $havanatur-color: #0d47a1;
+.login-card {
+  border-radius: 6px !important;
+  padding: 0;
+  min-width: 450px;
+  max-width: 600px;
+
+  .version-label {
+    color: white;
+  }
+
+  @media (max-width: 800px) {
+    min-width: 350px !important;
+    max-width: 400px !important;
+  }
+
+  min-height: 560px !important;
+
+  .chip-username {
+    border-radius: 16px;
+    padding: 5px 10px;
+
+    .mat-icon {
+      margin-left: 10px;
+      margin-right: 10px;
+    }
+
+    .back-icon {
+      margin-right: 10px !important;
+      font-size: 14px;
+      height: 14px;
+      width: 14px;
+    }
+  }
+}
+
+.login-header {
+  #toolbarHeader {
+    border-top-left-radius: 6px !important;
+    border-top-right-radius: 6px !important;
+
+    #progressBar {
+      border-top-left-radius: 6px !important;
+      border-top-right-radius: 6px !important;
+    }
+  }
+}
+
+.mat-card-header-text {
+  margin: 0px !important;
+}
+
+.login-toolbar {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.login-form {
+  margin-top: auto;
+  margin-bottom: auto;
+
+  #lineUnder {
+    // background-color: $havanatur-color;
+    width: 30px;
+    height: 2px;
+    border-radius: 4px;
+  }
+}
+
+.example-full-width {
+  // width: 90%;
+}
+
+.login-background {
+  background: url('../../../assets/images/auth/pexels-tima-miroshnichenko-7991148.jpg') no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-color: #fafafa;
+  height: 100vh !important;
+}
