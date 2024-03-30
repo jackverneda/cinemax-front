@@ -78,9 +78,9 @@
               <!-- <div class="w-full">
                 <p class="mt-0 mb-2">
                   <span class="capitalize">{{ 'text' }}</span>
-                </p>
-                <ckeditor [config]="config" [editor]="Editor" formControlName="description" tagName="textarea"></ckeditor>
-              </div> -->
+                </p> -->
+              <!-- <ckeditor (ready)="onReady($event)" (change)="onChange($event)" [editor]="Editor" formControlName="description" tagName="textarea"></ckeditor> -->
+              <!-- </div> -->
               <mat-form-field class="w-full" fxFlex.lt-md="100">
                 <mat-label>Descripción</mat-label>
                 <textarea required rows="3" matInput formControlName="description" placeholder="{{ 'Descripción' }}"></textarea>

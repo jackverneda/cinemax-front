@@ -9,8 +9,9 @@ import { ShowToastrService } from '../../../core/service/show-toastr.service';
 // import { Subject } from 'rxjs';
 // import { takeUntil } from 'rxjs/operators';
 // import { LoggedInUserService } from 'src/app/core/services/loggedInUser/logged-in-user.service'
-import * as Editor from '../../../../assets/js/build/ckeditor';
 import { ckEditorBasicConfig } from '../../../core/constants/ckeditor';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import { ChangeEvent } from '@ckeditor/ckeditor5-angular';
 // import { TranslateService } from '@ngx-translate/core';
 
 @Component({
@@ -27,8 +28,15 @@ export class DialogAddEditMovieComponent implements OnInit {
   // imageUrl: any;
   // _unsubscribeAll: Subject<any>;
   selectedMovie: any;
-  public Editor = Editor;
-  public config = ckEditorBasicConfig;
+  public Editor = ClassicEditor;
+
+  public onReady(editor: any) {
+    console.log('CKEditor5 Angular Component is ready to use!', editor);
+  }
+  public onChange({ editor }: ChangeEvent) {
+    const data = editor.getData();
+    console.log(data);
+  }
   // allStatus: any[] = ['enabled', 'disabled', 'pending'];
   // /////////////////////////////////////////////////
   // languageData: any = {};
@@ -53,7 +61,6 @@ export class DialogAddEditMovieComponent implements OnInit {
   }
   ngOnInit(): void {
     this.createForm();
-    console.log(this.config, this.Editor);
     //   //////////////////////////////////////////////
     //   this.fetchData();
     //   this.form.valueChanges.subscribe(() => {
