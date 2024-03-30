@@ -9,26 +9,25 @@ import { ShowToastrService } from '../../../core/service/show-toastr.service';
 // import { takeUntil } from 'rxjs/operators';
 // import { LoggedInUserService } from 'src/app/core/services/loggedInUser/logged-in-user.service'
 import { ckEditorBasicConfig } from '../../../core/constants/ckeditor';
-import { AdminActorService } from '../../core/services/actor.service';
+import { AdminCountryService } from '../../core/services/country.service';
 
 @Component({
-  selector: 'app-dialog-add-edit-actor',
-  templateUrl: './dialog-add-edit-actor.component.html',
-  styleUrls: ['./dialog-add-edit-actor.component.scss'],
-  encapsulation: ViewEncapsulation.None,
+  selector: 'app-dialog-add-edit-country',
+  templateUrl: './dialog-add-edit-country.component.html',
+  styleUrls: ['./dialog-add-edit-country.component.scss'],
 })
-export class DialogAddEditActorComponent implements OnInit {
+export class DialogAddEditCountryComponent implements OnInit {
   isSaving = false;
   isEditing = false;
   // loggedInUser: any;
   form!: FormGroup;
   // _unsubscribeAll: Subject<any>;
-  selectedActor: any;
+  selectedCountry: any;
 
   constructor(
-    public dialogRef: MatDialogRef<DialogAddEditActorComponent>,
+    public dialogRef: MatDialogRef<DialogAddEditCountryComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private actorService: AdminActorService,
+    private countryService: AdminCountryService,
     private showToastr: ShowToastrService,
     private fb: FormBuilder, //   private loggedInUserService: LoggedInUserService, //
   ) {
@@ -38,7 +37,7 @@ export class DialogAddEditActorComponent implements OnInit {
     //   this.dialogRef.disableClose = true;
     //   this.loggedInUser = this.loggedInUserService.getLoggedInUser();
     //   this._unsubscribeAll = new Subject<any>();
-    this.selectedActor = data.selectedActor;
+    this.selectedCountry = data.selectedCountry;
     //   this.imageUrl = environment.imageUrl;
   }
   ngOnInit(): void {
@@ -51,8 +50,7 @@ export class DialogAddEditActorComponent implements OnInit {
   }
   createForm(): void {
     this.form = this.fb.group({
-      firstname: [this.selectedActor?.firstname, [Validators.required]],
-      lastName: [this.selectedActor?.lastName, [Validators.required]],
+      name: [this.selectedCountry?.name, [Validators.required]],
     });
   }
   // ngOnDestroy(): void {
@@ -68,7 +66,7 @@ export class DialogAddEditActorComponent implements OnInit {
     let data = this.form.value;
     this.isSaving = true;
     if (!this.isEditing) {
-      this.actorService.post(data).subscribe(
+      this.countryService.post(data).subscribe(
         (response: any) => {
           this.showToastr.showSucces('Elemento creado correctamente', 'Éxito');
           // this.spinner.hide();
@@ -86,7 +84,7 @@ export class DialogAddEditActorComponent implements OnInit {
       );
     } else {
       let dataOutput = {
-        id: this.selectedActor.id,
+        id: this.selectedCountry.id,
         ...data,
       };
       // for (let key in data) {
@@ -94,7 +92,7 @@ export class DialogAddEditActorComponent implements OnInit {
       //     dataOutput[key] = data[key];
       //   }
       // }
-      this.actorService.update(dataOutput).subscribe(
+      this.countryService.update(dataOutput).subscribe(
         (response: any) => {
           this.showToastr.showSucces('Elemento editado correctanmete');
           // this.spinner.hide();

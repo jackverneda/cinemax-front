@@ -70,10 +70,10 @@ export class NavigationService {
             hasPermission: true,
           },
           {
-            id: 'country',
+            id: 'countries',
             displayName: 'Países',
             iconName: ['public'],
-            route: 'backend/country',
+            route: 'backend/countries',
             material: true,
             children: [],
             role: [0],

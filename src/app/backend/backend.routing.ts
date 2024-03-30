@@ -35,6 +35,14 @@ const routes: Routes = [
         // },
         loadChildren: () => import('./admin-director/admin-director.module').then((m) => m.AdminDirectorModule),
       },
+      {
+        path: 'countries',
+        // canActivate: [BackendGuard],
+        // data: {
+        //   permissionName: [0],
+        // },
+        loadChildren: () => import('./admin-country/admin-country.module').then((m) => m.AdminCountryModule),
+      },
       // {
       //   path: 'logs',
       //   // canActivate: [BackendGuard],

@@ -70,7 +70,7 @@
 
               <mat-form-field class="w-full">
                 <mat-label>{{ 'Fecha de estreno' }}</mat-label>
-                <input matInput [max]="" [matDatepicker]="dp" formControlName="premier" readonly (click)="dp.open()" />
+                <input matInput [max]="" [matDatepicker]="dp" formControlName="premiere" readonly (click)="dp.open()" />
                 <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
                 <mat-datepicker #dp startView="multi-year" panelClass="example-month-picker" touchUi> </mat-datepicker>
               </mat-form-field>

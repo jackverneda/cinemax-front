@@ -74,7 +74,7 @@ export class DialogAddEditMovieComponent implements OnInit {
       trailerURL: [this.selectedMovie?.trailerURL, [Validators.required]],
       iconURL: [this.selectedMovie?.iconURL, [Validators.required]],
       duration: [this.selectedMovie?.duration, [Validators.required]],
-      premier: [this.selectedMovie?.premier, [Validators.required]],
+      premiere: [this.selectedMovie?.premier, [Validators.required]],
     });
   }
   // fetchData() {

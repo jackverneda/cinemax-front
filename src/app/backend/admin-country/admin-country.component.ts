@@ -11,17 +11,17 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { IPagination } from '../../core/classes/pagination.class';
 import { ShowToastrService } from '../../core/service/show-toastr.service';
-import { AdminMovieService } from '../core/services/movie.service';
-import { DialogAddEditMovieComponent } from './dialog-add-edit-movie/dialog-add-edit-movie.component';
+import { DialogAddEditCountryComponent } from './dialog-add-edit-country/dialog-add-edit-country.component';
 import { ConfirmationDialogComponent } from '../shared/confirmation-dialog/confirmation-dialog.component';
+import { AdminCountryService } from '../core/services/country.service';
 
 @Component({
-  selector: 'app-admin-movies',
-  templateUrl: './admin-movies.component.html',
-  styleUrls: ['./admin-movies.component.scss'],
+  selector: 'app-admin-country',
+  templateUrl: './admin-country.component.html',
+  styleUrls: ['./admin-country.component.scss'],
 })
-export class AdminMoviesComponent implements OnInit, OnDestroy {
-  allAboutUss: any[] = [];
+export class AdminCountryComponent implements OnInit, OnDestroy {
+  allCountrys: any;
   formFilters!: FormGroup;
   dataSource: MatTableDataSource<any>;
   showFilterAboutUs: boolean = false;
@@ -51,13 +51,13 @@ export class AdminMoviesComponent implements OnInit, OnDestroy {
     },
   };
 
-  displayedColumns: string[] = ['select', 'title', 'description', 'duration', 'premier', 'actions'];
+  displayedColumns: string[] = ['select', 'name', 'actions'];
   displayedColumnsFilters: string[] = ['selectF', 'titleF', 'actionsF'];
 
   constructor(
     private fb: FormBuilder,
     // private loggedInUserService: LoggedInUserService,
-    private moviesService: AdminMovieService,
+    private countryService: AdminCountryService,
     // private breadcrumbService: BreadcrumbService,
     public dialog: MatDialog,
     private showToastr: ShowToastrService,
@@ -96,7 +96,7 @@ export class AdminMoviesComponent implements OnInit, OnDestroy {
 
   refreshData(): void {
     this.isLoading = true;
-    this.moviesService.getAll().subscribe(
+    this.countryService.getAll().subscribe(
       (data: any) => {
         this.initTable(data);
         // this.query.total = data.meta.pagination.total;
@@ -111,7 +111,8 @@ export class AdminMoviesComponent implements OnInit, OnDestroy {
   }
 
   initTable(data: any[]) {
-    this.allAboutUss = data;
+    this.allCountrys = data;
+    console.log(this.allCountrys);
     this.dataSource = new MatTableDataSource(data);
   }
 
@@ -159,15 +160,15 @@ export class AdminMoviesComponent implements OnInit, OnDestroy {
 
   //////////////////////////////
 
-  onCreateMovie(): void {
-    let dialogRef: MatDialogRef<DialogAddEditMovieComponent, any>;
-    dialogRef = this.dialog.open(DialogAddEditMovieComponent, {
+  onCreateCountry(): void {
+    let dialogRef: MatDialogRef<DialogAddEditCountryComponent, any>;
+    dialogRef = this.dialog.open(DialogAddEditCountryComponent, {
       panelClass: 'app-dialog-add-edit-about-us',
       maxWidth: '60vw',
       maxHeight: '100vh',
       data: {
         isEditing: false,
-        selectedMovie: null,
+        selectedCountry: null,
       },
     });
 
@@ -176,17 +177,17 @@ export class AdminMoviesComponent implements OnInit, OnDestroy {
     });
   }
 
-  onEditMovie(movie: any): void {
-    this.moviesService.get(movie.id).subscribe(
+  onEditCountry(country: any): void {
+    this.countryService.get(country.id).subscribe(
       (data: any) => {
-        let dialogRef: MatDialogRef<DialogAddEditMovieComponent, any>;
-        dialogRef = this.dialog.open(DialogAddEditMovieComponent, {
+        let dialogRef: MatDialogRef<DialogAddEditCountryComponent, any>;
+        dialogRef = this.dialog.open(DialogAddEditCountryComponent, {
           panelClass: 'app-dialog-add-edit-about-us',
           maxWidth: '60vw',
           maxHeight: '100vh',
           data: {
             isEditing: true,
-            selectedMovie: data.data,
+            selectedCountry: data.data,
           },
         });
 
@@ -198,7 +199,7 @@ export class AdminMoviesComponent implements OnInit, OnDestroy {
     );
   }
 
-  async onRemoveMovies(elements: any[]) {
+  async onRemoveCountrys(elements: any[]) {
     const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
       width: '450px',
       data: {
@@ -210,7 +211,7 @@ export class AdminMoviesComponent implements OnInit, OnDestroy {
     dialogRef.afterClosed().subscribe(async (result) => {
       try {
         if (result) {
-          const data = await Promise.all(elements.map((item) => this.moviesService.delete(item.id).toPromise()));
+          await Promise.all(elements.map((item) => this.countryService.delete(item.id).toPromise()));
           this.showToastr.showSucces('Elemento(s) correctamente eliminado(s)', 'Éxito', 7500);
           this.refreshData();
         }
