@@ -1,0 +1,52 @@
+<div class="bar-graphs-amount">
+  <mat-tab-group>
+    <mat-tab label="Semanas">
+      <div class="week-tab flex flex-col">
+        <div class="graphic w-4/5 mx-auto">
+          <canvas
+            id="barGraphs1"
+            baseChart
+            [type]="typeGraphs"
+            [legend]="true"
+            [datasets]="barAmountChartData"
+            [labels]="barAmountChartLabels"
+            [options]="barAmountChartOptions"
+          >
+          </canvas>
+        </div>
+      </div>
+    </mat-tab>
+    <mat-tab label="Meses">
+      <div class="week-tab flex flex-col">
+        <div class="graphic w-4/5 mx-auto">
+          <canvas
+            id="barGraphs2"
+            baseChart
+            [type]="typeGraphs"
+            [legend]="true"
+            [datasets]="barAmountChartData"
+            [labels]="barAmountChartLabels"
+            [options]="barAmountChartOptions"
+          >
+          </canvas>
+        </div>
+      </div>
+    </mat-tab>
+    <mat-tab label="Años">
+      <div class="week-tab flex flex-col">
+        <div class="graphic w-4/5 mx-auto">
+          <canvas
+            id="barGraphs3"
+            baseChart
+            [type]="typeGraphs"
+            [legend]="true"
+            [datasets]="barAmountChartData"
+            [labels]="barAmountChartLabels"
+            [options]="barAmountChartOptions"
+          >
+          </canvas>
+        </div>
+      </div>
+    </mat-tab>
+  </mat-tab-group>
+</div>

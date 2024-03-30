@@ -62,7 +62,7 @@ export class NavigationService {
           {
             id: 'directors',
             displayName: 'Directores',
-            iconName: ['people'],
+            iconName: ['supervisor_account'],
             route: 'backend/directors',
             material: true,
             children: [],
@@ -131,7 +131,7 @@ export class NavigationService {
           {
             id: 'amount_collected',
             displayName: 'Recaudación',
-            iconName: ['finance'],
+            iconName: ['monetization_on'],
             route: 'backend/report/amount-collected',
             material: true,
             children: [],

@@ -51,7 +51,7 @@ export class AdminRoomComponent implements OnInit, OnDestroy {
     },
   };
 
-  displayedColumns: string[] = ['select', 'name', 'actions'];
+  displayedColumns: string[] = ['select', 'name', 'type', 'actions'];
   displayedColumnsFilters: string[] = ['selectF', 'titleF', 'actionsF'];
 
   constructor(

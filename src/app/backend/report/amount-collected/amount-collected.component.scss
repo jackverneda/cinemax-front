@@ -1,0 +1,33 @@
+// @import "../../../../../assets/scss/helpers/helpers";
+// @import "../../../../../assets/scss/theme-imports";
+
+$color-primary: #eb2228;
+
+.amount-collected-container {
+  .bottom-content {
+    ::ng-deep .table {
+      .mat-card-content {
+        .information-table {
+          .table-container {
+            border-top: 1px dotted $color-primary;
+            border-bottom: 1px dotted $color-primary;
+            .table-made-queries {
+              th.mat-column-totalRaised,
+              td.mat-column-totalRaised {
+                text-align: end;
+                padding-right: 0 !important;
+              }
+              thead {
+                tr {
+                  th {
+                    color: $color-primary;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

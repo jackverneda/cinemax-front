@@ -94,6 +94,21 @@
       </td>
     </ng-container>
 
+    <ng-container matColumnDef="type">
+      <th mat-header-cell *matHeaderCellDef>
+        <span class="mat-body-2">{{ 'Tipo de Sala' }}</span>
+      </th>
+      <td mat-cell *matCellDef="let element">
+        <ul class="list-disc list-outside">
+          @for (type of element.type; track $index) {
+            <li>
+              <span class="mat-body-1"> {{ type.name }}</span>
+            </li>
+          }
+        </ul>
+      </td>
+    </ng-container>
+
     <ng-container matColumnDef="actions">
       <th style="width: 3%; overflow: hidden" mat-header-cell *matHeaderCellDef></th>
       <td mat-cell *matCellDef="let element">

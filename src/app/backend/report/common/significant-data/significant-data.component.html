@@ -1,0 +1,58 @@
+<div class="significant-content" fxLayout="column">
+  <div class="significant-header w-100" fxLayout="row" fxLayoutAlign="space-between center">
+    <h2>Datos Significativos</h2>
+    <button mat-icon-button [matMenuTriggerFor]="settingsMenu">
+      <mat-icon>contact_support</mat-icon>
+    </button>
+  </div>
+  <mat-menu class="menu-information-amount" #settingsMenu="matMenu">
+    <h2>Información</h2>
+    <p>
+      Los gráficos muestran el comportamiento de la plataforma si comparamos con fechas previas. Digase el año anterior, en el caso de escoger reportes
+      semanales o la semana anterior si se elige el reporte semanal.
+    </p>
+  </mat-menu>
+  <h5>Comparación de información con resultados anteriores</h5>
+  <div class="area-graps-analysis" fxLayout="column" fxLayoutGap="1rem">
+    <div class="top" fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="1rem">
+      <app-analysis-area-graph
+        fxFlex="50"
+        [title]="topLeftGraphsTitle"
+        [subTitle]="topLeftGraphsSubTitle"
+        [amount]="topLeftGraphsAmount"
+        [percent]="topLeftGraphsPercent"
+        [data]="topLeftGraphsDataGraph"
+      >
+      </app-analysis-area-graph>
+      <app-analysis-area-graph
+        fxFlex="50"
+        [title]="topRigthGraphsTitle"
+        [subTitle]="topRigthGraphsSubTitle"
+        [amount]="topRigthGraphsAmount"
+        [percent]="topRigthGraphsPercent"
+        [data]="topRigthGraphsDataGraphs"
+      >
+      </app-analysis-area-graph>
+    </div>
+    <div class="middle" fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="1rem">
+      <app-analysis-area-graph
+        fxFlex="50"
+        [title]="middleLeftGraphsTitle"
+        [subTitle]="middleLeftGraphsSubTitle"
+        [amount]="middleLeftGraphsAmount"
+        [percent]="middleLeftGraphsPercent"
+        [data]="middleLeftGraphsDataGraphs"
+      >
+      </app-analysis-area-graph>
+      <app-analysis-area-graph
+        fxFlex="50"
+        [title]="middleRigthGraphsTitle"
+        [subTitle]="middleRigthGraphsSubTitle"
+        [amount]="middleRigthGraphsAmount"
+        [percent]="middleRigthGraphsPercent"
+        [data]="middleRigthGraphsDataGraphs"
+      >
+      </app-analysis-area-graph>
+    </div>
+  </div>
+</div>
