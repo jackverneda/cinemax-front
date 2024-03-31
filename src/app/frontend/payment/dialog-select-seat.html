@@ -1,0 +1,29 @@
+<mat-toolbar matDialogTitle color="primary" id="toolbarHeader">
+  <mat-toolbar-row class="justify-between items-center">
+    <span class="mat-title mb-0">{{ 'Seleccionar Asientos' }}</span>
+    <button mat-icon-button (click)="dialogRef.close()" aria-label="Close dialog">
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-toolbar-row>
+</mat-toolbar>
+<div class="flex flex-col w-4/5 mx-auto mt-6">
+  <div class="flex flex-row justify-between items-center">
+    <h1>Sala</h1>
+    <span>5/4/2024</span>
+  </div>
+  <div>
+    @for(row of matrix; track $index){
+    <div class="flex flex-row justify-between">
+      @for(seat of row; track $index){
+      <button [disabled]="seat.status == 'disabled'" (click)="onSelectSeat(seat)">
+        <img class="w-8 h-8" src="../../../assets/images/seat/seat-{{seat.status}}.svg" alt="" />
+      </button>
+      }
+    </div>
+    }
+  </div>
+</div>
+<div class="flex flex-row justify-end mt-6">
+  <button mat-raised-button mat-dialog-close>CERRAR</button>
+  <button mat-raised-button color="primary" [disabled]="selectedSeats==0" (click)="onSave()">Guardar</button>
+</div>

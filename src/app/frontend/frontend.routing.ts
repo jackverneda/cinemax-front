@@ -19,6 +19,10 @@ export const routes: Routes = [
         path: 'search',
         loadChildren: () => import('./search/search.module').then((m) => m.SearchModule),
       },
+      {
+        path: 'payment',
+        loadChildren: () => import('./payment/payment.module').then((m) => m.PaymentModule),
+      },
       { path: '**', redirectTo: '/frontend/home' },
     ],
   },
