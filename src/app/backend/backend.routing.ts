@@ -83,6 +83,14 @@ const routes: Routes = [
         // },
         loadChildren: () => import('./admin-projection/admin-projection.module').then((m) => m.AdminProjectionsModule),
       },
+      {
+        path: 'payment',
+        // canActivate: [BackendGuard],
+        // data: {
+        //   permissionName: [0],
+        // },
+        loadChildren: () => import('./admin-payment/admin-payment.module').then((m) => m.AdminPaymentModule),
+      },
       // {
       //   path: 'logs',
       //   // canActivate: [BackendGuard],

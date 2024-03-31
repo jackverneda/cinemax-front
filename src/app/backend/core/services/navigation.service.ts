@@ -142,6 +142,26 @@ export class NavigationService {
         role: [0],
         hasPermission: true,
       },
+      {
+        id: 'payment',
+        displayName: 'Pagos',
+        iconName: ['payments'],
+        material: true,
+        children: [
+          {
+            id: 'payment',
+            displayName: 'Tipo de Pago',
+            iconName: ['account_balance_wallet'],
+            route: 'backend/payment',
+            material: true,
+            children: [],
+            role: [0],
+            hasPermission: true,
+          },
+        ],
+        role: [0],
+        hasPermission: true,
+      },
       //   {
       //     id: 'mi-perfil',
       //     displayName: 'Mi perfil',
