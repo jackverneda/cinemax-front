@@ -91,6 +91,14 @@ const routes: Routes = [
         // },
         loadChildren: () => import('./admin-payment/admin-payment.module').then((m) => m.AdminPaymentModule),
       },
+      {
+        path: 'discount',
+        // canActivate: [BackendGuard],
+        // data: {
+        //   permissionName: [0],
+        // },
+        loadChildren: () => import('./admin-discount/admin-discount.module').then((m) => m.AdminDiscountModule),
+      },
       // {
       //   path: 'logs',
       //   // canActivate: [BackendGuard],
@@ -102,13 +110,10 @@ const routes: Routes = [
       //       (m) => m.AdminLogsModule
       //     ),
       // },
-      // {
-      //   path: 'users',
-      //   loadChildren: () =>
-      //     import('./appBackoffice/admin-users/admin-users.module').then(
-      //       (m) => m.AdminUsersModule
-      //     ),
-      // },
+      {
+        path: 'users',
+        loadChildren: () => import('./admin-user/admin-user.module').then((m) => m.AdminUserModule),
+      },
       // {
       //   path: 'profile',
       //   loadChildren: () =>

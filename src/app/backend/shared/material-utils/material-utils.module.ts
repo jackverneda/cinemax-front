@@ -21,8 +21,12 @@ import { MatListModule } from '@angular/material/list';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { TextFieldModule } from '@angular/cdk/text-field';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 const material = [
+  MatTooltipModule,
+  MatToolbarModule,
   MatPaginatorModule,
   MatFormFieldModule,
   MatCheckboxModule,

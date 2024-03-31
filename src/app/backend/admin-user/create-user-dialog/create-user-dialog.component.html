@@ -1,0 +1,67 @@
+<div class="dialog-content-wrapper">
+  <mat-toolbar matDialogTitle color="primary" id="toolbarHeader">
+    <mat-toolbar-row class="justify-between items-center">
+      <span class="mat-title mb-0">{{ 'Crear Usuario' }}</span>
+      <button mat-icon-button (click)="dialogRef.close()" aria-label="Close dialog">
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-toolbar-row>
+  </mat-toolbar>
+
+  <div mat-dialog-content class="my-dialog-content">
+    <form class="create-user-form flex flex-col" [formGroup]="userForm">
+      <div mat-dialog-content class="flex flex-col">
+        <mat-form-field appearance="outline" class="w-full">
+          <mat-label>Nombre</mat-label>
+          <input required matInput placeholder="Escriba el nombre " formControlName="name" />
+          <mat-error *ngIf="userForm.get('name')?.hasError('pattern')">El nombre no debe contener caracteres especiales.</mat-error>
+          <mat-error *ngIf="userForm.get('name')?.hasError('required')">El nombre es requerido.</mat-error>
+        </mat-form-field>
+
+        <div class="email-rol flex flex-row justify-between items-center">
+          <mat-form-field appearance="outline" class="w-3/5">
+            <mat-label>Correo del usuario</mat-label>
+            <input required matInput placeholder="correo" formControlName="email" />
+            <mat-error *ngIf="userForm.get('email')?.hasError('pattern')">Correo inválido.</mat-error>
+            <mat-error *ngIf="userForm.get('email')?.hasError('required')">El correo es requerido.</mat-error>
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="w-[38%]">
+            <mat-label>Rol</mat-label>
+            <mat-select formControlName="roles" multiple [disableOptionCentering]="true">
+              <mat-option *ngFor="let rol of roles" [value]="rol">{{ rol }} </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div class="flex flex-row justify-between items-center">
+          <mat-form-field appearance="outline" class="w-3/5">
+            <mat-label>Contraseña</mat-label>
+            <input required matInput placeholder="Contraseña" formControlName="password" />
+            <mat-error *ngIf="userForm.get('password')?.hasError('required')">La contraseña es requerida.</mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="w-[38%]">
+            <mat-label>{{ 'Fecha de Nacimiento' }}</mat-label>
+            <input matInput [max]="" [matDatepicker]="dp" formControlName="birthDay" readonly (click)="dp.open()" />
+            <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
+            <mat-datepicker #dp panelClass="example-month-picker" touchUi> </mat-datepicker>
+          </mat-form-field>
+        </div>
+      </div>
+    </form>
+    <div class="flex flex-row justify-between">
+      <button mat-raised-button class="mb-3 btn-action" mat-dialog-close fxLayout="row" fxLayoutAlign="center center">CERRAR</button>
+      <button
+        mat-raised-button
+        class="mb-3 btn-action"
+        [disabled]="userForm.invalid"
+        color="primary"
+        (click)="onCreateUser()"
+        fxLayout="row"
+        fxLayoutAlign="center center"
+      >
+        GUARDAR
+      </button>
+    </div>
+  </div>
+</div>
