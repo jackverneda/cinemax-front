@@ -51,7 +51,7 @@ export class AdminMoviesComponent implements OnInit, OnDestroy {
     },
   };
 
-  displayedColumns: string[] = ['select', 'title', 'description', 'duration', 'premier', 'actions'];
+  displayedColumns: string[] = ['select', 'title', 'description', 'duration', 'premier', 'genre', 'country', 'director', 'actor', 'actions'];
   displayedColumnsFilters: string[] = ['selectF', 'titleF', 'actionsF'];
 
   constructor(

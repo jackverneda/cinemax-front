@@ -12,6 +12,11 @@ import { ShowToastrService } from '../../../core/service/show-toastr.service';
 import { ckEditorBasicConfig } from '../../../core/constants/ckeditor';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { ChangeEvent } from '@ckeditor/ckeditor5-angular';
+import { AdminCountryService } from '../../core/services/country.service';
+import { AdminActorService } from '../../core/services/actor.service';
+import { AdminDirectorService } from '../../core/services/director.service';
+import { AdminGenreService } from '../../core/services/genre.service';
+import { DURATION_REGEX, URL_REGEX } from '../../../core/constants/const';
 // import { TranslateService } from '@ngx-translate/core';
 
 @Component({
@@ -24,10 +29,16 @@ export class DialogAddEditMovieComponent implements OnInit {
   isEditing = false;
   // loggedInUser: any;
   form!: FormGroup;
+  secundaryForm!: FormGroup;
   // languages: any[] = [];
   // imageUrl: any;
   // _unsubscribeAll: Subject<any>;
   selectedMovie: any;
+  allCountries: any[] = [];
+  allActors: any[] = [];
+  allDirectors: any[] = [];
+  allGenres: any[] = [];
+
   public Editor = ClassicEditor;
 
   public onReady(editor: any) {
@@ -47,6 +58,10 @@ export class DialogAddEditMovieComponent implements OnInit {
     public dialogRef: MatDialogRef<DialogAddEditMovieComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private movieService: AdminMovieService,
+    private countryService: AdminCountryService,
+    private actorService: AdminActorService,
+    private directorService: AdminDirectorService,
+    private genreService: AdminGenreService,
     private showToastr: ShowToastrService,
     private fb: FormBuilder, //   private loggedInUserService: LoggedInUserService, //
   ) {
@@ -71,10 +86,16 @@ export class DialogAddEditMovieComponent implements OnInit {
     this.form = this.fb.group({
       name: [this.selectedMovie?.name, [Validators.required]],
       description: [this.selectedMovie?.description, [Validators.required]],
-      trailerURL: [this.selectedMovie?.trailerURL, [Validators.required]],
-      iconURL: [this.selectedMovie?.iconURL, [Validators.required]],
-      duration: [this.selectedMovie?.duration, [Validators.required]],
+      trailerURL: [this.selectedMovie?.trailerURL, [Validators.required, Validators.pattern(URL_REGEX)]],
+      iconURL: [this.selectedMovie?.iconURL, [Validators.required, Validators.pattern(URL_REGEX)]],
+      duration: [this.selectedMovie?.duration, [Validators.required, Validators.pattern(DURATION_REGEX)]],
       premiere: [this.selectedMovie?.premier, [Validators.required]],
+    });
+    this.secundaryForm = this.fb.group({
+      countries: [this.selectedMovie?.name, [Validators.required]],
+      actors: [this.selectedMovie?.description, [Validators.required]],
+      directors: [this.selectedMovie?.trailerURL, [Validators.required]],
+      genres: [this.selectedMovie?.iconURL, [Validators.required]],
     });
   }
   // fetchData() {
@@ -89,6 +110,15 @@ export class DialogAddEditMovieComponent implements OnInit {
   // onNewFileLoaded(event) {
   //   this.newFile = event;
   // }
+
+  onNextSecond() {
+    this.stepIndex = 1;
+    this.actorService.getAll().subscribe((res: any) => (this.allActors = res));
+    this.directorService.getAll().subscribe((res: any) => (this.allDirectors = res));
+    this.countryService.getAll().subscribe((res: any) => (this.allCountries = res));
+    this.genreService.getAll().subscribe((res: any) => (this.allGenres = res));
+  }
+
   onSave(): void {
     //   if (!this.changeBasicInfo) {
     //     this.stepIndex = 1;
@@ -96,7 +126,10 @@ export class DialogAddEditMovieComponent implements OnInit {
     //   }
     //   this.spinner.show();
     //   this.updateLanguageData();
-    let data = this.form.value;
+    let data = {
+      ...this.form.value,
+      ...this.secundaryForm.value,
+    };
     //   this.isSaving = true;
     if (!this.isEditing) {
       this.movieService.post(data).subscribe(

@@ -15,28 +15,8 @@
         <form [formGroup]="form">
           <div class="flex flex-col justify-start items-stretch" fxLayoutGap="gappx">
             <div class="flex flex-row justify-start items-start" class="mt-2" fxLayoutGap="gappx">
-              <span class="mat-body-2" style="text-transform: uppercase"
-                >{{ 'Información de la Película' }}
-                <mat-icon matTooltip="{{ 'El predeterminado es español' }}" class="iconHelp">help</mat-icon>
-              </span>
+              <span class="mat-body-2" style="text-transform: uppercase">{{ 'Información de básica de la Película' }} </span>
             </div>
-
-            <!-- <div fxLayout="row" class="mt-2" fxLayoutAlign="start start" fxLayoutGap="gappx">
-          <mat-form-field fxFlex="100" appearance="outline">
-            <mat-label> {{ 'Language' }}</mat-label>
-            <mat-select required [formControl]="languageForm" placeholder="{{ 'Language' }}">
-              <mat-option *ngFor="let language of this.languages; let i = index" [value]="language.lang">
-                <div fxLayout="row" fxLayoutAlign="start center">
-                  <img [src]="language.image" style="height: 30px; width: 30px" />
-                  <span class="ml-2 mat-body-2">
-                    {{ language.name }}
-                  </span>
-                </div>
-              </mat-option>
-            </mat-select>
-          </mat-form-field>
-        </div> -->
-
             <mat-divider></mat-divider>
 
             <div fxLayout="row wrap" class="mt-3 flex flex-wrap justify-between items-start" fxLayoutGap="gappx">
@@ -47,32 +27,32 @@
                 <input required matInput formControlName="name" placeholder="{{ 'Título' }}" />
               </mat-form-field>
 
-              <mat-form-field class="w-full" fxFlex.lt-md="100">
+              <mat-form-field class="w-[48%]" fxFlex.lt-md="100">
                 <mat-label>
                   <span class="capitalize">{{ 'Duración' }}</span>
                 </mat-label>
                 <input required matInput formControlName="duration" placeholder="{{ 'Duración de la Película' }}" />
               </mat-form-field>
 
-              <mat-form-field class="w-full" fxFlex.lt-md="100">
+              <mat-form-field class="w-[48%]">
+                <mat-label>{{ 'Fecha de estreno' }}</mat-label>
+                <input matInput [max]="" [matDatepicker]="dp" formControlName="premiere" readonly (click)="dp.open()" />
+                <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
+                <mat-datepicker #dp startView="multi-year" panelClass="example-month-picker" touchUi> </mat-datepicker>
+              </mat-form-field>
+
+              <mat-form-field class="w-[48%]" fxFlex.lt-md="100">
                 <mat-label>
                   <span class="capitalize">{{ 'Trailer' }}</span>
                 </mat-label>
                 <input required matInput formControlName="trailerURL" placeholder="{{ 'Enlace al trailer' }}" />
               </mat-form-field>
 
-              <mat-form-field class="w-full" fxFlex.lt-md="100">
+              <mat-form-field class="w-[48%]" fxFlex.lt-md="100">
                 <mat-label>
                   <span class="capitalize">{{ 'Ícono' }}</span>
                 </mat-label>
                 <input required matInput formControlName="iconURL" placeholder="{{ 'Enlace al ícono' }}" />
-              </mat-form-field>
-
-              <mat-form-field class="w-full">
-                <mat-label>{{ 'Fecha de estreno' }}</mat-label>
-                <input matInput [max]="" [matDatepicker]="dp" formControlName="premiere" readonly (click)="dp.open()" />
-                <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
-                <mat-datepicker #dp startView="multi-year" panelClass="example-month-picker" touchUi> </mat-datepicker>
               </mat-form-field>
 
               <!-- <div class="w-full">
@@ -102,21 +82,94 @@
           </div>
         </form>
 
-        <div class="mt-3 flex flex-row justify-start items-start" fxLayoutGap="gappx">
-          <button (click)="onSave()" [disabled]="this.form.invalid || isSaving" mat-raised-button color="primary">{{ 'SIGUIENTE' }}</button>
+        <div class="mt-3 flex flex-row justify-between items-start" fxLayoutGap="gappx">
+          <button mat-raised-button mat-dialog-close>
+            {{ 'CERRAR' }}
+          </button>
+          <button (click)="onSave()" [disabled]="this.form.invalid || isSaving" mat-raised-button (click)="onNextSecond()">
+            {{ 'SIGUIENTE' }}
+          </button>
         </div>
       </mat-step>
 
       <mat-step [editable]="this.form.valid">
+        <form [formGroup]="secundaryForm">
+          <div class="flex flex-col justify-start items-stretch" fxLayoutGap="gappx">
+            <div class="flex flex-row justify-start items-start" class="mt-2" fxLayoutGap="gappx">
+              <span class="mat-body-2" style="text-transform: uppercase">{{ 'Información Complementaria' }} </span>
+            </div>
+            <mat-divider></mat-divider>
+
+            <mat-form-field class="w-full" appearance="outline">
+              <mat-label>{{ 'Países' }}</mat-label>
+              <mat-select multiple required formControlName="countries" placeholder="{{ 'Países' }}">
+                @for (country of allCountries; track $index) {
+                  <mat-option [value]="country.id">
+                    <div fxLayout="row" fxLayoutAlign="start center">
+                      <span class="mat-body-2 uppercase">
+                        {{ country.name }}
+                      </span>
+                    </div>
+                  </mat-option>
+                }
+              </mat-select>
+            </mat-form-field>
+
+            <mat-form-field class="w-full" appearance="outline">
+              <mat-label>{{ 'Géneros' }}</mat-label>
+              <mat-select multiple required formControlName="genres" placeholder="{{ 'Géneros' }}">
+                @for (genre of allGenres; track $index) {
+                  <mat-option [value]="genre.id">
+                    <div fxLayout="row" fxLayoutAlign="start center">
+                      <span class="mat-body-2 uppercase">
+                        {{ genre.name }}
+                      </span>
+                    </div>
+                  </mat-option>
+                }
+              </mat-select>
+            </mat-form-field>
+
+            <mat-form-field class="w-full" appearance="outline">
+              <mat-label>{{ 'Directores' }}</mat-label>
+              <mat-select multiple required formControlName="directors" placeholder="{{ 'Directores' }}">
+                @for (director of allDirectors; track $index) {
+                  <mat-option [value]="director.id">
+                    <div fxLayout="row" fxLayoutAlign="start center">
+                      <span class="mat-body-2 uppercase">
+                        {{ director.name }}
+                      </span>
+                    </div>
+                  </mat-option>
+                }
+              </mat-select>
+            </mat-form-field>
+
+            <mat-form-field class="w-full" appearance="outline">
+              <mat-label>{{ 'Actores' }}</mat-label>
+              <mat-select multiple required formControlName="actors" placeholder="{{ 'Actores' }}">
+                @for (actor of allActors; track $index) {
+                  <mat-option [value]="actor.id">
+                    <div fxLayout="row" fxLayoutAlign="start center">
+                      <span class="mat-body-2 uppercase">
+                        {{ actor.name }}
+                      </span>
+                    </div>
+                  </mat-option>
+                }
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </form>
         <!-- <app-layout-files [newFileLoaded]="this.newFile" [_fkModel]="'Element'" [_selectedData]="this.selectedAboutUs"></app-layout-files>
 
       <p *ngIf="this.selectedAboutUs" class="mt-3">
         <app-file-uploader [_fkId]="this.selectedAboutUs?.id" [_fkModel]="'Element'" ($fileUploaded)="onNewFileLoaded($event)"> </app-file-uploader>
       </p> -->
 
-        <div class="mt-3">
-          <!-- <button mat-stroked-button matStepperPrevious>{{ 'ATRÁS' }}</button> -->
-          <button mat-raised-button class="ml-2" color="primary" (click)="onFinish()">{{ 'GUARDAR' }}</button>
+        <div class="mt-3 flex flex-row justify-between items-start">
+          <button mat-raised-button class="ml-2" matStepperPrevious>{{ 'ATRÁS' }}</button>
+          <button mat-raised-button class="ml-2" [disabled]="secundaryForm.invalid || isSaving" color="primary" (click)="onFinish()">{{ 'GUARDAR' }}</button>
         </div>
       </mat-step>
     </mat-horizontal-stepper>

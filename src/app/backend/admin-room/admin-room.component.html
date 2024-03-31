@@ -94,13 +94,31 @@
       </td>
     </ng-container>
 
+    <ng-container matColumnDef="width">
+      <th mat-header-cell *matHeaderCellDef>
+        <span class="mat-body-2" style="text-transform: capitalize">{{ 'Bloques' }}</span>
+      </th>
+      <td mat-cell *matCellDef="let element">
+        <span class="mat-body-1"> {{ element.width }}</span>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="height">
+      <th mat-header-cell *matHeaderCellDef>
+        <span class="mat-body-2" style="text-transform: capitalize">{{ 'Filas' }}</span>
+      </th>
+      <td mat-cell *matCellDef="let element">
+        <span class="mat-body-1"> {{ element.height }}</span>
+      </td>
+    </ng-container>
+
     <ng-container matColumnDef="type">
       <th mat-header-cell *matHeaderCellDef>
         <span class="mat-body-2">{{ 'Tipo de Sala' }}</span>
       </th>
       <td mat-cell *matCellDef="let element">
         <ul class="list-disc list-outside">
-          @for (type of element.type; track $index) {
+          @for (type of element.roomTypes; track $index) {
             <li>
               <span class="mat-body-1"> {{ type.name }}</span>
             </li>
