@@ -11,16 +11,16 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { IPagination } from '../../core/classes/pagination.class';
 import { ShowToastrService } from '../../core/service/show-toastr.service';
-import { AdminMovieService } from '../core/services/movie.service';
-import { DialogAddEditMovieComponent } from './dialog-add-edit-movie/dialog-add-edit-movie.component';
+import { AdminProjectionService } from '../core/services/projection.service';
+import { DialogAddEditProjectionComponent } from './dialog-add-edit-projection/dialog-add-edit-projection.component';
 import { ConfirmationDialogComponent } from '../shared/confirmation-dialog/confirmation-dialog.component';
 
 @Component({
-  selector: 'app-admin-movies',
-  templateUrl: './admin-movies.component.html',
-  styleUrls: ['./admin-movies.component.scss'],
+  selector: 'app-admin-projection',
+  templateUrl: './admin-projection.component.html',
+  styleUrls: ['./admin-projection.component.scss'],
 })
-export class AdminMoviesComponent implements OnInit, OnDestroy {
+export class AdminProjectionComponent implements OnInit, OnDestroy {
   allAboutUss: any[] = [];
   formFilters!: FormGroup;
   dataSource: MatTableDataSource<any>;
@@ -51,13 +51,13 @@ export class AdminMoviesComponent implements OnInit, OnDestroy {
     },
   };
 
-  displayedColumns: string[] = ['select', 'title', 'description', 'duration', 'premier', 'genre', 'country', 'director', 'actor', 'actions'];
+  displayedColumns: string[] = ['select', 'movie', 'room', 'date', 'price', 'actions'];
   displayedColumnsFilters: string[] = ['selectF', 'titleF', 'actionsF'];
 
   constructor(
     private fb: FormBuilder,
     // private loggedInUserService: LoggedInUserService,
-    private moviesService: AdminMovieService,
+    private projectionService: AdminProjectionService,
     // private breadcrumbService: BreadcrumbService,
     public dialog: MatDialog,
     private showToastr: ShowToastrService,
@@ -96,7 +96,7 @@ export class AdminMoviesComponent implements OnInit, OnDestroy {
 
   refreshData(): void {
     this.isLoading = true;
-    this.moviesService.getAll().subscribe(
+    this.projectionService.getAll().subscribe(
       (data: any) => {
         this.initTable(data);
         // this.query.total = data.meta.pagination.total;
@@ -159,15 +159,15 @@ export class AdminMoviesComponent implements OnInit, OnDestroy {
 
   //////////////////////////////
 
-  onCreateMovie(): void {
-    let dialogRef: MatDialogRef<DialogAddEditMovieComponent, any>;
-    dialogRef = this.dialog.open(DialogAddEditMovieComponent, {
+  onCreateProjection(): void {
+    let dialogRef: MatDialogRef<DialogAddEditProjectionComponent, any>;
+    dialogRef = this.dialog.open(DialogAddEditProjectionComponent, {
       panelClass: 'app-dialog-add-edit-about-us',
       maxWidth: '60vw',
       maxHeight: '100vh',
       data: {
         isEditing: false,
-        selectedMovie: null,
+        selectedProjection: null,
       },
     });
 
@@ -176,17 +176,17 @@ export class AdminMoviesComponent implements OnInit, OnDestroy {
     });
   }
 
-  onEditMovie(movie: any): void {
-    this.moviesService.get(movie.id).subscribe(
+  onEditProjection(projection: any): void {
+    this.projectionService.get(projection.id).subscribe(
       (data: any) => {
-        let dialogRef: MatDialogRef<DialogAddEditMovieComponent, any>;
-        dialogRef = this.dialog.open(DialogAddEditMovieComponent, {
+        let dialogRef: MatDialogRef<DialogAddEditProjectionComponent, any>;
+        dialogRef = this.dialog.open(DialogAddEditProjectionComponent, {
           panelClass: 'app-dialog-add-edit-about-us',
           maxWidth: '60vw',
           maxHeight: '100vh',
           data: {
             isEditing: true,
-            selectedMovie: data,
+            selectedProjection: data.data,
           },
         });
 
@@ -198,7 +198,7 @@ export class AdminMoviesComponent implements OnInit, OnDestroy {
     );
   }
 
-  async onRemoveMovies(elements: any[]) {
+  async onRemoveProjections(elements: any[]) {
     const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
       width: '450px',
       data: {
@@ -210,7 +210,7 @@ export class AdminMoviesComponent implements OnInit, OnDestroy {
     dialogRef.afterClosed().subscribe(async (result) => {
       try {
         if (result) {
-          const data = await Promise.all(elements.map((item) => this.moviesService.delete(item.id).toPromise()));
+          const data = await Promise.all(elements.map((item) => this.projectionService.delete(item.id).toPromise()));
           this.showToastr.showSucces('Elemento(s) correctamente eliminado(s)', 'Éxito', 7500);
           this.refreshData();
         }

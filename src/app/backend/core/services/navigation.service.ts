@@ -115,8 +115,8 @@ export class NavigationService {
       {
         id: 'event',
         displayName: 'Proyección',
-        iconName: ['theater_comedy'],
-        route: 'backend/event',
+        iconName: ['interactive_space'],
+        route: 'backend/projections',
         material: true,
         children: [],
         role: [0],

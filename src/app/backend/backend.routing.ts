@@ -75,6 +75,14 @@ const routes: Routes = [
         // },
         loadChildren: () => import('./report/report.module').then((m) => m.ReportModule),
       },
+      {
+        path: 'projections',
+        // canActivate: [BackendGuard],
+        // data: {
+        //   permissionName: [0],
+        // },
+        loadChildren: () => import('./admin-projection/admin-projection.module').then((m) => m.AdminProjectionsModule),
+      },
       // {
       //   path: 'logs',
       //   // canActivate: [BackendGuard],

@@ -89,13 +89,33 @@ export class DialogAddEditMovieComponent implements OnInit {
       trailerURL: [this.selectedMovie?.trailerURL, [Validators.required, Validators.pattern(URL_REGEX)]],
       iconURL: [this.selectedMovie?.iconURL, [Validators.required, Validators.pattern(URL_REGEX)]],
       duration: [this.selectedMovie?.duration, [Validators.required, Validators.pattern(DURATION_REGEX)]],
-      premiere: [this.selectedMovie?.premier, [Validators.required]],
+      premiere: [this.selectedMovie?.premiere, [Validators.required]],
     });
     this.secundaryForm = this.fb.group({
-      countries: [this.selectedMovie?.name, [Validators.required]],
-      actors: [this.selectedMovie?.description, [Validators.required]],
-      directors: [this.selectedMovie?.trailerURL, [Validators.required]],
-      genres: [this.selectedMovie?.iconURL, [Validators.required]],
+      countries: [
+        this.selectedMovie?.countries.map((item: any) => {
+          return item.id;
+        }),
+        [Validators.required],
+      ],
+      actors: [
+        this.selectedMovie?.actors.map((item: any) => {
+          return item.id;
+        }),
+        [Validators.required],
+      ],
+      directors: [
+        this.selectedMovie?.directors.map((item: any) => {
+          return item.id;
+        }),
+        [Validators.required],
+      ],
+      genres: [
+        this.selectedMovie?.genres.map((item: any) => {
+          return item.id;
+        }),
+        [Validators.required],
+      ],
     });
   }
   // fetchData() {
@@ -142,6 +162,7 @@ export class DialogAddEditMovieComponent implements OnInit {
           console.log('onSave -> this.selectedMovie', this.selectedMovie);
           this.isSaving = false;
           this.isEditing = true;
+          this.dialogRef.close();
         },
         (error) => {
           // this.spinner.hide();
@@ -169,6 +190,7 @@ export class DialogAddEditMovieComponent implements OnInit {
           this.isSaving = false;
           // this.changeBasicInfo = false;
           this.selectedMovie = response;
+          this.dialogRef.close();
         },
         (error) => {
           // this.spinner.hide();
@@ -184,7 +206,4 @@ export class DialogAddEditMovieComponent implements OnInit {
     this.stepIndex = event.selectedIndex;
   }
   // ///////////////////////////////////////////////////////////////////////////////////////////
-  onFinish() {
-    this.dialogRef.close();
-  }
 }
