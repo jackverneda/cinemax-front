@@ -4,9 +4,9 @@ import { Component, OnInit, HostListener, ViewChild, AfterViewInit, ElementRef }
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { NavigationService } from '../../backend/core/services/navigation.service';
-// import { AuthenticationService }              from 'src/app/core/services/authentication/authentication.service';
-// import { LoggedInUserService }                from 'src/app/core/services/loggedInUser/logged-in-user.service';
-// import { ShowToastrService }                  from 'src/app/core/services/show-toastr/show-toastr.service';
+import { LoggedInUserService } from '../../core/service/logged-in-user.service';
+import { ShowToastrService } from '../../core/service/show-toastr.service';
+import { AuthenticationService } from '../../core/service/authentication.service';
 // import { UtilsService }                       from 'src/app/core/services/utils/utils.service';
 // import { map }                                from 'rxjs/internal/operators/map';
 // import { CookieService }                      from 'ngx-cookie-service';
@@ -31,37 +31,29 @@ export class LoginComponent implements OnInit, AfterViewInit {
   redirect: string = '';
 
   clients: any[] = [];
-  portalUrl = 'environment.portalUrl';
-  // version        = environment.version + '.' + environment.subversion;
 
-  // private usernameElement: ElementRef;
-  // private passElement: ElementRef;
-
-  // @ViewChild('username', { static: false }) set contentUsername(
-  //   content: ElementRef
-  // ) {
-  //   if (content) {
-  //     this.usernameElement = content;
-  //   }
-  // }
-
-  // @ViewChild('pass', { static: false }) set contentPass(content: ElementRef) {
-  //   if (content) {
-  //     this.passElement = content;
-  //   }
-  // }
+  @ViewChild('username', { static: true }) username!: ElementRef;
+  @ViewChild('pass', { static: true }) pass!: ElementRef;
+  @HostListener('keypress', ['$event']) onKeyPress(event: any) {
+    if (event.code === 'Enter') {
+      this.passwordType = 'password';
+      if (this.loginForm.controls['username'].valid) {
+        this.pass.nativeElement.focus();
+      }
+    }
+  }
 
   constructor(
     private router: Router,
-    // public authService: AuthenticationService, // private spinner: NgxSpinnerService, // private route: ActivatedRoute,
-    // private showToastr: ShowToastrService,
+    public authService: AuthenticationService, // private spinner: NgxSpinnerService, // private route: ActivatedRoute,
+    private showToastr: ShowToastrService,
     private fb: FormBuilder,
     // private encryptDecryptService: EncryptDecryptService,
     // private clientPublicService: ClientPublicService,
     private navigationService: NavigationService,
     // private cookieService: CookieService,
     // private utilsService: UtilsService,
-    // private loggedInUserService: LoggedInUserService
+    private loggedInUserService: LoggedInUserService,
   ) {
     // this.message = '';
     // this.route.queryParams.subscribe((params) => {
@@ -112,20 +104,8 @@ export class LoginComponent implements OnInit, AfterViewInit {
 
   createForm() {
     this.loginForm = this.fb.group({
-      username: [
-        {
-          value: null,
-          disabled: false,
-        },
-        [Validators.required],
-      ],
-      password: [
-        {
-          value: null,
-          disabled: false,
-        },
-        [Validators.required],
-      ],
+      username: [{ value: null, disabled: false }, [Validators.required]],
+      password: [{ value: null, disabled: false }, [Validators.required]],
     });
   }
 
@@ -186,66 +166,75 @@ export class LoginComponent implements OnInit, AfterViewInit {
   }
 
   login(username: string, password: string): boolean {
-    //   this.spinner.show();
-    //   localStorage.removeItem('user');
-    //   this.inLoading = true;
-    //   this.authService
-    //       .login(username, password)
-    //       .pipe(
-    //         map((result: any) => {
-    //           let user         = result.data.profile;
-    //           user.token       = result.data.Authorization;
-    //           const hashedPass = this.encryptDecryptService.encrypt(user.token);
-    //           this.cookieService.set(
-    //             'account',
-    //             hashedPass,
-    //             null,
-    //             '/',
-    //             environment.mainDomain
-    //           );
-    //           return result;
-    //         })
-    //       )
-    //       .subscribe(
-    //         async (result: any) => {
-    //           let user   = result.data.profile;
-    //           user.token = result.data.Authorization;
-
-    //           this.loggedInUserService.updateUserProfile(user);
-    //           this.showToastr.showSucces(
-    //             'Usted está logeado en nuestro sistema.',
-    //             'Felicidades!',
-    //             5500
-    //           );
-
-    //           if (this.redirect) {
-    //             document.location.href = this.redirect;
-    //           }
-    //           else {
-    //             this.router.navigate(['backend/profile']);
-    //           }
-    //           this.spinner.hide();
-    //         },
-    //         (error) => {
-    //           this.inLoading = false;
-    //           this.spinner.hide();
-    //           // this.utilsService.errorHandle(error);
-    //         }
-    //       );
+    this.inLoading = true;
+    localStorage.removeItem('user');
+    this.authService.login(username, password).subscribe(
+      (result: any) => {
+        this.loggedInUserService.updateUserProfile(result);
+        this.showToastr.showSucces('Usted está logeado en nuestro sistema.', 'Felicidades!', 5500);
+        this.inLoading = false;
+        this.router.navigate(['frontend/home']);
+      },
+      () => {
+        this.inLoading = false;
+      },
+    );
 
     return false;
   }
 
-  showUsernamePassword() {
-    this.showPassword = false;
-    this.showUsername = true;
-  }
+  // login(username: string, password: string): boolean {
+  //   this.spinner.show();
+  //   localStorage.removeItem('user');
+  //   this.inLoading = true;
+  //   this.authService
+  //       .login(username, password)
+  //       .pipe(
+  //         map((result: any) => {
+  //           let user         = result.data.profile;
+  //           user.token       = result.data.Authorization;
+  //           const hashedPass = this.encryptDecryptService.encrypt(user.token);
+  //           this.cookieService.set(
+  //             'account',
+  //             hashedPass,
+  //             null,
+  //             '/',
+  //             environment.mainDomain
+  //           );
+  //           return result;
+  //         })
+  //       )
+  //       .subscribe(
+  //         async (result: any) => {
+  //           let user   = result.data.profile;
+  //           user.token = result.data.Authorization;
+
+  //           this.loggedInUserService.updateUserProfile(user);
+  //           this.showToastr.showSucces(
+  //             'Usted está logeado en nuestro sistema.',
+  //             'Felicidades!',
+  //             5500
+  //           );
+
+  //           if (this.redirect) {
+  //             document.location.href = this.redirect;
+  //           }
+  //           else {
+  //             this.router.navigate(['backend/profile']);
+  //           }
+  //           this.spinner.hide();
+  //         },
+  //         (error) => {
+  //           this.inLoading = false;
+  //           this.spinner.hide();
+  //           // this.utilsService.errorHandle(error);
+  //         }
+  //       );
+
+  //   return false;
+  // }
 
   gotoRegister() {
-    this.router.navigate(['authentication/register'], {
-      queryParams: {
-        redirect: this.redirect,
-      },
-    });
+    this.router.navigate(['auth/register']);
   }
 }

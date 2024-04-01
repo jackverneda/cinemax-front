@@ -9,7 +9,7 @@ import { Router, NavigationEnd } from '@angular/router';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { MatSidenav } from '@angular/material/sidenav';
 import { NavigationService } from '../core/services/navigation.service';
-// import { LoggedInUserService } from 'src/app/core/services/loggedInUser/logged-in-user.service';
+import { LoggedInUserService } from '../../core/service/logged-in-user.service';
 // import { AuthenticationService } from 'src/app/core/services/authentication/authentication.service';
 // import { environment } from 'src/environments/environment';
 // import { ShowToastrService } from 'src/app/core/services/show-toastr/show-toastr.service';
@@ -73,7 +73,7 @@ export class LayoutComponent implements OnInit, OnDestroy {
     private navigationService: NavigationService,
     // public authService: AuthenticationService,
     // public spinnerLoading: SpinnerLoadingService,
-    // private loggedInUserService: LoggedInUserService,
+    private loggedInUserService: LoggedInUserService,
     // private showToastr: ShowToastrService,
   ) {
     // const token = this.cookieService.check('account');
@@ -137,20 +137,6 @@ export class LayoutComponent implements OnInit, OnDestroy {
     // }
   }
 
-  logout(): void {
-    // this.cookieService.delete('account', '*', '.' + environment.mainDomain);
-    // this.cookieService.delete('account', '/', '.' + environment.mainDomain);
-    // this.cookieService.delete('account', '/backend', '.' + environment.mainDomain);
-
-    // this.cookieService.delete('tempAccount', '*', '.' + environment.mainDomain);
-    // this.cookieService.delete('tempAccount', '/', '.' + environment.mainDomain);
-    // this.cookieService.delete('tempAccount', '/backend', '.' + environment.mainDomain);
-    // this.removeCookies();
-    // localStorage.clear();
-    // this.loggedInUserService.setLoggedInUser(null);
-    this.router.navigate(['']);
-  }
-
   removeCookies() {
     // document.cookie = 'account=;domain=.' + environment.mainDomain + ';path=/;max-age=0';
     // document.cookie = 'tempAccount=;domain=.' + environment.mainDomain + ';path=/;max-age=0';
@@ -204,6 +190,14 @@ export class LayoutComponent implements OnInit, OnDestroy {
     if (!this.isHandset) {
       this.compressSidnavState = !this.compressSidnavState;
     }
+  }
+
+  onLogout(): void {
+    this.removeCookies();
+    localStorage.removeItem('user');
+    this.loggedInUserService.setLoggedInUser(null);
+    localStorage.clear();
+    this.router.navigate(['authentication']);
   }
 
   onMouseEnterSidenav(event: any) {

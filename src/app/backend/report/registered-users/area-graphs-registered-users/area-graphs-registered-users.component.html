@@ -1,0 +1,85 @@
+<div class="area-graphs-registered-users">
+  <mat-tab-group mat-align-tabs="start">
+    <mat-tab label="Semanas">
+      <div class="week-tab" fxLayout="column">
+        <div class="slider" fxLayout="row" fxLayoutAlign="space-between center">
+          <button mat-icon-button>
+            <mat-icon>chevron_left</mat-icon>
+          </button>
+          <h3>Filtro</h3>
+          <button mat-icon-button>
+            <mat-icon>chevron_right</mat-icon>
+          </button>
+        </div>
+        <div class="graphic" fxFlex="80">
+          <canvas
+            id="arearegisteredU"
+            baseChart
+            [chartType]="typeGraphs"
+            [legend]="true"
+            [datasets]="arearegisteredUChartData"
+            [labels]="arearegisteredUChartLabels"
+            [colors]="arearegisteredUChartColors"
+            [options]="arearegisteredUChartOptions"
+          >
+          </canvas>
+        </div>
+        </div>
+    </mat-tab>
+    <mat-tab label="Meses">
+      <div class="week-tab" fxLayout="column">
+        <div class="slider" fxLayout="row" fxLayoutAlign="space-between center">
+          <button id="btnAni"mat-icon-button>
+            <mat-icon>chevron_left</mat-icon>
+          </button>
+          <h3>Filtro</h3>
+          <button mat-icon-button>
+            <mat-icon>chevron_right</mat-icon>
+          </button>
+        </div>
+        <div class="graphic" fxFlex="80">
+          <canvas
+            id="arearegisteredU"
+            baseChart
+            [chartType]="typeGraphs"
+            [legend]="true"
+            [datasets]="arearegisteredUChartData"
+            [labels]="arearegisteredUChartLabels"
+            [colors]="arearegisteredUChartColors"
+            [options]="arearegisteredUChartOptions"
+          >
+          </canvas>
+        </div>
+        </div>
+    </mat-tab>
+    <mat-tab label="Años">
+      <div class="week-tab" fxLayout="column">
+        <div class="slider" fxLayout="row" fxLayoutAlign="space-between center">
+          <button id="btnAni"mat-icon-button>
+            <mat-icon>chevron_left</mat-icon>
+          </button>
+          <h3>Filtro</h3>
+          <button mat-icon-button>
+            <mat-icon>chevron_right</mat-icon>
+          </button>
+        </div>
+        <div class="graphic" fxFlex="80">
+          <canvas
+            id="arearegisteredU"
+            baseChart
+            [chartType]="typeGraphs"
+            [legend]="true"
+            [datasets]="arearegisteredUChartData"
+            [labels]="arearegisteredUChartLabels"
+            [colors]="arearegisteredUChartColors"
+            [options]="arearegisteredUChartOptions"
+          >
+          </canvas>
+        </div>
+        </div>
+    </mat-tab>
+  </mat-tab-group>
+</div>
+
+
+

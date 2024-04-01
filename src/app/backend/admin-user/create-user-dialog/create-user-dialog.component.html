@@ -13,9 +13,16 @@
       <div mat-dialog-content class="flex flex-col">
         <mat-form-field appearance="outline" class="w-full">
           <mat-label>Nombre</mat-label>
-          <input required matInput placeholder="Escriba el nombre " formControlName="name" />
-          <mat-error *ngIf="userForm.get('name')?.hasError('pattern')">El nombre no debe contener caracteres especiales.</mat-error>
-          <mat-error *ngIf="userForm.get('name')?.hasError('required')">El nombre es requerido.</mat-error>
+          <input required matInput placeholder="Escriba el nombre " formControlName="firstName" />
+          <mat-error *ngIf="userForm.get('firstName')?.hasError('pattern')">El nombre no debe contener caracteres especiales.</mat-error>
+          <mat-error *ngIf="userForm.get('firstName')?.hasError('required')">El nombre es requerido.</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="w-full">
+          <mat-label>Apellidos</mat-label>
+          <input required matInput placeholder="Escriba el nombre " formControlName="lastName" />
+          <mat-error *ngIf="userForm.get('lastName')?.hasError('pattern')">El nombre no debe contener caracteres especiales.</mat-error>
+          <mat-error *ngIf="userForm.get('lastName')?.hasError('required')">El nombre es requerido.</mat-error>
         </mat-form-field>
 
         <div class="email-rol flex flex-row justify-between items-center">
@@ -27,7 +34,7 @@
           </mat-form-field>
           <mat-form-field appearance="outline" class="w-[38%]">
             <mat-label>Rol</mat-label>
-            <mat-select formControlName="roles" multiple [disableOptionCentering]="true">
+            <mat-select formControlName="role" [disableOptionCentering]="true">
               <mat-option *ngFor="let rol of roles" [value]="rol">{{ rol }} </mat-option>
             </mat-select>
           </mat-form-field>

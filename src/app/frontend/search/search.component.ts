@@ -1,7 +1,10 @@
 import { Component } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MovieService } from '../core/services/movie.service';
+import { fb } from '../../../../dist/cinemax-front/browser/chunk-T5IL2VME';
 
 @Component({
   selector: 'app-search',
@@ -9,34 +12,23 @@ import { MatInputModule } from '@angular/material/input';
   styleUrl: 'search.component.scss',
 })
 export class SearchComponent {
+  searchForm: FormGroup;
   rates = [1, 2, 3, 4, 5];
-  searchResults = [
-    {
-      title: 'Barbie',
-      image: '../../../assets/images/movies/barbie.jpeg',
-      year: 2023,
-      time: '1h 45m',
-      rate: 4,
-      tags: ['Juvenil', 'Comedia', 'Live Actition'],
-      desc: 'Después de ser expulsada de Barbieland por no ser una muñeca de aspecto perfecto, Barbie parte hacia el mundo humano para encontrar la verdadera felicidad.',
-    },
-    {
-      title: 'Oppenheimer',
-      year: 2023,
-      time: '1h 45m',
-      image: '../../../assets/images/movies/oppenheimer.jpeg',
-      rate: 4,
-      tags: ['Histórica', 'Triller'],
-      desc: 'Durante la Segunda Guerra Mundial, el teniente general Leslie Groves designa al físico J. Robert Oppenheimer para un grupo de trabajo que está desarrollando el Proyecto Manhattan, cuyo objetivo consiste en fabricar la primera bomba atómica.',
-    },
-    {
-      title: 'Rustin',
-      image: './../../../assets/images/movies/rustin.jpeg',
-      year: 2023,
-      time: '1h 45m',
-      rate: 4,
-      tags: ['Histórica', 'Drama'],
-      desc: 'Bayard Rustin, asesor de Martin Luther King Jr., dedica su vida a la búsqueda de la igualdad racial, los derechos humanos y la democracia mundial. Sin embargo, como negro abiertamente homosexual, ha sido prácticamente borrado del movimiento.',
-    },
-  ];
+  searchResults = [];
+  constructor(
+    private movieService: MovieService,
+    private fb: FormBuilder,
+  ) {
+    this.searchForm = fb.group({
+      name: [''],
+    });
+    this.movieService.getAll().subscribe((result: any) => {
+      this.searchResults = result;
+    });
+    this.searchForm.valueChanges.subscribe((data) => {
+      this.movieService.getAllFiltered(this.searchForm?.get('name')?.value).subscribe((result: any) => {
+        this.searchResults = result;
+      });
+    });
+  }
 }

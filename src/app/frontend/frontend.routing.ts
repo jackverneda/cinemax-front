@@ -12,7 +12,7 @@ export const routes: Routes = [
         loadChildren: () => import('./home/home.module').then((m) => m.HomeModule),
       },
       {
-        path: 'movie',
+        path: 'movies/:id',
         loadChildren: () => import('./movie/movie.module').then((m) => m.MovieModule),
       },
       {
@@ -20,8 +20,12 @@ export const routes: Routes = [
         loadChildren: () => import('./search/search.module').then((m) => m.SearchModule),
       },
       {
-        path: 'payment',
+        path: 'payments/:id',
         loadChildren: () => import('./payment/payment.module').then((m) => m.PaymentModule),
+      },
+      {
+        path: 'projections',
+        loadChildren: () => import('./projection/projection.module').then((m) => m.ProjectionModule),
       },
       { path: '**', redirectTo: '/frontend/home' },
     ],

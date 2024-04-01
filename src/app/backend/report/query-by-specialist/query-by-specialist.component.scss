@@ -1,0 +1,53 @@
+@import "../../../../../assets/scss/theme-imports";
+@import "../../../../../assets/scss/helpers/helpers";
+
+$color-primary: $theme-main;
+$background-color: mat-color($mat-grey, 100);
+
+.query-by-specialist-container{
+  background-color: $background-color;
+  height: 100%;
+  .content-dashboard {
+    ::ng-deep .query-by-specialist-graphs-card {
+      padding-left: 0;
+      padding-right: 0;
+    }
+  }
+  .bottom-content{
+    ::ng-deep .table-specialist {
+      .mat-card-content {
+        .information-table {
+          .table-container {
+            border-top: 1px dotted $color-primary;
+            border-bottom: 1px dotted $color-primary;
+            .table-specialist-data {
+              thead {
+                tr {
+                  th {
+                    &:not(.mat-column-select) {
+                      color: $color-primary !important;
+                    }
+                    &.mat-column-queriesAttended {
+                      padding-right: 0;
+                      text-align: end;
+                    }
+                  }
+                }
+              }
+              tbody {
+                tr {
+                  td {
+                    &.mat-column-queriesAttended {
+                      padding-right: 0;
+                      text-align: end;
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

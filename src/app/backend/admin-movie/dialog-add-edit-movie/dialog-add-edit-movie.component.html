@@ -55,16 +55,38 @@
                 <input required matInput formControlName="iconURL" placeholder="{{ 'Enlace al ícono' }}" />
               </mat-form-field>
 
-              <!-- <div class="w-full">
-                <p class="mt-0 mb-2">
-                  <span class="capitalize">{{ 'text' }}</span>
-                </p> -->
-              <!-- <ckeditor (ready)="onReady($event)" (change)="onChange($event)" [editor]="Editor" formControlName="description" tagName="textarea"></ckeditor> -->
-              <!-- </div> -->
-              <mat-form-field class="w-full" fxFlex.lt-md="100">
-                <mat-label>Descripción</mat-label>
-                <textarea required rows="3" matInput formControlName="description" placeholder="{{ 'Descripción' }}"></textarea>
+              <mat-form-field class="w-[48%]" fxFlex.lt-md="100">
+                <mat-label>
+                  <span class="capitalize">{{ 'Imagen Poster' }}</span>
+                </mat-label>
+                <input required matInput formControlName="coverURL" placeholder="{{ 'Enlace a la Imagen Poster' }}" />
               </mat-form-field>
+
+              <mat-form-field class="w-[48%]" fxFlex.lt-md="100">
+                <mat-label>
+                  <span class="capitalize">{{ 'Imagen Expandida' }}</span>
+                </mat-label>
+                <input required matInput formControlName="imagenURL" placeholder="{{ 'Enlace a la Imagen Expandida' }}" />
+              </mat-form-field>
+
+              <mat-form-field class="w-full" fxFlex.lt-md="100">
+                <mat-label>Resumen</mat-label>
+                <textarea required rows="3" matInput formControlName="summary" placeholder="{{ 'Resumen' }}"></textarea>
+              </mat-form-field>
+
+              <div class="w-full">
+                <p class="mt-0 mb-2">
+                  <span class="capitalize">{{ 'Descripcion' }}</span>
+                </p>
+                <ckeditor
+                  (ready)="onReady($event)"
+                  (change)="onChange($event)"
+                  [editor]="Editor"
+                  formControlName="description"
+                  tagName="textarea"
+                  class="text-black"
+                ></ckeditor>
+              </div>
             </div>
           </div>
         </form>

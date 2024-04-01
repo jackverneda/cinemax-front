@@ -1,12 +1,16 @@
 // @import '../../../assets/scss/theme/variables';
+@import '../../../assets/css/material.scss';
 
-$havanatur-color: #0d47a1;
-
+// $havanatur-color: #0d47a1;
 .login-card {
   border-radius: 6px !important;
   padding: 0;
   min-width: 450px;
   max-width: 600px;
+
+  .version-label {
+    color: white;
+  }
 
   @media (max-width: 800px) {
     min-width: 350px !important;
@@ -14,6 +18,23 @@ $havanatur-color: #0d47a1;
   }
 
   min-height: 560px !important;
+
+  .chip-username {
+    border-radius: 16px;
+    padding: 5px 10px;
+
+    .mat-icon {
+      margin-left: 10px;
+      margin-right: 10px;
+    }
+
+    .back-icon {
+      margin-right: 10px !important;
+      font-size: 14px;
+      height: 14px;
+      width: 14px;
+    }
+  }
 }
 
 .login-header {
@@ -24,22 +45,6 @@ $havanatur-color: #0d47a1;
     #progressBar {
       border-top-left-radius: 6px !important;
       border-top-right-radius: 6px !important;
-    }
-
-    #ImgLayout {
-      height: 170px;
-      width: 170px;
-
-      @media only screen and (max-width: 800px) {
-        height: 140px !important;
-        width: 140px !important;
-      }
-
-      // border-radius: 50%;
-      // border: solid 2.2px #bbb;
-      // background-image: url('../../../assets/images/logos/logo-column-blanco.png');
-      background-position: center;
-      background-size: 100% 100%;
     }
   }
 }
@@ -58,7 +63,7 @@ $havanatur-color: #0d47a1;
   margin-bottom: auto;
 
   #lineUnder {
-    background-color: $havanatur-color;
+    // background-color: $havanatur-color;
     width: 30px;
     height: 2px;
     border-radius: 4px;
@@ -66,11 +71,11 @@ $havanatur-color: #0d47a1;
 }
 
 .example-full-width {
-  width: 90%;
+  // width: 90%;
 }
 
 .login-background {
-  // background: url('../../../assets/images/background/auto_5.jpg') no-repeat;
+  background: url('../../../assets/images/auth/pexels-tima-miroshnichenko-7991148.jpg') no-repeat;
   background-size: cover;
   background-position: center;
   background-color: #fafafa;

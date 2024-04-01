@@ -86,8 +86,11 @@ export class DialogAddEditMovieComponent implements OnInit {
     this.form = this.fb.group({
       name: [this.selectedMovie?.name, [Validators.required]],
       description: [this.selectedMovie?.description, [Validators.required]],
+      summary: [this.selectedMovie?.description, [Validators.required]],
       trailerURL: [this.selectedMovie?.trailerURL, [Validators.required, Validators.pattern(URL_REGEX)]],
       iconURL: [this.selectedMovie?.iconURL, [Validators.required, Validators.pattern(URL_REGEX)]],
+      coverURL: [this.selectedMovie?.coverURL, [Validators.required, Validators.pattern(URL_REGEX)]],
+      imagenURL: [this.selectedMovie?.imageURL, [Validators.required, Validators.pattern(URL_REGEX)]],
       duration: [this.selectedMovie?.duration, [Validators.required, Validators.pattern(DURATION_REGEX)]],
       premiere: [this.selectedMovie?.premiere, [Validators.required]],
     });

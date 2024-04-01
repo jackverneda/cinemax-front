@@ -1,0 +1,15 @@
+@import "../../../../.././../node_modules/@angular/material/theming";
+@import "../../../../../assets/scss/theme-imports";
+
+@mixin app-made-queries($theme) {
+  $config: mat-get-color-config($theme);
+  $foreground: map-get($config, foreground);
+  app-made-queries {
+    .mat-checkbox-indeterminate.mat-primary .mat-checkbox-background {
+      background: mat-color($foreground, secondary-text);
+    }
+    .mat-checkbox-checked.mat-primary .mat-checkbox-background {
+      background: mat-color($foreground, base-bold);
+    }
+  }
+}

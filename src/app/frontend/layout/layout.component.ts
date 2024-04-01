@@ -11,13 +11,13 @@ export class LayoutComponent {
       name: 'Inicio',
       link: '/frontend/home',
     },
-    {
-      name: '¿Quiénes Somos?',
-      link: '/frontend/about-us',
-    },
+    // {
+    //   name: '¿Quiénes Somos?',
+    //   link: '/frontend/about-us',
+    // },
     {
       name: 'Cartelera',
-      link: '/frontend/movie',
+      link: '/frontend/projections',
     },
     {
       name: 'Eventos',

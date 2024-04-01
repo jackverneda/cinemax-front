@@ -1,0 +1,82 @@
+<div class="line-graphs-made-queries">
+  <mat-tab-group mat-align-tabs="start" [selectedIndex]="default" (selectedTabChange)="onTabChange($event)">
+    <mat-tab label="Semanas">
+      <div class="week-tab" fxLayout="column">
+        <div class="slider" fxLayout="row" fxLayoutAlign="space-between center">
+          <button id="btnAni"mat-icon-button (click)="onBackDay()">
+            <mat-icon>chevron_left</mat-icon>
+          </button>
+          <h3>{{weekDateStart}} - {{weekDateEnd}}</h3>
+          <button mat-icon-button (click)="onNextDay()">
+            <mat-icon>chevron_right</mat-icon>
+          </button>
+        </div>
+        <div class="graphic" fxFlex="80">
+          <canvas
+            id="lineChartMadeQ"
+            baseChart
+            [chartType]="typeGraphs"
+            [legend]="true"
+            [datasets]="lineMadeQChartData"
+            [labels]="lineMadeQChartLabels"
+            [colors]="lineMadeQChartColors"
+            [options]="lineMadeQChartOptions"
+          >
+          </canvas>
+        </div>
+        </div>
+    </mat-tab>
+    <mat-tab label="Meses">
+      <div class="week-tab" fxLayout="column">
+        <div class="slider" fxLayout="row" fxLayoutAlign="space-between center">
+          <button id="btnAni"mat-icon-button (click)="onMonthBack()">
+            <mat-icon>chevron_left</mat-icon>
+          </button>
+          <h3>{{monthDate}}</h3>
+          <button mat-icon-button (click)="onMonthNext()">
+            <mat-icon>chevron_right</mat-icon>
+          </button>
+        </div>
+        <div class="graphic" fxFlex="80">
+          <canvas
+            id="lineChartMadeQ"
+            baseChart
+            [chartType]="typeGraphs"
+            [legend]="true"
+            [datasets]="lineMadeQChartData"
+            [labels]="lineMadeQChartLabels"
+            [colors]="lineMadeQChartColors"
+            [options]="lineMadeQChartOptions"
+          >
+          </canvas>
+        </div>
+        </div>
+    </mat-tab>
+    <mat-tab label="Años">
+      <div class="week-tab" fxLayout="column">
+        <div class="slider" fxLayout="row" fxLayoutAlign="space-between center">
+          <button id="btnAni"mat-icon-button (click)="onYearsBack()">
+            <mat-icon>chevron_left</mat-icon>
+          </button>
+          <h3>Año {{yearDate}}</h3>
+          <button mat-icon-button (click)="onYearsNext()">
+            <mat-icon>chevron_right</mat-icon>
+          </button>
+        </div>
+        <div class="graphic" fxFlex="80">
+          <canvas
+            id="lineChartMadeQ"
+            baseChart
+            [chartType]="typeGraphs"
+            [legend]="true"
+            [datasets]="lineMadeQChartData"
+            [labels]="lineMadeQChartLabels"
+            [colors]="lineMadeQChartColors"
+            [options]="lineMadeQChartOptions"
+          >
+          </canvas>
+        </div>
+        </div>
+    </mat-tab>
+  </mat-tab-group>
+</div>

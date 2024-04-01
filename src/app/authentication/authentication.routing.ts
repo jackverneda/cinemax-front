@@ -26,16 +26,6 @@ const routes: Routes = [
         pathMatch: 'full',
         component: RegisterComponent,
       },
-      // {
-      //   path: 'activate-account',
-      //   pathMatch: 'full',
-      //   component: ActivateAccountComponent
-      // },
-      // {
-      //   path: 'forgot-password',
-      //   pathMatch: 'full',
-      //   component: ForgotPasswordComponent
-      // }
     ],
   },
 ];

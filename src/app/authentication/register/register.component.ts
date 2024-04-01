@@ -1,6 +1,10 @@
 import { Component, OnInit, HostListener, ViewChild, AfterViewInit, ElementRef } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { FormGroup, Validators, FormBuilder, AbstractControl, FormControl } from '@angular/forms';
+import { EMAIL_REGEX } from '../../core/constants/const';
+import { AuthenticationService } from '../../core/service/authentication.service';
+import { ShowToastrService } from '../../core/service/show-toastr.service';
+import { LoggedInUserService } from '../../core/service/logged-in-user.service';
 // import { NgxSpinnerService }                  from 'ngx-spinner';
 // import { AuthenticationService }              from 'src/app/core/services/authentication/authentication.service';
 // import { ShowToastrService }                  from 'src/app/core/services/show-toastr/show-toastr.service';
@@ -12,41 +16,27 @@ import { FormGroup, Validators, FormBuilder } from '@angular/forms';
   styleUrls: ['./register.component.scss'],
 })
 export class RegisterComponent implements OnInit, AfterViewInit {
-  message: string;
-  // form: FormGroup;
-  // formPass: FormGroup;
+  form!: FormGroup;
+  formPass!: FormGroup;
   inLoading = false;
   passwordType = 'password';
   valueSpiner = 50;
   bufferValue = 75;
-  captcha: any;
-  uuid: any;
   // portalUrl = environment.portalUrl;
   // redirect: string;
   // email: string;
-  genders = [
-    {
-      id: 'male',
-      text: 'Hombre',
-    },
-    {
-      id: 'female',
-      text: 'Mujer',
-    },
-  ];
   // @ViewChild('username', { static: true }) username: ElementRef;
   // @ViewChild('pass', { static: true }) pass: ElementRef;
 
   constructor(
     private route: ActivatedRoute,
     // private spinner: NgxSpinnerService,
-    // public authService: AuthenticationService,
+    public authService: AuthenticationService,
     private router: Router,
-    // private showToastr: ShowToastrService,
+    private showToastr: ShowToastrService,
     private fb: FormBuilder,
+    private loggedInUserService: LoggedInUserService,
   ) {
-    this.message = '';
-
     // this.route.queryParams.subscribe((params) => {
     //   this.redirect = params['redirect'];
     //   this.email = params['email'];
@@ -77,29 +67,28 @@ export class RegisterComponent implements OnInit, AfterViewInit {
   }
 
   createForm() {
-    // this.formPass = this.fb.group(
-    //   {
-    //     password: [null, Validators.required],
-    //     repeat  : [null, Validators.required]
-    //   },
-    //   { validator: this.matchValidator.bind(this) }
-    // );
-    // this.form = this.fb.group({
-    //   name         : [null, [Validators.required]],
-    //   lastName     : [null, [Validators.required]],
-    //   email        : [this.email, [Validators.email, Validators.required]],
-    //   clientType   : [environment.clientType],
-    //   clientVersion: [environment.version],
-    //   redirect     : [this.redirect],
-    //   uuid_: [this.uuid],
-    //   captcha: [null],
-    //   passwords    : this.formPass
-    // });
+    this.formPass = this.fb.group(
+      {
+        password: [null, Validators.required],
+        repeat: [null, Validators.required],
+      },
+      // { validator: this.matchValidator.bind(this) },
+    );
+    this.form = this.fb.group({
+      firstname: [null, [Validators.required]],
+      lastname: [null, [Validators.required]],
+      email: [null, [Validators.pattern(EMAIL_REGEX), Validators.required]],
+      birthday: [null],
+      passwords: this.formPass,
+    });
+  }
+  getControl(control: AbstractControl) {
+    return control as FormControl;
   }
 
   matchValidator(group: FormGroup) {
-    const pass = group.controls['password'].value;
-    const repeat = group.controls['repeat'].value;
+    const pass = group?.get('password')?.value;
+    const repeat = group?.get('repeat')?.value;
     if (pass === repeat) {
       return null;
     }
@@ -115,40 +104,28 @@ export class RegisterComponent implements OnInit, AfterViewInit {
   //   })
   // }
 
-  // singUp(): boolean {
-  //   this.spinner.show();
-  //   localStorage.removeItem('user');
-  //   let data       = this.form.value;
-  //   data.password  = data.passwords.password;
-  //   data.uuid_ = this.uuid;
-  //   data.url       = this.redirect || environment.url;
-  //   this.inLoading = true;
-  //   this.authService.singUp(data).subscribe(
-  //     (result: any) => {
+  singUp(): boolean {
+    // this.spinner.show();
+    localStorage.removeItem('user');
+    let data = this.form.value;
+    data.password = data.passwords.password;
+    this.inLoading = true;
+    this.authService.singUp(data).subscribe(
+      (result: any) => {
+        this.loggedInUserService.updateUserProfile(result);
+        this.showToastr.showSucces('Bienvenido a la Familia de Cinemax', 'Exito', 5500);
+        this.inLoading = false;
+        this.router.navigate(['/frontend/home']);
+        // this.spinner.hide();
+        this.inLoading = false;
+      },
+      (error) => {
+        this.inLoading = false;
+        // this.spinner.hide();
+        // this.utilsService.errorHandle(error);
+      },
+    );
 
-  //       this.showToastr.showInfo(
-  //         'Ha sido enviado un código de activación a su correo electrónico.',
-  //         'Información',
-  //         5500
-  //       );
-
-  //       this.router.navigate(['/authentication/activate-account'], {
-  //         queryParams: {
-  //           email   : data.email,
-  //           redirect: this.redirect
-  //         }
-  //       });
-
-  //       this.spinner.hide();
-  //       this.inLoading = false;
-  //     },
-  //     (error) => {
-  //       this.inLoading = false;
-  //       this.spinner.hide();
-  //       // this.utilsService.errorHandle(error);
-  //     }
-  //   );
-
-  //   return false;
-  // }
+    return false;
+  }
 }

@@ -15,15 +15,19 @@
     @for(row of matrix; track $index){
     <div class="flex flex-row justify-between">
       @for(seat of row; track $index){
-      <button [disabled]="seat.status == 'disabled'" (click)="onSelectSeat(seat)">
-        <img class="w-8 h-8" src="../../../assets/images/seat/seat-{{seat.status}}.svg" alt="" />
+      <button [disabled]="seat.ticketStatus == 'paid'|| seat.ticketStatus == 'reserved'" (click)="onSelectSeat(seat)">
+        <img
+          class="w-8 h-8"
+          src="../../../assets/images/seat/seat-{{seat.ticketStatus == 'paid' || seat.ticketStatus =='reserved'? 'disabled': seat.ticketStatus}}.svg"
+          alt=""
+        />
       </button>
       }
     </div>
     }
   </div>
 </div>
-<div class="flex flex-row justify-end mt-6">
+<div class="flex flex-row justify-around my-6">
   <button mat-raised-button mat-dialog-close>CERRAR</button>
   <button mat-raised-button color="primary" [disabled]="selectedSeats==0" (click)="onSave()">Guardar</button>
 </div>

@@ -33,6 +33,7 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { ConfirmationDialogComponent } from './shared/confirmation-dialog/confirmation-dialog.component';
 import { SharedModule } from './shared/shared.module';
 import { ShowToastrService } from '../core/service/show-toastr.service';
+import { MaterialUtilsModule } from './shared/material-utils/material-utils.module';
 
 ///////////////////////////////////////////////////////////////////
 @NgModule({
@@ -41,18 +42,12 @@ import { ShowToastrService } from '../core/service/show-toastr.service';
     BackendRoutingModule,
     ReactiveFormsModule,
     FormsModule,
-    // FlexLayoutModule,
-    // GuachosCeUserPanelModule,
-    // GuachosCeApplicationPanelModule,
-
+    MaterialUtilsModule,
     MatCardModule,
     MatIconModule,
     MatToolbarModule,
     MatFormFieldModule,
     MatProgressSpinnerModule,
-    MatButtonModule,
-    MatInputModule,
-    MatDialogModule,
     MatBadgeModule,
     MatChipsModule,
     MatTooltipModule,

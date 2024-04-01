@@ -2,13 +2,13 @@
   @for (item of data; track $index) {
     <div class="flex flex-row justify-between">
       <div class="container-image">
-        <img class="h-full" [src]="item.image" alt="" />
+        <img class="h-full" [src]="item.coverURL" alt="" />
       </div>
       <div class="container-text">
         <div class="flex flex-row items-center justify-between">
           <h2>
-            {{ item.title }}
-            <span class="text-gray-500">{{ item.year }}</span>
+            {{ item.name }}
+            <span class="text-gray-500">{{ item.premiere | date }}</span>
           </h2>
           <div>
             @for (_ of rates; track $index) {
@@ -18,15 +18,15 @@
             }
           </div>
         </div>
-        <div class="flex fle-row">
+        <div class="flex flex-row">
           <mat-chip-set dkDropListOrientation="horizontal">
             @for (tag of item.tags; track tag) {
               <mat-chip>{{ tag }}</mat-chip>
             }
-            <mat-chip>{{ item.time }}</mat-chip>
+            <mat-chip>{{ item.duration }}</mat-chip>
           </mat-chip-set>
         </div>
-        <p>{{ item.desc }}</p>
+        <p>{{ item.summary }}</p>
       </div>
       <div class="m-4 border-solid border-white border-l"></div>
       <div class="container-date">

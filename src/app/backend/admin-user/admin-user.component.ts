@@ -53,7 +53,7 @@ export class AdminUserComponent implements OnInit, OnDestroy {
     this.initFilterConfig();
     this.initiPaginationModel();
     this.refreshPaginationFilter();
-    this.displayedColumns = ['select', 'name', 'email', 'date', 'role'];
+    this.displayedColumns = ['select', 'firstName', 'lastName', 'email', 'date', 'role'];
   }
 
   ngOnDestroy(): void {

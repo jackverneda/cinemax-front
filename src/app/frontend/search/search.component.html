@@ -12,11 +12,14 @@
   <div class="flex flex-row justify-around">
     <app-movie-list class="w-9/12" [data]="searchResults"></app-movie-list>
     <div class="flex flex-col w-1/5 my-6 justify-stretch">
-      <div class="rounded-xl bg-white h-32 flex flex-row justify-center">
-        <div class="w-11/12 flex flex-col justify-around">
-          <input class="border-2 border-gray-500 p-2 rounded-xl text-black" type="text" placeholder="Búsqueda" />
-          <button class="font-bold" mat-raised-button>Buscar</button>
-        </div>
+      <div class="w-11/12 flex flex-col justify-around">
+        <form [formGroup]="searchForm">
+          <mat-form-field appearance="outline" class="w-full">
+            <mat-label>Buscar</mat-label>
+            <input matInput formControlName="name" placeholder="Búsqueda" />
+          </mat-form-field>
+        </form>
+        <!-- <button class="font-bold" mat-raised-button>Buscar</button> -->
       </div>
     </div>
   </div>

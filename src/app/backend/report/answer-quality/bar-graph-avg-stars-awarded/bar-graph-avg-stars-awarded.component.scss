@@ -1,0 +1,35 @@
+.bar-graph-avg-stars-awarded {
+  ::ng-deep .mat-tab-group {
+    .mat-tab-header {
+      border-radius: 0 0 8px 8px;
+      box-shadow: 0 3px 3px rgba(150, 150, 150, 0.3);
+      .mat-tab-label-container {
+        .mat-tab-list {
+          .mat-tab-labels {
+            display: flex;
+            flex-direction: row;
+            place-content: center space-around;
+            align-items: center;
+            .mat-tab-label {
+              .mat-tab-label-content {
+                text-transform: capitalize;
+              }
+            }
+          }
+        }
+      }
+    }
+    .mat-tab-body {
+      padding-top: 1rem;
+      padding-left: 1rem;
+      padding-right: 1rem;
+      .mat-tab-body-content {
+        .ng-star-inserted {
+          h3 {
+            margin-bottom: 0;
+          }
+        }
+      }
+    }
+  }
+}

@@ -12,12 +12,12 @@
   <ng-container>
     @for (image of dataImages; track $index) {
       <swiper-slide autoplay="10000">
-        <img class="swiper-lazy" [src]="image?.file" />
+        <img class="swiper-lazy" [src]="image.imagenURL" />
         <!-- <div class="container w-4/5 absolute mx-auto top-96"> -->
         <div class="flex left-32 top-96 absolute flex-col w-1/3 gap-4 desc-container rounded-3xl">
-          <img class="w-72" [src]="image.logo" alt="" />
-          <p>{{ image.desc }}</p>
-          <button class="w-1/2 rounded-xl" mat-raised-button color="accent">¡Reserva ahora!</button>
+          <img class="w-72" [src]="image.iconURL" />
+          <p>{{ image.summary }}</p>
+          <button class="w-1/2 rounded-xl" mat-raised-button color="accent" (click)="onNavigateMovie(image)">¡Reserva ahora!</button>
         </div>
         <!-- </div> -->
       </swiper-slide>

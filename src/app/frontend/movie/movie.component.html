@@ -7,27 +7,30 @@
   </div>
   <div class="flex flex-row justify-between my-16">
     <div class="w-1/2 container-left">
-      <img class="rounded-xl" [src]="movie.image" alt="" />
+      <img [src]="movie.imagenURL" alt="" />
     </div>
     <div class="w-5/12 container-right">
       <div class="flex flex-row w-full">
-        <img [src]="movie.logo" alt="" />
+        <img [src]="movie.iconURL" alt="" />
       </div>
       <div class="flex flex-row m-4">
         <mat-chip-set dkDropListOrientation="horizontal">
-          @for (tag of movie.tags; track tag) {
-            <mat-chip>{{ tag }}</mat-chip>
+          @for (tag of movie.directors; track tag) {
+            <mat-chip>{{ tag.firstname }} {{ tag.lastname }}</mat-chip>
           }
-          <mat-chip>{{ movie.year }}</mat-chip>
-          <mat-chip>{{ movie.time }}</mat-chip>
+          @for (genre of movie.genres; track genre) {
+            <mat-chip>{{ genre.name }}</mat-chip>
+          }
+          <mat-chip>{{ getYear(movie.premiere) }}</mat-chip>
+          <mat-chip>{{ movie.duration }}</mat-chip>
         </mat-chip-set>
       </div>
       <div>
-        <p [innerHTML]="movie.desc" class="text-justify"></p>
+        <p [innerHTML]="movie.description" class="text-justify"></p>
       </div>
     </div>
   </div>
   <hr />
-  <app-movie-rooms></app-movie-rooms>
+  <app-movie-rooms [rooms]="projection"></app-movie-rooms>
 </div>
 <app-contact></app-contact>

@@ -27,9 +27,10 @@ export class DialogAddEditUserComponent implements OnInit {
 
   private initForm(): void {
     this.userForm = this.fb.group({
-      name: ['', [Validators.required]],
+      firstName: ['', [Validators.required]],
+      lastName: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.pattern(EMAIL_REGEX)]],
-      roles: [['USER'], [Validators.required]],
+      role: [['USER'], [Validators.required]],
       birthDay: ['', [Validators.required]],
       password: ['', [Validators.required]],
     });
@@ -41,6 +42,7 @@ export class DialogAddEditUserComponent implements OnInit {
 
   public onCreateUser(): void {
     let data = this.userForm.value;
+    data.birthDay = (data.birthDay as Date).toISOString().slice(0, 10);
     this.userService.post(data).subscribe(
       () => {
         this.dialogRef.close();

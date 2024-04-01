@@ -73,6 +73,19 @@
             </button>
             <!-- <app-breadcrumd [separator]="separator"></app-breadcrumd> -->
           </div>
+          <button class="mx-1" mat-icon-button matTooltip="Opciones de Usuario">
+            <mat-icon class="cursor-pointer" aria-label="Side nav toggle icon" [matMenuTriggerFor]="menu">more_vert </mat-icon>
+          </button>
+          <mat-menu #menu="matMenu" class="mymegamenu">
+            <button mat-menu-item (click)="onEditProfile()">
+              <mat-icon>account_box</mat-icon>
+              {{ 'Editar Perfil' }}
+            </button>
+            <button mat-menu-item (click)="onLogout()">
+              <mat-icon>exit_to_app</mat-icon>
+              {{ 'Cerrar la sesión' }}
+            </button>
+          </mat-menu>
 
           <!-- <div fxLayout="row" fxLayoutAlign="end center" *ngIf="loggedInUser">
             <lib-guachos-ce-application-panel [options]="applicationPanel">

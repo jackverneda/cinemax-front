@@ -1,0 +1,109 @@
+<div class="bar-graphs-query-by-specialist">
+  <mat-tab-group mat-align-tabs="start" [selectedIndex]="default" (selectedTabChange)="onTabChange($event)">
+    <mat-tab label="Semanas">
+      <div class="week-tab" fxLayout="column">
+        <div class="slider" fxLayout="row" fxLayoutAlign="space-between center">
+          <button id="btnAni" mat-icon-button (click)="onBackDay(-1)">
+            <mat-icon>chevron_left</mat-icon>
+          </button>
+          <h3>{{weekDays[indexDaySelected]}}</h3>
+          <button mat-icon-button (click)="onNextDay(1)">
+            <mat-icon>chevron_right</mat-icon>
+          </button>
+        </div>
+        <div class="bottom-content" fxLayout="row">
+          <div class="graphic" fxFlex="90">
+            <canvas id="barChartQueryBySpecialist"
+              baseChart
+              width="80%"
+              [chartType]="typeGraphs"
+              [legend]="true"
+              [datasets]="barQuerySpecialistChartData"
+              [labels]="barQuerySpecialistChartLabels"
+              [colors]="barQuerySpecialistChartColors"
+              [options]="barQuerySpecialistChartOptions">
+            </canvas>
+          </div>
+          <div class="slider" fxFlex="10" fxLayout="row" fxLayoutAlign="center end">
+            <button id="btnAni" mat-icon-button (click)="onBackwardData()">
+              <mat-icon>chevron_left</mat-icon>
+            </button>
+            <button mat-icon-button (click)="onForwardData()">
+              <mat-icon>chevron_right</mat-icon>
+            </button>
+          </div>
+        </div>
+      </div>
+    </mat-tab>
+    <mat-tab label="Meses">
+      <div class="week-tab" fxLayout="column">
+        <div class="slider" fxLayout="row" fxLayoutAlign="space-between center">
+          <button id="btnAni" mat-icon-button (click)="onMonthBack(-1)">
+            <mat-icon>chevron_left</mat-icon>
+          </button>
+          <h3>{{month[indexMonthSelected]}}</h3>
+          <button mat-icon-button (click)="onMonthNext(1)">
+            <mat-icon>chevron_right</mat-icon>
+          </button>
+        </div>
+        <div class="bottom-content" fxLayout="row">
+          <div class="graphic" fxFlex="90">
+            <canvas id="barChartQueryBySpecialist"
+              baseChart
+              width="80%"
+              [chartType]="typeGraphs"
+              [legend]="true"
+              [datasets]="barQuerySpecialistChartData"
+              [labels]="barQuerySpecialistChartLabels"
+              [colors]="barQuerySpecialistChartColors"
+              [options]="barQuerySpecialistChartOptions">
+            </canvas>
+          </div>
+          <div class="slider" fxFlex="10" fxLayout="row" fxLayoutAlign="center end">
+            <button id="btnAni" mat-icon-button (click)="onBackwardData()">
+              <mat-icon>chevron_left</mat-icon>
+            </button>
+            <button mat-icon-button (click)="onForwardData()">
+              <mat-icon>chevron_right</mat-icon>
+            </button>
+          </div>
+        </div>
+      </div>
+    </mat-tab>
+    <mat-tab label="Años">
+      <div class="week-tab" fxLayout="column">
+        <div class="slider" fxLayout="row" fxLayoutAlign="space-between center">
+          <button id="btnAni" mat-icon-button (click)="onYearsBack(-1)">
+            <mat-icon>chevron_left</mat-icon>
+          </button>
+          <h3>{{years[indexYearsSelected]}}</h3>
+          <button mat-icon-button (click)="onYearsNext(1)">
+            <mat-icon>chevron_right</mat-icon>
+          </button>
+        </div>
+        <div class="bottom-content" fxLayout="row">
+          <div class="graphic" fxFlex="90">
+            <canvas id="barChartQueryBySpecialist"
+              baseChart
+              width="80%"
+              [chartType]="typeGraphs"
+              [legend]="true"
+              [datasets]="barQuerySpecialistChartData"
+              [labels]="barQuerySpecialistChartLabels"
+              [colors]="barQuerySpecialistChartColors"
+              [options]="barQuerySpecialistChartOptions">
+            </canvas>
+          </div>
+          <div class="slider" fxFlex="10" fxLayout="row" fxLayoutAlign="center end">
+            <button id="btnAni" mat-icon-button (click)="onBackwardData()">
+              <mat-icon>chevron_left</mat-icon>
+            </button>
+            <button mat-icon-button (click)="onForwardData()">
+              <mat-icon>chevron_right</mat-icon>
+            </button>
+          </div>
+        </div>
+      </div>
+    </mat-tab>
+  </mat-tab-group>
+</div>

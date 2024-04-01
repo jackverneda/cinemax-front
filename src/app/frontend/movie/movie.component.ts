@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { ActivatedRoute } from '@angular/router';
+import { MovieService } from '../core/services/movie.service';
+import { ProjectionService } from '../core/services/projection.service';
 
 @Component({
   selector: 'app-movie',
@@ -9,17 +12,29 @@ import { MatInputModule } from '@angular/material/input';
   styleUrl: 'movie.component.scss',
 })
 export class MovieComponent {
-  movie = {
-    title: 'Avatar: The Way of Water',
-    image: '../../../assets/images/movies/avatarexp.jpeg',
-    logo: '../../../assets/images/movies/avatarlogo.png',
-    tags: ['Aventura', 'Ciencia Ficción', 'Epíco'],
-    year: 2022,
-    time: '2h 42m',
-    desc: `Avatar: The Way of Water es una película estadounidense perteneciente al género de cine épico, ciencia
-     ficción y aventura dirigida, producida y coescrita por James Cameron. Es la
-    primera de las cuatro secuelas planificadas de su película Avatar. <br /><br />
-    Jake Sully y Ney'tiri han formado una familia y hacen todo lo posible por permanecer juntos. Sin embargo, deben abandonar su hogar y explorar las
-    regiones de Pandora cuando una antigua amenaza reaparece.`,
-  };
+  movie: any;
+  projection: any[] = [];
+
+  constructor(
+    private activeRoute: ActivatedRoute,
+    private movieService: MovieService,
+    private projectionService: ProjectionService,
+  ) {
+    this.activeRoute.params.subscribe((data) => {
+      this.onLoadData(data['id']);
+    });
+  }
+  onLoadData(id: string) {
+    this.movieService.get(id).subscribe((data: any) => {
+      this.movie = data;
+    });
+    this.projectionService.getProjectionsByMovieID(id).subscribe((data: any) => {
+      this.projection = data;
+    });
+  }
+
+  getYear(date: any) {
+    let data = date as Date;
+    return data;
+  }
 }
