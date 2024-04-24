@@ -1,1 +1,9 @@
-
+swiper-slide {
+  img {
+    height: 90%;
+    object-fit: cover;
+  }
+}
+swiper-container {
+  transition-timing-function: linear !important;
+}

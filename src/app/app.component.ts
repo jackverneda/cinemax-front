@@ -9,22 +9,4 @@ import { RouterOutlet } from '@angular/router';
 })
 export class AppComponent {
   title = 'cinemax-front';
-  pages = [
-    {
-      name: 'Inicio',
-      link: '/home',
-    },
-    {
-      name: '¿Quiénes Somos?',
-      link: '/about-us',
-    },
-    {
-      name: 'Cartelera',
-      link: '/movie',
-    },
-    {
-      name: 'Eventos',
-      link: '/news',
-    },
-  ];
 }

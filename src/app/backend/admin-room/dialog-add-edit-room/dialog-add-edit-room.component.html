@@ -1,0 +1,66 @@
+<div class="dialog-content-wrapper">
+  <mat-toolbar matDialogTitle color="primary" id="toolbarHeader">
+    <mat-toolbar-row class="justify-between items-center">
+      <span *ngIf="!isEditing" class="mat-title mb-0">{{ 'Crear Sala' }}</span>
+      <span *ngIf="isEditing" class="mat-title mb-0">{{ 'Editar Sala' }}</span>
+      <button mat-icon-button (click)="dialogRef.close()" aria-label="Close dialog">
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-toolbar-row>
+  </mat-toolbar>
+
+  <div mat-dialog-content class="my-dialog-content">
+    <form [formGroup]="form">
+      <div class="flex flex-col justify-start items-stretch" fxLayoutGap="gappx">
+        <div class="flex flex-row justify-start items-start" class="mt-2" fxLayoutGap="gappx">
+          <span class="mat-body-2" style="text-transform: uppercase">{{ 'Información de la Sala' }} </span>
+        </div>
+
+        <mat-divider></mat-divider>
+
+        <div fxLayout="row wrap" class="mt-3 flex flex-wrap justify-between items-start" fxLayoutGap="gappx">
+          <mat-form-field class="w-full" fxFlex.lt-md="100">
+            <mat-label>{{ 'Nombre del tipo de Sala' }}</mat-label>
+            <input required matInput formControlName="name" placeholder="{{ 'Nombre de la Sala' }}" />
+          </mat-form-field>
+          <mat-form-field class="w-full" appearance="outline">
+            <mat-label>{{ 'Tipo de Sala' }}</mat-label>
+            <mat-select multiple required formControlName="roomTypes" placeholder="{{ 'Tipo de Sala' }}">
+              @for (type of allTypes; track $index) {
+                <mat-option [value]="type.id">
+                  <div fxLayout="row" fxLayoutAlign="start center">
+                    <span class="mat-body-2 uppercase">
+                      {{ type.name }}
+                    </span>
+                  </div>
+                </mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="flex flex-row justify-start items-start w-full mt-2" fxLayoutGap="gappx">
+          <span class="mat-body-2" style="text-transform: uppercase">{{ 'Dimensiones de la Sala' }} </span>
+        </div>
+
+        <mat-divider></mat-divider>
+        <div fxLayout="row wrap" class="mt-3 flex flex-wrap justify-between items-start" fxLayoutGap="gappx">
+          <mat-form-field class="w-[48%] mt-3 xs:w-full" fxFlex.lt-md="100">
+            <mat-label>{{ 'Ancho' }}</mat-label>
+            <input required matInput formControlName="width" placeholder="{{ 'Bloques' }}" />
+          </mat-form-field>
+          <mat-form-field class="w-[48%] mt-3 xs:w-full" fxFlex.lt-md="100">
+            <mat-label>{{ 'Largo' }}</mat-label>
+            <input required matInput formControlName="height" placeholder="{{ 'Filas' }}" />
+          </mat-form-field>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <div mat-dialog-actions>
+    <div class="w-full flex flex-row justify-between px-4 mb-3">
+      <button (click)="onClose()" mat-raised-button>{{ 'CERRAR' }}</button>
+      <button mat-raised-button [disabled]="this.form.invalid || isSaving" class="ml-2" color="primary" (click)="onSave()">{{ 'GUARDAR' }}</button>
+    </div>
+  </div>
+</div>

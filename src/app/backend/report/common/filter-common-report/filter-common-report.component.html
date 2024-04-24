@@ -1,0 +1,47 @@
+<div fxLayout="row wrap" fxLayoutAlign="start center" class="filter" fxLayoutGap="2rem" fxLayout.lt-md="column"
+  fxLayoutGap.lt-sm="1rem">
+  <mat-form-field class="range-input" fxFlex="20" appearance="outline" *ngIf="filterView?.range">
+    <mat-label>Seleccione el rango de fecha</mat-label>
+    <mat-date-range-input [formGroup]="rangePickerForm" [rangePicker]="picker">
+      <input class="start-date" matStartDate (dateChange)="changeStartDate($event)" formControlName="formControlStart"
+        placeholder="Fecha inicio" (click)="picker.open()" readonly />
+      <input class="end-date" matEndDate (dateChange)="changeEndDate($event)" formControlName="formControlEnd"
+        placeholder="Fecha fin" (click)="picker.open()" readonly />
+    </mat-date-range-input>
+    <mat-date-range-picker #picker></mat-date-range-picker>
+  </mat-form-field>
+  <mat-form-field fxFlex="15" appearance="outline" *ngIf="filterView?.specialist">
+    <mat-label>Usuario</mat-label>
+    <mat-select placeholder="Seleccione el usuario" disableOptionCentering (selectionChange)="onUserChange($event)">
+      <mat-option *ngFor="let user of _allUsers" [value]="user.id">{{user.email}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field fxFlex="15" appearance="outline" *ngIf="filterView?.payment">
+    <mat-label>Pasarela de pago</mat-label>
+    <mat-select placeholder="Seleccione el usuario" multiple="true">
+      <mat-option value="Maria">ENZONA</mat-option>
+      <mat-option value="Pepe">Transfermóvil</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field fxFlex="15" appearance="outline" *ngIf="filterView?.regions">
+    <mat-label>Regiones</mat-label>
+    <mat-select placeholder="Seleccione la región" disableOptionCentering (selectionChange)="onRegionChange($event)">
+      <mat-option *ngFor="let region of _regions" [value]="region.province">{{region.province}} </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field fxFlex="15" appearance="outline" *ngIf="filterView?.category">
+    <mat-label>Categoría</mat-label>
+    <mat-select placeholder="Seleccione la categoría" disableOptionCentering (selectionChange)="onEventEmit($event)">
+      <mat-option *ngFor="let categ of _categories" [value]="categ.id">{{categ.name}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field fxFlex="15" appearance="outline" *ngIf="filterView?.teachType">
+    <mat-label>Enseñanza</mat-label>
+    <mat-select placeholder="Seleccione la enseñanza"
+      disableOptionCentering
+      (selectionChange)="onSubjectIdChange($event)">
+      <mat-option *ngFor="let subject of _subjects" [value]="subject.id">
+        {{subject.name | slice: 0: 3}} {{subject.grade}} </mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>

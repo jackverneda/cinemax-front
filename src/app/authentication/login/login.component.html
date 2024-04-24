@@ -1,0 +1,67 @@
+<div class="flex flex-row justify-stretch items-center login-background">
+  <div class="flex flex-col justify-center ml-48">
+    <mat-card class="login-card mat-elevation-z8">
+      <div class="flex flex-col justify-center items-center w-100">
+        <div class="login-header flex flex-row w-full">
+          <mat-toolbar color="primary" id="toolbarHeader" class="rounded-t-xl">
+            <!-- <mat-progress-bar *ngIf="this.inLoading" id="progressBar" color="warn" [mode]="'indeterminate'" [value]="valueSpiner" [bufferValue]="bufferValue">
+            </mat-progress-bar> -->
+
+            <mat-toolbar-row></mat-toolbar-row>
+            <mat-toolbar-row class="flex flex-row justify-center items-center" fxLayoutGap="gappx">
+              <img class="w-3/5 py-6 cursor-pointer" routerLink="/frontend/home" src="../../../assets/images/logo/cinemax-pale-logo.png" alt="" />
+            </mat-toolbar-row>
+          </mat-toolbar>
+        </div>
+
+        <form name="login" [formGroup]="loginForm" class="login-form flex-col flex justify-between">
+          <div class="flex flex-row justify-center items-center" style="margin-bottom: 16px" fxLayoutGap="gappx">
+            <div class="flex flex-col justify-center items-center" fxLayoutGap="gappx">
+              <h1 class="h3 mb-0">Acceder</h1>
+            </div>
+          </div>
+
+          <div class="flex flex-col justify-center items-center" style="margin-top: 16px">
+            <mat-form-field>
+              <mat-label>Correo electrónico</mat-label>
+              <input matInput [disabled]="inLoading" formControlName="username" />
+              <mat-icon mat-icon-button matSuffix>account_circle</mat-icon>
+              @if (this.loginForm.get('username')?.invalid) {
+                <mat-error> {{ 'El correo es ' }} <strong>requerido</strong> </mat-error>
+              }
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width" appearance="outline">
+              <mat-label>Contraseña</mat-label>
+              <input [type]="this.passwordType" matInput placeholder="Contraseña" #pass [disabled]="inLoading" formControlName="password" />
+              @if (this.passwordType == 'password') {
+                <mat-icon style="cursor: pointer" mat-icon-button matSuffix (click)="this.passwordType = 'text'">visibility_off </mat-icon>
+              }
+              @if (this.passwordType == 'text') {
+                <mat-icon style="cursor: pointer" mat-icon-button matSuffix (click)="this.passwordType = 'password'"> visibility </mat-icon>
+              }
+              @if (this.loginForm.controls['password'].invalid) {
+                <mat-error> {{ 'La contraseña es' }} <strong>requerida</strong> </mat-error>
+              }
+            </mat-form-field>
+
+            <!-- <span class="cursor-pointer over-main-color mb-3" [routerLink]="['/authentication/forgot-password']"> ¿Olvidaste la contraseña? </span>
+              
+              <span class="cursor-pointer over-main-color mb-3" [routerLink]="['/authentication/activate-account']"> Validar cuenta </span> -->
+          </div>
+        </form>
+        <button
+          mat-raised-button
+          color="primary"
+          [disabled]="loginForm.invalid || inLoading"
+          (click)="login(loginForm.controls['username'].value, loginForm.controls['password'].value)"
+          class="example-full-width mt-6"
+        >
+          INICIAR SESIÓN
+        </button>
+
+        <span class="my-3 cursor-pointer over-main-color" (click)="gotoRegister()">Crear cuenta</span>
+      </div>
+    </mat-card>
+  </div>
+</div>

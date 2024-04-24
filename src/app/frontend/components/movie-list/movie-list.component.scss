@@ -1,0 +1,19 @@
+@import '../../../../assets/css/material.scss';
+
+.container-image {
+  @apply h-48 w-32 flex flex-col;
+  img {
+    @apply w-full h-full rounded-xl;
+    object-fit: cover;
+    object-position: center;
+  }
+}
+.container-text {
+  @apply w-3/5 flex flex-col;
+  p {
+    @apply text-justify;
+  }
+}
+.container-date {
+  @apply w-32 flex flex-col justify-center;
+}

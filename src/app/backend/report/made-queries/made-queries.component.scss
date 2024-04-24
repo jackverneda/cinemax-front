@@ -1,0 +1,53 @@
+@import "../../../../../assets/scss/helpers/helpers";
+@import "../../../../../assets/scss/theme-imports";
+
+$color-primary: $theme-main;
+$background-color: mat-color($mat-grey, 100);
+
+.made-queries-container {
+  background-color: $background-color;
+  height: 100%;
+  .middle-content-dashboard {
+    ::ng-deep .query-made-graphs-card {
+      padding-left: 0;
+      padding-right: 0;
+    }
+  }
+  .bottom-content {
+    ::ng-deep .table {
+      .mat-card-content {
+        .information-table {
+          .table-container {
+            border-top: 1px dotted $color-primary;
+            border-bottom: 1px dotted $color-primary;
+            .table-made-queries {
+              thead {
+                tr {
+                  th {
+                    &:not(.mat-column-select) {
+                      color: $color-primary !important;
+                    }
+                    &.mat-column-totalQueries {
+                      padding-right: 0;
+                      text-align: end;
+                    }
+                  }
+                }
+              }
+              tbody {
+                tr {
+                  td {
+                    &.mat-column-totalQueries {
+                      padding-right: 0;
+                      text-align: end;
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

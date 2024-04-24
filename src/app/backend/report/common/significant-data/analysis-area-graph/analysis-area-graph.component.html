@@ -1,0 +1,29 @@
+<div class="area-graphs-significant-data" fxLayout="column">
+  <h5>{{ title }}</h5>
+  <h6>{{ subTitle }}</h6>
+  <div class="analysis" fxLayout="row" fxLayoutAlign="space-between center">
+    <h2>+{{ amount }}</h2>
+    <div class="trending-up" *ngIf="checkPercentValue() === 'up'" fxLayout="row">
+      <mat-icon>trending_up</mat-icon>
+      <span>+{{ percent }}%</span>
+    </div>
+    <div class="trending-down" *ngIf="checkPercentValue() === 'down'" fxLayout="row">
+      <mat-icon>trending_down</mat-icon>
+      <span>{{ percent }}%</span>
+    </div>
+  </div>
+  <div class="graphic" fxFlex="80">
+    <canvas
+      width="80%"
+      height="20px"
+      id="areaChartAnalysis"
+      baseChart
+      [legend]="false"
+      [type]="'line'"
+      [datasets]="data"
+      [labels]="areaChartLabels"
+      [options]="areaChartOptions"
+    >
+    </canvas>
+  </div>
+</div>

@@ -1,0 +1,115 @@
+<div class="query-by-specialist-container" fxLayout="row">
+  <div class="mt-4 mb-4" fxLayout="column" fxFlex="96" fxFlexOffset="2" fxLayoutGap="1rem">
+    <app-filter-common-report
+      [filterView] = "filtersActive"
+      [allUsers]= "allUser"
+      [allCategories]="categories"
+      [subjects]="subjects"
+      (eventChangeUser)="onReciveEventFromFilter($event)"
+      (eventChangeStartDate)="onStartDateReceived($event)"
+      (eventChangeEndDate)="onEndDateReceived($event)"
+      (eventEmitCategoryId)="onCategoryIdReceived($event)"
+      (eventEmitSubjectId)="onSubjectIdeReceived($event)"></app-filter-common-report>
+    <div class="content-dashboard" fxLayout="row">
+      <mat-card class="w-100 query-by-specialist-graphs-card">
+        <mat-card-content>
+          <app-bar-graphs-query-by-specialist
+          [labels]="labelsData"
+          [data]="chartData"
+          (eventEmitTabChange)="onChange($event)"
+          (eventEmitFilter)="onFilterEmittedAction($event)"
+          ></app-bar-graphs-query-by-specialist>
+        </mat-card-content>
+      </mat-card>
+    </div>
+    <div class="bottom-content" fxLayout="row">
+      <mat-card class="w-100 table-specialist">
+        <mat-card-content>
+          <div class="information-table" fxLayout="column">
+            <div class="action-btns" fxLayout=row fxLayoutAlign="space-between center">
+              <button class="left-btn" mat-icon-button>
+                <mat-icon>update</mat-icon>
+              </button>
+              <div class="rigth-btn" fxLayout="row" fxLayoutAlign="end center" fxLayoutGap=".5rem">
+                <button class="one" mat-icon-button>
+                  <mat-icon>star</mat-icon>
+                </button>
+                <button class="two" mat-icon-button>
+                  <mat-icon>share</mat-icon>
+                </button>
+                <button class="thre" mat-icon-button>
+                  <mat-icon>print</mat-icon>
+                </button>
+                <button class="thre" mat-icon-button>
+                  <mat-icon>filter_list</mat-icon>
+                </button>
+              </div>
+            </div>
+            <div class="table-container">
+              <table mat-table [dataSource]="dataSource" class="table-specialist-data w-100">
+
+                <!-- Checkbox Column -->
+                <ng-container matColumnDef="select">
+                  <th mat-header-cell *matHeaderCellDef>
+                    <mat-checkbox (change)="$event ? masterToggle() : null"
+                      [checked]="selection.hasValue() && isAllSelected()"
+                      [indeterminate]="selection.hasValue() && !isAllSelected()" color="primary">
+                    </mat-checkbox>
+                  </th>
+                  <td mat-cell *matCellDef="let row">
+                    <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(row) : null"
+                      [checked]="selection.isSelected(row)" (click)="checkBoxSelected(row)" color="primary">
+                    </mat-checkbox>
+                  </td>
+                </ng-container>
+
+                <!-- Specialist Column -->
+                <ng-container matColumnDef="specialist">
+                  <th mat-header-cell *matHeaderCellDef class="header"> Especialista </th>
+                  <td mat-cell *matCellDef="let element">
+                    {{element.specialist_fullName}}
+                    <!-- {{element.date.toISOString().split(',')[0]}} -->
+                  </td>
+                </ng-container>
+                <!-- Teach Type Column -->
+                <ng-container matColumnDef="teachType">
+                  <th mat-header-cell *matHeaderCellDef class="header"> Enseñanza </th>
+                  <td mat-cell *matCellDef="let element"> {{element.category_name}} </td>
+                </ng-container>
+
+                <!-- Category Column -->
+                <ng-container matColumnDef="category">
+                  <th mat-header-cell *matHeaderCellDef class="header"> Categoría </th>
+                  <td mat-cell *matCellDef="let element"> {{element.subject_fullName}} </td>
+                </ng-container>
+
+                <!-- Date Column -->
+                <ng-container matColumnDef="date">
+                  <th mat-header-cell *matHeaderCellDef class="header"> Fecha </th>
+                  <td mat-cell *matCellDef="let element">
+                    {{params.sumaryDate.initialDate | dateFormat: 'l' : 'es'}} -
+                    {{params.sumaryDate.endDate | dateFormat: 'l' : 'es'}}
+
+                  </td>
+                </ng-container>
+
+                <!-- Queries Attended Column -->
+                <ng-container matColumnDef="queriesAttended">
+                  <th mat-header-cell *matHeaderCellDef class="header"> Consultas Atendidas </th>
+                  <td mat-cell *matCellDef="let element"> {{element.total}} </td>
+                </ng-container>
+
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="selection.toggle(row)">
+                </tr>
+              </table>
+            </div>
+            <mat-paginator [length]="query.total" [pageSize]="query.limit" [pageSizeOptions]="pageSizeOptions"
+              (page)="pageEvent = paginateData($event)" showFirstLastButtons></mat-paginator>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>

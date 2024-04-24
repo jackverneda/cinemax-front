@@ -11,7 +11,7 @@ import { MatIcon } from '@angular/material/icon';
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   imports: [MatButtonModule, MatIcon],
 })
-export class Promo {
+export class PromoComponent {
   public data: any[];
 
   constructor() {

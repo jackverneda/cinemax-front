@@ -3,6 +3,8 @@ import { register } from 'swiper/element/bundle';
 import { SwiperOptions } from 'swiper/types/swiper-options';
 import { MatButtonModule } from '@angular/material/button';
 import Swiper from 'swiper';
+import { MovieService } from '../../core/services/movie.service';
+import { da } from '../../../../../dist/cinemax-front/browser/chunk-T5IL2VME';
 
 @Component({
   selector: 'app-carrusel-clasicos',
@@ -13,30 +15,23 @@ import Swiper from 'swiper';
   imports: [MatButtonModule],
 })
 export class CarrouselClasicos {
-  public config;
-  public dataImages: any[];
+  public dataImagesU!: any[];
+  public dataImagesD!: any[];
 
-  constructor() {
+  constructor(private movieService: MovieService) {
     register();
-    this.config = {
-      slidesPerView: 5,
-      direction: 'horizontal',
-      loop: true,
-      spaceBetween: '30px',
-      navigation: true,
-      pagination: { bulletActiveClass: 'swiper-pagination-bullet-active', clickable: true },
-    };
-    this.dataImages = [
-      { file: '../../../../assets/images/movies/avatarexp.jpeg' },
-      { file: '../../../../assets/images/movies/mascara.jfif' },
-      { file: '../../../../assets/images/movies/wonka.jpeg' },
-      { file: '../../../../assets/images/movies/barbie.jpeg' },
-      { file: '../../../../assets/images/movies/thecolorpurplEXP.jpeg' },
-      { file: '../../../../assets/images/movies/oppenheimer.jpeg' },
-      { file: '../../../../assets/images/movies/forrestgump.jfif' },
-      { file: '../../../../assets/images/movies/rustin.jpeg' },
-      { file: '../../../../assets/images/movies/thecolorpurplEXP.jpeg' },
-      { file: '../../../../assets/images/movies/mascara.jfif' },
-    ];
+    this.movieService.getAll().subscribe((data: any) => {
+      let i = 0;
+      this.dataImagesD = data.filter((movie: any) => {
+        i & 1;
+        i++;
+        return i & 1;
+      });
+      this.dataImagesD = data.filter((movie: any) => {
+        !(i & 1);
+        i++;
+        return i & 1;
+      });
+    });
   }
 }

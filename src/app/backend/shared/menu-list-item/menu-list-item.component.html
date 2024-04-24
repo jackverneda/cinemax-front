@@ -1,0 +1,39 @@
+@if (item.hasPermission) {
+  <a
+    mat-list-item
+    (click)="onItemSelected(item)"
+    [ngClass]="{ active: item.route ? router.isActive(item.route, true) : false, expanded: expanded }"
+    class="menu-list-item justify-start flex"
+  >
+    <div class="flex flex-row">
+      <div class="menu-icons flex justify-center items-center">
+        <!-- <fa-icon *ngIf="item.iconName && !item.material" [icon]="item.iconName"></fa-icon> -->
+        @if (item.material && item.iconName) {
+          <mat-icon>{{ item.iconName }}</mat-icon>
+        }
+      </div>
+      <div class="flex">
+        <span class="mat-body-1 ml-3" style="font-size: 15px; margin-left: 25px !important">{{ item.displayName }}</span>
+      </div>
+      @if (item.badge) {
+        <span class="my-badge">{{ item.badge }}</span>
+      }
+      @if (item.children && item.children.length) {
+        <span class="flex">
+          <span class="flex"></span>
+          <mat-icon style="margin: 0px !important" [@indicatorRotate]="expanded ? 'expanded' : 'collapsed'"> expand_more </mat-icon>
+        </span>
+      }
+    </div>
+  </a>
+}
+@if (item.divider) {
+  <mat-divider id="dividerNav" class="my-2"></mat-divider>
+}
+@if (expanded) {
+  <div>
+    @for (child of item.children; track $index) {
+      <app-menu-list-item [item]="child"></app-menu-list-item>
+    }
+  </div>
+}

@@ -84,6 +84,53 @@ $cinemax-front-theme: mat.define-dark-theme(
       max-width: 1140px;
     }
   }
+  .loading-shade {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 56px;
+    right: 0;
+    background: rgba(0, 0, 0, 0.15) !important;
+    z-index: 1024;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .loading-shade-full {
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    bottom: 56px;
+    right: 0;
+    background: rgba(0, 0, 0, 0.48) !important;
+    z-index: 1024;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .navList {
+    /* margin-top: 8px !important; */
+    // height: 82vh !important;
+    min-height: 77vh;
+    max-height: 94% !important;
+    width: 100%;
+    overflow: auto;
+    box-sizing: border-box !important;
+    padding: 16px 16px;
+    // background-color: #f5f5f5 !important;
+    // margin: 0px 8px;
+  }
+  .menu-list-item {
+    @apply p-4;
+  }
+  *,
+  ::after,
+  ::before {
+    border-style: initial;
+  }
 }
 
 html,

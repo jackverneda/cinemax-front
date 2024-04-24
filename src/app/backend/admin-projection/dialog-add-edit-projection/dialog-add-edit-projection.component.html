@@ -1,0 +1,74 @@
+<div class="dialog-content-wrapper">
+  <mat-toolbar matDialogTitle color="primary" id="toolbarHeader">
+    <mat-toolbar-row class="justify-between items-center">
+      <span *ngIf="!isEditing" class="mat-title mb-0">{{ 'Crear Proyección' }}</span>
+      <span *ngIf="isEditing" class="mat-title mb-0">{{ 'Editar Proyección' }}</span>
+      <button mat-icon-button (click)="dialogRef.close()" aria-label="Close dialog">
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-toolbar-row>
+  </mat-toolbar>
+
+  <div mat-dialog-content class="my-dialog-content">
+    <form [formGroup]="form">
+      <div class="flex flex-col justify-start items-stretch" fxLayoutGap="gappx">
+        <div class="flex flex-row justify-start items-start" class="mt-2" fxLayoutGap="gappx">
+          <span class="mat-body-2" style="text-transform: uppercase">{{ 'Información de la Proyección' }} </span>
+        </div>
+        <mat-divider></mat-divider>
+        <div class="mt-3 flex flex-wrap justify-between items-start" fxLayoutGap="gappx">
+          <mat-form-field class="w-full" appearance="outline">
+            <mat-label>{{ 'Película' }}</mat-label>
+            <mat-select required formControlName="movie" placeholder="{{ 'Película' }}">
+              @for (movie of allMovies; track $index) {
+                <mat-option [value]="movie.id">
+                  <div fxLayout="row" fxLayoutAlign="start center">
+                    <span class="mat-body-2 uppercase">
+                      {{ movie.name }}
+                    </span>
+                  </div>
+                </mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field class="w-full" appearance="outline">
+            <mat-label>{{ 'Sala' }}</mat-label>
+            <mat-select required formControlName="room" placeholder="{{ 'Sala' }}">
+              @for (room of allRooms; track $index) {
+                <mat-option [value]="room.id">
+                  <div fxLayout="row" fxLayoutAlign="start center">
+                    <span class="mat-body-2 uppercase">
+                      {{ room.name }}
+                    </span>
+                  </div>
+                </mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field class="w-[48%]" fxFlex.lt-md="100">
+            <mat-label>
+              <span class="capitalize">{{ 'Precio' }}</span>
+            </mat-label>
+            <input required matInput type="number" formControlName="price" placeholder="{{ 'Precio de la Entrada' }}" />
+          </mat-form-field>
+
+          <mat-form-field class="w-[48%]">
+            <mat-label>{{ 'Fecha' }}</mat-label>
+            <input matInput [max]="" [matDatepicker]="dp" formControlName="date" readonly (click)="dp.open()" />
+            <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
+            <mat-datepicker #dp panelClass="example-month-picker" touchUi> </mat-datepicker>
+          </mat-form-field>
+        </div>
+      </div>
+    </form>
+
+    <div class="mt-3 flex flex-row justify-between items-start">
+      <button mat-raised-button mat-dialog-close>{{ 'CERRAR' }}</button>
+      <button mat-raised-button class="ml-2" [disabled]="form.invalid || isSaving" color="primary" (click)="onSave()">{{ 'GUARDAR' }}</button>
+    </div>
+  </div>
+
+  <div mat-dialog-actions class="flex flex-row justify-end items-start"></div>
+</div>

@@ -4,12 +4,24 @@ import { HomeComponent } from './home.component';
 import { BannerComponent } from '../components/banner/banner.component';
 import { HomeRoutingModule } from './home.routing';
 import { CarrouselComponent } from '../components/carrousel/carrousel.component';
+import { CarrouselRightComponent } from '../components/carrousel-right/carrousel-right.component';
 import { CarrouselClasicos } from '../components/carrousel-clasicos/carrousel-clasicos.component';
-import { Promo } from '../components/promo/promo.component';
+import { PromoComponent } from '../components/promo/promo.component';
+import { MovieListComponent } from '../components/movie-list/movie-list.component';
+import { ContactComponent } from '../shared/contact/contact.component';
 
 @NgModule({
   declarations: [HomeComponent],
-  imports: [CommonModule, HomeRoutingModule,CarrouselClasicos, Promo, BannerComponent, CarrouselComponent],
-  exports: [HomeComponent],
+  imports: [
+    CommonModule,
+    HomeRoutingModule,
+    CarrouselRightComponent,
+    CarrouselClasicos,
+    PromoComponent,
+    BannerComponent,
+    CarrouselComponent,
+    MovieListComponent,
+    ContactComponent,
+  ],
 })
 export class HomeModule {}

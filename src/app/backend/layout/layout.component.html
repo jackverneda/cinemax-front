@@ -1,0 +1,111 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav
+    #drawer
+    id="sidenavId"
+    class="sidenav"
+    (mouseenter)="onMouseEnterSidenav($event)"
+    (mouseleave)="onMouseLeaveSidenav($event)"
+    class="sidenav"
+    [ngClass]="{ compressSidnav: compressSidnavState, noCompressSidnav: !compressSidnavState }"
+    fixedInViewport="true"
+    [attr.role]="isHandset ? 'dialog' : 'navigation'"
+    [mode]="isHandset ? 'over' : 'side'"
+    [opened]="!isHandset"
+  >
+    <div class="flex flex-col justify-start items-stretch" fxLayoutGap="gappx">
+      <div class="flex flex-col justify-start items-stretch" fxLayoutGap="gappx">
+        <mat-toolbar id="MainToolbarHeader" style="height: auto; box-shadow: none" class="w-100 mat-elevation-z8" color="primary">
+          <mat-toolbar-row id="headerToolbar" class="p-1 flex-flex-row justify-start items-center" style="height: auto !important">
+            <div class="profile-img" class="justify-start items-center">
+              <a [href]="portalUrl">
+                <img
+                  style="width: 196px; padding-left: 16px; object-fit: cover; object-position: center; border-radius: 4px"
+                  src="../../../assets/images/logo/cinemax-pale-logo.png"
+                />
+              </a>
+            </div>
+
+            <button id="compressBtn" mat-icon-button (click)="onCompress()" class="xs:hidden sm:hidden md:hidden compressButton">
+              <mat-icon class="small-icon" *ngIf="!compressSidnavState"> arrow_back_ios</mat-icon>
+              <mat-icon class="small-icon" *ngIf="!compressSidnavState"> arrow_forward_ios</mat-icon>
+              <mat-icon class="small-icon" *ngIf="compressSidnavState && isMouseInSidenav" id="expand"> attach_file </mat-icon>
+            </button>
+          </mat-toolbar-row>
+        </mat-toolbar>
+
+        <mat-nav-list class="navList">
+          @for (item of navigationData; track $index) {
+            <app-menu-list-item [item]="item" [depth]="0"></app-menu-list-item>
+          }
+        </mat-nav-list>
+      </div>
+      <div class="flex flex-row justify-center items-end" fxLayoutGap="gappx">
+        <footer id="NavBarFooter" class="w-100">
+          <mat-toolbar class="w-full h-full" color="primary">
+            <div class="flex flex-col justify-center items-stretch w-full">
+              @if (isMouseInSidenav || !compressSidnavState) {
+                <span class="mat-caption mx-auto">{{ 'Copyright' }} &copy;{{ year }}</span>
+              }
+              @if (!isMouseInSidenav && compressSidnavState) {
+                <span class="mat-caption mx-auto">&copy;{{ year }}</span>
+              }
+            </div>
+          </mat-toolbar>
+        </footer>
+      </div>
+    </div>
+  </mat-sidenav>
+  <mat-sidenav-content class="sidenavContent" id="sidenavContentId" [ngClass]="{ mobileMargin: isHandset }">
+    <mat-toolbar
+      id="toolbarBody"
+      color="primary"
+      class="main-toolbar"
+      [ngClass]="{
+        'main-toolbar-no-padding': compressSidnavState || isHandset,
+        'main-toolbar-padding-70': isMouseInSidenav
+      }"
+    >
+      <mat-toolbar-row>
+        <div class="flex flex-row justify-between items-center w-full" fxFlex.gt-md="78">
+          <div class="justify-start items-center w-1/4">
+            <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()" *ngIf="isHandset || !this.sidenav.opened">
+              <mat-icon aria-label="Side nav toggle icon" class="main-color">menu</mat-icon>
+            </button>
+            <!-- <app-breadcrumd [separator]="separator"></app-breadcrumd> -->
+          </div>
+          <button class="mx-1" mat-icon-button matTooltip="Opciones de Usuario">
+            <mat-icon class="cursor-pointer" aria-label="Side nav toggle icon" [matMenuTriggerFor]="menu">more_vert </mat-icon>
+          </button>
+          <mat-menu #menu="matMenu" class="mymegamenu">
+            <button mat-menu-item (click)="onEditProfile()">
+              <mat-icon>account_box</mat-icon>
+              {{ 'Editar Perfil' }}
+            </button>
+            <button mat-menu-item (click)="onLogout()">
+              <mat-icon>exit_to_app</mat-icon>
+              {{ 'Cerrar la sesión' }}
+            </button>
+          </mat-menu>
+
+          <!-- <div fxLayout="row" fxLayoutAlign="end center" *ngIf="loggedInUser">
+            <lib-guachos-ce-application-panel [options]="applicationPanel">
+            </lib-guachos-ce-application-panel>
+
+            <lib-guachos-ce-user-panel [loggedInUser]="loggedInUser"
+                                       [options]="optionUserPanel"
+                                       [apiUrl]="url"
+                                       [imagePath]="'image'"
+                                       (onLogout)="onUserLogout()"
+                                       (onLogoutAlternativa)="onLogoutAlternativa()"
+                                       (onEditProfile)="onEditProfile()">
+            </lib-guachos-ce-user-panel>
+          </div> -->
+        </div>
+      </mat-toolbar-row>
+    </mat-toolbar>
+
+    <div class="MainLayoutRoutes" fxFlexFill class="flex flex-col justify-start items-stretch mt-8">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

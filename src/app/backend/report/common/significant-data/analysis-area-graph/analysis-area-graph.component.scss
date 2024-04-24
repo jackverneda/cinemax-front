@@ -1,0 +1,17 @@
+// @import "../../../../../../../assets/scss/theme-imports";
+
+.area-graphs-significant-data {
+  h5,
+  h6,
+  h2 {
+    margin-bottom: 0;
+  }
+  .analysis {
+    .trending-up {
+      color: green;
+    }
+    .trending-down {
+      color: red;
+    }
+  }
+}

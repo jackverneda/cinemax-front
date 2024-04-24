@@ -1,0 +1,40 @@
+@import "../../../../../assets/scss/helpers/helpers";
+@import "../../../../../assets/scss/theme-imports";
+
+$color-primary: $theme-main;
+$background-color: mat-color($mat-grey, 100);
+
+.registered-users-container {
+  background-color: $background-color;
+  .middle-content .registered-users-graphs-card,
+  .middle-content-filter .registered-users-graphs-card {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+  .bottom-content {
+    .table {
+      .mat-card-content {
+        .information-table-registered-users {
+          .table-container {
+            border-top: 1px dotted $color-primary;
+            border-bottom: 1px dotted $color-primary;
+            ::ng-deep .table-registered-users {
+              th.mat-column-totalRegisteredUsers,
+              td.mat-column-totalRegisteredUsers {
+                text-align: end;
+                padding-right: 0 !important;
+              }
+              thead {
+                tr {
+                  th {
+                    color: $color-primary;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

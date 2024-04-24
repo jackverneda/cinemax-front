@@ -1,0 +1,41 @@
+<nav class="nav" [ngClass]="topOfPage() ? 'absolute' : 'black-shadow sticky-top'">
+  <mat-toolbar>
+    <div class="container flex flex-row w-4/5 justify-between mx-auto">
+      <button class="logo" [ngClass]="topOfPage() ? '' : 'little-logo'" aria-label="Logo Icon">
+        <img [routerLink]="['/home']" class="image" src="../../../assets/images/logo/cinemax-pale-logo.png" alt="Logo IMG" />
+      </button>
+
+      <div class="xs-hide">
+        @for (page of pages; track page) {
+          <button mat-button class="nav-link mr-2rem" aria-label="Link" [routerLink]="[page.link]" [routerLinkActive]="'select'">
+            {{ page.name | uppercase }}
+          </button>
+        }
+        @if (user) {
+          <button class="flex flex-row btn-stroked" mat-stroked-button (click)="goToSearch()" mat-button aria-label="search-button">
+            <mat-icon>verified</mat-icon>
+            <span>{{ user.firstName }}</span>
+          </button>
+        }
+        @if (!user) {
+          <button class="flex flex-row btn-stroked" mat-stroked-button (click)="goToRegister()" mat-button aria-label="search-button">
+            <mat-icon>account_circle</mat-icon>
+            <span>Registrarse</span>
+          </button>
+        }
+
+        <button (click)="goToSearch()" mat-icon-button aria-label="search-button">
+          <mat-icon>search</mat-icon>
+        </button>
+      </div>
+      <div class="gt-hide">
+        <!-- <button mat-icon-button [matMenuTriggerFor]="menu">
+          <mat-icon>menu</mat-icon>
+        </button> -->
+        <button mat-icon-button (click)="toggleDrawer()">
+          <mat-icon>menu</mat-icon>
+        </button>
+      </div>
+    </div>
+  </mat-toolbar>
+</nav>

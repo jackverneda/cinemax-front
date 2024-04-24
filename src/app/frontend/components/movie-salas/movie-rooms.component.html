@@ -1,40 +1,51 @@
-<div class="container w-4/5">
+<div class="container">
   <div class="mt-16 mb-6">
     <h1 class="uppercase font-bold">Horarios</h1>
     <span class="text-base">{{ rooms.length }} proyecciones</span>
   </div>
 
-  <ul class="h-4/5" direction="vertical" space-between="30">
+  <ul direction="vertical" class="flex flex-col" space-between="30">
     @for (room of rooms; track $index) {
-      <li class="flex flex-row h-1/5 items-center justify-between">
-        <div class="flex flex-col w-1/5 border-r-2 border-r-white">
-          <p class="flex flex-row h-1/2 font-bold">{{ room?.day }}/{{ room?.month }}/{{ room?.year }}</p>
+      @if (showTitle) {
+        <h1 class="flex flex-row h-1/2 font-bold">{{ room.movie.name }}</h1>
+      }
+      <li class="flex flex-row h-1/5 items-center justify-between border-dashed border-b border-b-white py-2 mb-6">
+        <div class="flex flex-col w-1/5 border-solid border-r-2 border-r-white">
+          <p class="flex flex-row h-1/2 font-bold">{{ room?.date | date }}</p>
           @if (room.hour > 12) {
-            <p>{{ room?.hour - 12 }}:00 PM</p>
+            <p>{{ room?.time - 12 }}:00 PM</p>
           } @else {
-            <p>{{ room?.hour }}:00 AM</p>
+            <p>{{ room?.time }}:00 AM</p>
           }
         </div>
         <div class="flex flex-col w-1/2">
           <div class="flex flex-row items-center">
             <div class="flex-col mr-5">
-              <h1 class="font-bold">Sala {{ room?.room }}</h1>
+              <h1 class="font-bold">{{ room?.room.name }}</h1>
             </div>
             <div class="flex-col h-1/2">
               <p class="text-cyan-600 font-bold">{{ room?.seats }} Butacas disponibles</p>
             </div>
           </div>
           <div class="flex flex-row h-2/5 left-full">
-            <p>{{ room?.desc }}</p>
+            <p>
+              @for (tag of room?.roomTypes; track tag) {
+                <span>{{ tag }}, </span>
+              }
+            </p>
           </div>
         </div>
         <div class="flex flex-row h-1/5 w-1/4 justify-center items-center">
-          <button class="rounded-xl w-full font-bold" mat-raised-button color="accent">¡Reserva por {{ room?.price }} $!</button>
+          <button class="rounded-xl w-full font-bold" mat-raised-button color="accent" (click)="onNvaigatePayment(room)">
+            ¡Reserva por {{ room?.price }} $!
+          </button>
         </div>
       </li>
     }
   </ul>
-  <div class="flex flex-row justify-center items-center">
-    <button class="rounded-xl border-e font-bold" mat-raised-button color="transparent">Ver mas</button>
-  </div>
+  @if (!showTitle) {
+    <div class="flex flex-row justify-center items-center">
+      <button class="btn-stroked p-2" mat-stroked-button>Ver mas</button>
+    </div>
+  }
 </div>

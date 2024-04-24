@@ -1,0 +1,12 @@
+<h2 mat-dialog-title>{{ data.title }}</h2>
+
+<mat-dialog-content>
+  <span>{{ data.question }}</span>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <div class="flex flex-row justify-between items-center w-4/5 mx-auto">
+    <button class="flex" mat-button mat-dialog-close>{{ 'CANCELAR' }}</button>
+    <button class="flex" color="primary" mat-raised-button (click)="onSave()">{{ 'ACEPTAR' }}</button>
+  </div>
+</mat-dialog-actions>

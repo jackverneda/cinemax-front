@@ -1,0 +1,81 @@
+<div class="container w-4/5 flex flex-col">
+  <div class="flex flex-row mt-32">
+    <button mat-stroked-button class="btn-stroked">
+      <mat-icon>chevron_left</mat-icon>
+      <span>Home</span>
+    </button>
+  </div>
+  <span>{{ projection?.date | date }}</span>
+  <h1 class="text-center mt-16">{{ projection?.movie?.name }}</h1>
+  <div class="flex flex-row justify-between mb-16">
+    <div class="w-1/4 container-left">
+      <img class="rounded-xl" [src]="projection?.movie?.coverURL" alt="" />
+    </div>
+    <div class="w-[70%] container-right">
+      <mat-horizontal-stepper [selectedIndex]="stepIndex" style="background-color: transparent">
+        <mat-step>
+          <ng-template matStepLabel>Información de Pago</ng-template>
+          <div class="flex flex-col">
+            <div class="flex flex-row justify-between">
+              <span class="mat-title">Sala</span>
+              <span class="mat-title">Precio</span>
+            </div>
+            <div class="flex flex-row justify-between mb-4">
+              <h2>{{ projection?.room?.name }}</h2>
+              <h2>
+                <strong>${{ calcPrice() }}</strong>
+              </h2>
+            </div>
+            <form [formGroup]="paymentForm">
+              <div class="flex flex-wrap justify-between items-center">
+                <mat-form-field appearance="outline" class="w-[38%]">
+                  <mat-label>Método de Pago</mat-label>
+                  <input matInput required formControlName="paymentType" placeholder="Placeholder" />
+                </mat-form-field>
+                <mat-form-field appearance="outline" class="w-[58%]">
+                  <mat-label>Tarjeta</mat-label>
+                  <input matInput required formControlName="card" placeholder="Tarjeta de Credito" />
+                </mat-form-field>
+                <mat-form-field appearance="outline" class="w-[38%]">
+                  <mat-label>Teléfono</mat-label>
+                  <input matInput required formControlName="phone" placeholder="Placeholder" />
+                </mat-form-field>
+                <mat-form-field appearance="outline" class="w-[58%]" (click)="onClickSelectSeat()">
+                  <mat-label>Seleccionar Asientos</mat-label>
+                  <input matInput required placeholder="Asientos" [value]="" />
+                  <mat-icon matSuffix class="mat-18">edit_location_alt</mat-icon>
+                </mat-form-field>
+              </div>
+            </form>
+            <div class="flex flex-row justify-end">
+              <button mat-stroked-button [disabled]="paymentForm.invalid" (click)="onPayTicket()" class="btn-stroked">
+                <span>IR A PAGAR</span>
+              </button>
+            </div>
+          </div>
+        </mat-step>
+
+        <mat-step>
+          <ng-template matStepLabel>Confirmar Pago</ng-template>
+          <div class="flex flex-col justify-center items-center">
+            <mat-icon class="text-yellow-300">warning</mat-icon>
+            <p>Se le descontará ${{ calcPrice() }} de su tarjeta de crédito {{ this.paymentForm.get('card')?.value || '' }}.</p>
+            <button mat-stroked-button (click)="onConfirmPayment()" class="btn-stroked">
+              <span>Acepto</span>
+            </button>
+          </div>
+        </mat-step>
+
+        <mat-step>
+          <mat-icon class="text-green-500 items-center">warning</mat-icon>
+          <p>Felicitaciones, su compra se ha efectuado con éxito, verifique el comprobante en sus descargas.</p>
+          <button mat-stroked-button [routerLink]="['/frontend/projections']" class="btn-stroked">
+            <span>Acepto</span>
+          </button>
+        </mat-step>
+      </mat-horizontal-stepper>
+    </div>
+  </div>
+  <hr />
+</div>
+<app-contact></app-contact>

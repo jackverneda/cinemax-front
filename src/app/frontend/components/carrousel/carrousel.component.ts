@@ -2,6 +2,7 @@ import { Component, CUSTOM_ELEMENTS_SCHEMA, OnInit } from '@angular/core';
 import { SwiperOptions } from 'swiper/types/swiper-options';
 import { register } from 'swiper/element/bundle';
 import { MatButtonModule } from '@angular/material/button';
+import { MovieService } from '../../core/services/movie.service';
 @Component({
   selector: 'app-carrousel',
   standalone: true,
@@ -11,26 +12,12 @@ import { MatButtonModule } from '@angular/material/button';
   imports: [MatButtonModule],
 })
 export class CarrouselComponent {
-  public dataImages: any[];
+  public dataImages!: any[];
 
-  constructor() {
+  constructor(private movieService: MovieService) {
     register();
-    this.dataImages = [
-      {
-        file: '../../../../assets/images/movies/rwrb.jpeg',
-      },
-      {
-        file: '../../../../assets/images/movies/saltburn.jpeg',
-      },
-      {
-        file: '../../../../assets/images/movies/thehungergames.jpeg',
-      },
-      {
-        file: '../../../../assets/images/movies/avatar.jpeg',
-      },
-      {
-        file: '../../../../assets/images/movies/avatar.jpeg',
-      },
-    ];
+    this.movieService.getAll().subscribe((data: any) => {
+      this.dataImages = data;
+    });
   }
 }

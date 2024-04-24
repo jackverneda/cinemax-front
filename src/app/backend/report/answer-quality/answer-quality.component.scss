@@ -1,0 +1,53 @@
+@import "../../../../../assets/scss/theme-imports";
+@import "../../../../../assets/scss/helpers/helpers";
+
+$color-primary: $theme-main;
+$background-color: mat-color($mat-grey, 100);
+
+.answer-quality-container {
+  background-color: $background-color;
+  height: 100%;
+  .content-dashboard {
+    ::ng-deep .bar-graph-avg-stars-awarded-card {
+      padding-left: 0;
+      padding-right: 0;
+    }
+  }
+  .bottom-content{
+    ::ng-deep .table-quality {
+      .mat-card-content {
+        .information-table {
+          .table-container {
+            border-top: 1px dotted $color-primary;
+            border-bottom: 1px dotted $color-primary;
+            .table-quality-data {
+              thead {
+                tr {
+                  th {
+                    &:not(.mat-column-select) {
+                      color: $color-primary !important;
+                    }
+                    &.mat-column-starsObtained {
+                      padding-right: 0;
+                      text-align: end;
+                    }
+                  }
+                }
+              }
+              tbody {
+                tr {
+                  td {
+                    &.mat-column-starsObtained {
+                      padding-right: 0;
+                      text-align: end;
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
