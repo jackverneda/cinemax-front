@@ -9,10 +9,23 @@ import { SearchComponent } from './search.component';
 import { SearchRoutingModule } from './search.routing';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatChipsModule } from '@angular/material/chips';
+import { MovieListComponent } from '../components/movie-list/movie-list.component';
+import { ContactComponent } from '../shared/contact/contact.component';
 
 @NgModule({
   declarations: [SearchComponent],
-  imports: [CommonModule, MatPaginatorModule, MatChipsModule, SearchRoutingModule, RouterModule, MatButtonModule, MatDividerModule, MatIconModule],
+  imports: [
+    CommonModule,
+    MatPaginatorModule,
+    MatChipsModule,
+    SearchRoutingModule,
+    RouterModule,
+    MatButtonModule,
+    MatDividerModule,
+    MatIconModule,
+    MovieListComponent,
+    ContactComponent,
+  ],
   exports: [SearchComponent],
 })
 export class SearchModule {}

@@ -13,30 +13,28 @@ import Swiper from 'swiper';
   imports: [MatButtonModule],
 })
 export class CarrouselClasicos {
-  public config;
-  public dataImages: any[];
+  public dataImagesU: any[];
+  public dataImagesD: any[];
 
   constructor() {
     register();
-    this.config = {
-      slidesPerView: 5,
-      direction: 'horizontal',
-      loop: true,
-      spaceBetween: '30px',
-      navigation: true,
-      pagination: { bulletActiveClass: 'swiper-pagination-bullet-active', clickable: true },
-    };
-    this.dataImages = [
+    this.dataImagesU = [
       { file: '../../../../assets/images/movies/avatarexp.jpeg' },
       { file: '../../../../assets/images/movies/mascara.jfif' },
-      { file: '../../../../assets/images/movies/wonka.jpeg' },
       { file: '../../../../assets/images/movies/barbie.jpeg' },
-      { file: '../../../../assets/images/movies/thecolorpurplEXP.jpeg' },
       { file: '../../../../assets/images/movies/oppenheimer.jpeg' },
-      { file: '../../../../assets/images/movies/forrestgump.jfif' },
-      { file: '../../../../assets/images/movies/rustin.jpeg' },
+      { file: '../../../../assets/images/movies/wonka.jpeg' },
       { file: '../../../../assets/images/movies/thecolorpurplEXP.jpeg' },
-      { file: '../../../../assets/images/movies/mascara.jfif' },
+      { file: '../../../../assets/images/movies/rustin.jpeg' },
+    ];
+    this.dataImagesD = [
+      { file: '../../../../assets/images/movies/indiana.jpg' },
+      { file: '../../../../assets/images/movies/inception.jpeg' },
+      { file: '../../../../assets/images/movies/startwarscover.jpeg' },
+      { file: '../../../../assets/images/movies/saw.jpeg' },
+      { file: '../../../../assets/images/movies/themaskcover.jpeg' },
+      { file: '../../../../assets/images/movies/rustin.jpeg' },
+      { file: '../../../../assets/images/movies/forrestgump.jfif' },
     ];
   }
 }

@@ -39,6 +39,11 @@ export class BannerComponent {
         desc: 'Separada de su hermana y sus hijos, Celie enfrenta muchas dificultades, incluido un marido abusivo. Con el apoyo de una cantante y su hijastra, finalmente encuentra una fuerza extraordinaria en los lazos inquebrantables de un nuevo tipo de hermandad.',
         logo: '../../../../assets/images/movies/thecolorpurplelogo.png',
       },
+      {
+        file: '../../../../assets/images/movies/TheLittleMarmaidExp.jpeg',
+        desc: 'Una joven sirena que anhela conocer el mundo que se extiende donde acaba el mar emerge a la superficie y se enamora del príncipe Eric. Sin embargo, la única manera de estar con él exige hacer un pacto con Úrsula, la perversa bruja del mar.',
+        logo: '../../../../assets/images/movies/the LittleMarmaid.png',
+      },
     ];
   }
 }

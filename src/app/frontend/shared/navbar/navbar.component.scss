@@ -1,0 +1,95 @@
+// @use '../../../assets/styles/functions.scss' as f;
+
+::ng-deep {
+  app-navbar {
+    .container {
+      padding: 0;
+    }
+
+    .nav {
+      @apply w-full bg-transparent;
+      background-color: transparent;
+      transition: 0.5s;
+      z-index: 999;
+
+      .mat-toolbar {
+        background-color: transparent;
+        height: 100px;
+      }
+    }
+
+    .nav-link {
+      font-style: normal;
+      font-weight: 500;
+      line-height: 1.375rem;
+    }
+
+    .nav-link.select,
+    .nav-link:hover {
+      border-bottom: 0.125rem solid rgba(255, 255, 255, 0.5);
+      border-radius: unset !important;
+      transition: 0.5s;
+    }
+
+    .mat-mdc-button .mat-mdc-button-persistent-ripple::before {
+      background-color: unset !important;
+    }
+
+    .btn-login {
+      border-radius: 1.25rem;
+      width: 7.5rem !important;
+      height: 3.0625rem !important;
+      font-style: normal;
+      font-weight: 500;
+      font-size: 0.875rem;
+      line-height: 1.375rem;
+      color: #f2f2f2 !important;
+      background-color: var(--main-color) !important;
+    }
+
+    .logo {
+      background-color: transparent;
+      border: none;
+      position: relative;
+
+      .image {
+        width: 16rem;
+        transition: all 0.2s;
+        @media (max-width: 575.98px) {
+          transform: translate(68%, 0);
+        }
+      }
+    }
+
+    .little-logo {
+      .image {
+        transition: all 0.2s;
+        @media (max-width: 575.98px) {
+          transform: translate(0, 0);
+        }
+      }
+    }
+
+    .sticky-top {
+      position: sticky;
+      top: 0;
+    }
+
+    .black-shadow {
+      background: linear-gradient(to bottom, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0.5));
+      box-shadow: 0 1rem 20rem rgba(0, 0, 0, 0.5);
+      transition: 0.5s;
+    }
+
+    .gt-hide {
+      @media (min-width: 577px) {
+        display: none;
+      }
+    }
+    mat-icon {
+      @media (max-width: 576px) {
+        color: var(--main-color);
+      }
+    }
+  }
+}
